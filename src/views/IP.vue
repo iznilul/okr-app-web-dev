@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'ip',
+  name: 'IP',
   methods: {
     reback() {
       this.$router.back()
