@@ -2,7 +2,7 @@
   <div>
     用户信息页，开发中( ╯□╰ )
     <br />
-    <Avatar shape="square" icon="ios-person" size="200" style="position: absolute;left: 50px;top:60px" />
+    <Avatar shape="square" icon="ios-person" size="200" style="position: absolute; left: 50px; top: 60px" />
     <Upload
       :on-success="handleSuccess"
       :format="['jpg', 'jpeg', 'png']"
@@ -11,9 +11,9 @@
       :on-exceeded-size="handleMaxSize"
       action=""
     >
-      <Button icon="ios-cloud-upload-outline" style="position: absolute;left:95px;top:280px">上传头像</Button>
+      <Button icon="ios-cloud-upload-outline" style="position: absolute; left: 95px; top: 280px">上传头像</Button>
     </Upload>
-    <Form :model="form" :label-width="100" style="position: absolute;top:60px;left: 350px">
+    <Form :model="form" :label-width="100" style="position: absolute; top: 60px; left: 350px">
       <FormItem label="当前密码">
         <Input v-model="form.password"></Input>
       </FormItem>
@@ -21,7 +21,7 @@
         <Input v-model="form.newPassword"></Input>
       </FormItem>
     </Form>
-    <Form :model="form" :label-width="100" style="position: absolute;top:60px;right:250px">
+    <Form :model="form" :label-width="100" style="position: absolute; top: 60px; right: 250px">
       <FormItem label="真实姓名">
         <Input v-model="form.userName"></Input>
       </FormItem>
@@ -39,16 +39,21 @@
       </FormItem>
     </Form>
     <div>
-      <Button @click="verifyPassword" type="primary" style="position: absolute;top:170px;left:470px">修改密码</Button>
+      <Button @click="verifyPassword" type="primary" style="position: absolute; top: 170px; left: 470px"
+        >修改密码
+      </Button>
     </div>
     <div>
-      <Button @click="verifyUserInfo" type="primary" style="position: absolute;top:350px;right:300px">修改资料</Button>
+      <Button @click="verifyUserInfo" type="primary" style="position: absolute; top: 350px; right: 300px"
+        >修改资料
+      </Button>
     </div>
   </div>
 </template>
 
 <script>
 import api from '../api/index'
+
 export default {
   name: 'userinfo',
   data() {
@@ -60,8 +65,8 @@ export default {
         major: '',
         qq: '',
         phone: '',
-        weixin: ''
-      }
+        weixin: '',
+      },
     }
   },
   methods: {
@@ -71,13 +76,13 @@ export default {
     handleFormatError(file) {
       this.$Notice.warning({
         title: '文件格式不对',
-        desc: file.name + ' 文件格式不符合要求，请选择jpg或png格式文件'
+        desc: file.name + ' 文件格式不符合要求，请选择jpg或png格式文件',
       })
     },
     handleMaxSize(file) {
       this.$Notice.warning({
         title: '文件太大',
-        desc: file.name + '太大了， 请上传1M以内的文件.'
+        desc: file.name + '太大了， 请上传1M以内的文件.',
       })
     },
     verifyPassword() {
@@ -86,10 +91,10 @@ export default {
     verifyUserInfo() {
       this.$Message.info({
         content: 'verifyUserInfo',
-        duration: 5
+        duration: 5,
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
