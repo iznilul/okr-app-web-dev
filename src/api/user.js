@@ -17,17 +17,17 @@ export function register(parameter) {
   })
 }
 
-export function update(parameter) {
+export function updateUser(parameter) {
   return axios({
-    url: api.update,
+    url: api.updateUser,
     method: 'post',
     data: parameter,
   })
 }
 
-export function select(parameter) {
+export function selectUser(parameter) {
   return axios({
-    url: api.select,
+    url: api.selectUser,
     method: 'post',
     data: parameter,
   })
@@ -36,6 +36,22 @@ export function select(parameter) {
 export function selectByCond(parameter) {
   return axios({
     url: api.selectByCond,
+    method: 'post',
+    data: parameter,
+  })
+}
+
+export function upload(parameter) {
+  return axios({
+    url: api.upload,
+    method: 'post',
+    data: parameter,
+  })
+}
+
+export function verifyPassword(parameter) {
+  return axios({
+    url: api.verifyPassword,
     method: 'post',
     data: parameter,
   })

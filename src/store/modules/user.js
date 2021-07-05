@@ -1,35 +1,61 @@
 import Vue from 'vue'
-// import { ACCESS_TOKEN } from '@/store/mutation-types'
-// import { welcome } from '@/utils/util'
-import { login } from '@/api/user'
+
+import { login, selectUser, updateUser, verifyPassword } from '@/api/user'
 
 const user = {
   state: {
     token: '',
-    name: '',
-    welcome: '',
+    role: '',
+    account: '',
+    userName: '',
     avatar: '',
-    roles: [],
-    info: {}
+    major: '',
+    qq: '',
+    phone: '',
+    weixin: '',
+    desc: '',
   },
 
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_NAME: (state, { name, welcome }) => {
-      state.name = name
-      state.welcome = welcome
+    SET_ROLE: (state, role) => {
+      state.role = role
+    },
+    SET_USERNAME: (state, userName) => {
+      state.userName = userName
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles
+    SET_MAJOR: (state, major) => {
+      state.major = major
     },
-    SET_INFO: (state, info) => {
-      state.info = info
-    }
+    SET_QQ: (state, qq) => {
+      state.qq = qq
+    },
+    SET_PHONE: (state, phone) => {
+      state.phone = phone
+    },
+    SET_WEIXIN: (state, weixin) => {
+      state.weixin = weixin
+    },
+    SET_DESC: (state, desc) => {
+      state.desc = desc
+    },
+    SET_USER: (state, param) => {
+      console.log(param)
+      state.role = param.role
+      state.account = param.account
+      state.userName = param.userName
+      state.avatar = param.avatar
+      state.major = param.major
+      state.qq = param.qq
+      state.phone = param.phone
+      state.weixin = param.weixin
+      state.desc = param.desc
+    },
   },
 
   actions: {
@@ -38,55 +64,74 @@ const user = {
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         login(userInfo)
-          .then(response => {
+          .then((response) => {
             const result = response
-            // console.log("result",result)
-            // Vue.ls.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
-            // commit('SET_TOKEN', result.token)
             resolve(result)
           })
-          .catch(error => {
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    //保存到session
+    saveSession({ commit }, res) {
+      sessionStorage.setItem('account', res.account)
+      sessionStorage.setItem('userName', res.userName)
+      sessionStorage.setItem('role', res.role)
+      sessionStorage.setItem('avatar', res.avatar)
+      sessionStorage.setItem('major', res.major)
+      sessionStorage.setItem('qq', res.qq)
+      sessionStorage.setItem('phone', res.phone)
+      sessionStorage.setItem('weixin', res.weixin)
+      sessionStorage.setItem('desc', res.desc)
+    },
+
+    //更新用户资料
+    updateUser({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        updateUser(userInfo)
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
             // console.log("error",error)
             reject(error)
           })
       })
     },
 
-    // 获取用户信息
-    GetInfo({ commit }) {
+    //修改密码
+    verifyPassword({ commit }, verifyInfo) {
       return new Promise((resolve, reject) => {
-        getInfo()
-          .then(response => {
+        verifyPassword(verifyInfo)
+          .then((response) => {
             const result = response
-
-            if (result.roles && result.roles.length > 0) {
-              result.roles.map(roleItem => {
-                if (roleItem.permList && roleItem.permList.length > 0) {
-                  roleItem.permissionList = roleItem.permList.map(permission => {
-                    return permission.permName
-                  })
-                }
-              })
-              commit('SET_ROLES', result.roles)
-              commit('SET_INFO', result)
-            } else {
-              reject(new Error('getInfo: roles must be a non-null array !'))
-            }
-
-            commit('SET_NAME', { name: result.user.nick, welcome: welcome() })
-            commit('SET_AVATAR', result.user.avatar)
-
-            resolve(response)
+            console.log(result)
+            resolve(result.data)
           })
-          .catch(error => {
+          .catch((error) => {
+            // console.log("error",error)
             reject(error)
           })
       })
     },
 
+    //更新session
+    updateSession({ commit }, res) {
+      sessionStorage.setItem('userName', res.userName)
+      sessionStorage.setItem('major', res.major)
+      sessionStorage.setItem('qq', res.qq)
+      sessionStorage.setItem('phone', res.phone)
+      sessionStorage.setItem('weixin', res.weixin)
+      sessionStorage.setItem('desc', res.desc)
+    },
+
     // 登出
     Logout({ commit, state }) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         Vue.ls.remove(ACCESS_TOKEN)
@@ -99,8 +144,8 @@ const user = {
             resolve()
           })
       })
-    }
-  }
+    },
+  },
 }
 
 export default user

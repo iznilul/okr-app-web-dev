@@ -2,26 +2,35 @@
   <div>
     用户信息页，开发中( ╯□╰ )
     <br />
-    <Avatar shape="square" icon="ios-person" size="200" style="position: absolute; left: 50px; top: 60px" />
+    <Avatar
+      :src="avatar"
+      shape="square"
+      icon="ios-person"
+      size="200"
+      style="position: absolute; left: 50px; top: 60px"
+    />
     <Upload
+      :data="uploadData"
       :on-success="handleSuccess"
       :format="['jpg', 'jpeg', 'png']"
       :max-size="1024"
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleMaxSize"
-      action=""
+      :action="uploadUrl"
+      :show-upload-list="false"
     >
       <Button icon="ios-cloud-upload-outline" style="position: absolute; left: 95px; top: 280px">上传头像</Button>
     </Upload>
-    <Form :model="form" :label-width="100" style="position: absolute; top: 60px; left: 350px">
-      <FormItem label="当前密码">
-        <Input v-model="form.password"></Input>
+    <Form ref="verify" :model="verify" :label-width="100" style="position: absolute; top: 60px; left: 350px">
+      <FormItem label="当前密码" prop="oldPassword">
+        <Input v-model="verify.oldPassword"></Input>
       </FormItem>
-      <FormItem label="新密码">
-        <Input v-model="form.newPassword"></Input>
+      <FormItem label="新密码" prop="newPassword">
+        <Input v-model="verify.newPassword"></Input>
       </FormItem>
+      <Button @click="verifyPassword" type="primary" style="position: absolute; left: 100px">修改密码 </Button>
     </Form>
-    <Form :model="form" :label-width="100" style="position: absolute; top: 60px; right: 250px">
+    <Form :model="form" :label-width="100" style="position: absolute; top: 60px; left: 750px">
       <FormItem label="真实姓名">
         <Input v-model="form.userName"></Input>
       </FormItem>
@@ -37,41 +46,59 @@
       <FormItem label="微信号">
         <Input v-model="form.weixin"></Input>
       </FormItem>
+      <FormItem label="学习/研究方向">
+        <Input type="textarea" v-model="form.desc" size="large"></Input>
+      </FormItem>
+      <Button @click="updateUser" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
     </Form>
-    <div>
-      <Button @click="verifyPassword" type="primary" style="position: absolute; top: 170px; left: 470px"
-        >修改密码
-      </Button>
-    </div>
-    <div>
-      <Button @click="verifyUserInfo" type="primary" style="position: absolute; top: 350px; right: 300px"
-        >修改资料
-      </Button>
-    </div>
   </div>
 </template>
 
 <script>
 import api from '../api/index'
+import { baseURL } from '../utils/request'
 
 export default {
-  name: 'userinfo',
+  name: 'UserInfo',
   data() {
     return {
-      uploadUrl: api.upload,
       avatar: '',
+      uploadUrl: baseURL + api.upload,
+      uploadData: {
+        account: sessionStorage.getItem('account'),
+      },
+      verify: {
+        oldPassword: '',
+        newPassword: '',
+        account: sessionStorage.getItem('account'),
+      },
       form: {
+        account: sessionStorage.getItem('account'),
         userName: '',
         major: '',
         qq: '',
         phone: '',
         weixin: '',
+        desc: '',
       },
     }
   },
+  mounted() {
+    this.avatar = 'data:image/png;base64,' + sessionStorage.getItem('avatar')
+    this.form.userName = sessionStorage.getItem('userName')
+    this.form.major = sessionStorage.getItem('major')
+    this.form.qq = sessionStorage.getItem('qq')
+    this.form.phone = sessionStorage.getItem('phone')
+    this.form.weixin = sessionStorage.getItem('weixin')
+    this.form.desc = sessionStorage.getItem('desc')
+  },
   methods: {
-    handleSuccess(res, file) {
-      console.log(res)
+    handleSuccess(res) {
+      // console.log(res)
+      this.$Notice.success({
+        title: '头像上传成功',
+      })
+      this.avatar = 'data:image/png;base64,' + res.data
     },
     handleFormatError(file) {
       this.$Notice.warning({
@@ -86,21 +113,36 @@ export default {
       })
     },
     verifyPassword() {
-      this.$Message.info('verifyPassword')
+      this.$store
+        .dispatch('verifyPassword', this.verify)
+        .then((res) => {
+          console.log(res)
+          this.$Message.success('密码修改完成')
+          this.handleVerifyReset('verify')
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$Message.error('密码修改失败')
+        })
     },
-    verifyUserInfo() {
-      this.$Message.info({
-        content: 'verifyUserInfo',
-        duration: 5,
-      })
+    updateUser() {
+      this.$store
+        .dispatch('updateUser', this.form)
+        .then((res) => {
+          console.log(res)
+          this.$store.dispatch('updateSession', this.form)
+          this.$Message.success(res)
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$Message.error('用户信息更新失败')
+        })
+    },
+    handleVerifyReset(name) {
+      this.$refs[name].resetFields()
     },
   },
 }
 </script>
 
-<style>
-input {
-  width: 400px;
-  height: 400px;
-}
-</style>
+<style></style>
