@@ -23,31 +23,31 @@
     </Upload>
     <Form ref="verify" :model="verify" :label-width="100" style="position: absolute; top: 60px; left: 350px">
       <FormItem label="当前密码" prop="oldPassword">
-        <Input v-model="verify.oldPassword"></Input>
+        <Input clearable v-model="verify.oldPassword"></Input>
       </FormItem>
       <FormItem label="新密码" prop="newPassword">
-        <Input v-model="verify.newPassword"></Input>
+        <Input clearable v-model="verify.newPassword"></Input>
       </FormItem>
       <Button @click="verifyPassword" type="primary" style="position: absolute; left: 100px">修改密码 </Button>
     </Form>
     <Form :model="form" :label-width="100" style="position: absolute; top: 60px; left: 750px">
       <FormItem label="真实姓名">
-        <Input v-model="form.userName"></Input>
+        <Input clearable v-model="form.userName"></Input>
       </FormItem>
       <FormItem label="专业班级">
-        <Input v-model="form.major"></Input>
+        <Input clearable v-model="form.major"></Input>
       </FormItem>
       <FormItem label="QQ号">
-        <Input v-model="form.qq"></Input>
+        <Input clearable v-model="form.qq"></Input>
       </FormItem>
       <FormItem label="手机号">
-        <Input v-model="form.phone"></Input>
+        <Input clearable v-model="form.phone"></Input>
       </FormItem>
       <FormItem label="微信号">
-        <Input v-model="form.weixin"></Input>
+        <Input clearable v-model="form.weixin"></Input>
       </FormItem>
       <FormItem label="学习/研究方向">
-        <Input type="textarea" v-model="form.desc" size="large"></Input>
+        <Input rows="4" type="textarea" v-model="form.desc" size="large"></Input>
       </FormItem>
       <Button @click="updateUser" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
     </Form>
@@ -84,7 +84,7 @@ export default {
     }
   },
   mounted() {
-    this.avatar = 'data:image/png;base64,' + sessionStorage.getItem('avatar')
+    this.avatar = sessionStorage.getItem('avatar')
     this.form.userName = sessionStorage.getItem('userName')
     this.form.major = sessionStorage.getItem('major')
     this.form.qq = sessionStorage.getItem('qq')
@@ -98,7 +98,7 @@ export default {
       this.$Notice.success({
         title: '头像上传成功',
       })
-      this.avatar = 'data:image/png;base64,' + res.data
+      this.avatar = res.data
     },
     handleFormatError(file) {
       this.$Notice.warning({

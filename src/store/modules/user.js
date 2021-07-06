@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import { login, selectUser, updateUser, verifyPassword } from '@/api/user'
+import { login, register, selectByCond, selectUser, updateUser, verifyPassword } from '@/api/user'
 
 const user = {
   state: {
@@ -74,6 +74,21 @@ const user = {
       })
     },
 
+    //新用户注册
+    Register({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        console.log('userInfo', userInfo)
+        register(userInfo)
+          .then((response) => {
+            const result = response
+            resolve(result)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
     //保存到session
     saveSession({ commit }, res) {
       sessionStorage.setItem('account', res.account)
@@ -91,6 +106,22 @@ const user = {
     updateUser({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         updateUser(userInfo)
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+
+    //根据条件获取用户
+    selectByCond({ commit }, cond) {
+      return new Promise((resolve, reject) => {
+        selectByCond(cond)
           .then((response) => {
             const result = response
             console.log(result)

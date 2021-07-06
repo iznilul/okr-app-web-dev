@@ -187,7 +187,7 @@ export default {
 
     // 设置用户信息
     this.userName = sessionStorage.getItem('userName')
-    this.avatar = 'data:image/png;base64,' + sessionStorage.getItem('avatar')
+    this.avatar = sessionStorage.getItem('avatar')
 
     this.main = document.querySelector('.sec-right')
     this.asideArrowIcons = document.querySelectorAll('aside .ivu-icon-ios-arrow-down')
