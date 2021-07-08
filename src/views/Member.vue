@@ -1,7 +1,30 @@
 <template>
   <div>
     成员管理，开发ing( ╯□╰ )
-    <Query @setMember="setMember"></Query>
+    <div class="query">
+      <Form ref="form" :model="form" :label-width="50">
+        <FormItem label="账号" prop="account" style="position: absolute; top: 20px">
+          <Input clearable v-model="form.account" class="input" type="text" @keyup.enter.native="selectByCond"></Input>
+        </FormItem>
+        <FormItem label="姓名" prop="userName" style="position: absolute; top: 20px; left: 150px">
+          <Input clearable v-model="form.userName" class="input" type="text" @keyup.enter.native="selectByCond"></Input>
+        </FormItem>
+        <FormItem label="身份" prop="role" style="position: absolute; top: 20px; left: 300px">
+          <Input clearable v-model="form.role" class="input" type="text" @keyup.enter.native="selectByCond"></Input>
+        </FormItem>
+        <FormItem label="专业班级" prop="major" style="position: absolute; top: 20px; left: 450px" :label-width="80">
+          <Input
+            clearable
+            v-model="form.major"
+            class="input"
+            type="text"
+            style="width: 150px"
+            @keyup.enter.native="selectByCond"
+          ></Input>
+        </FormItem>
+        <Button @click="selectByCond" type="primary" style="position: absolute; left: 700px">查询</Button>
+      </Form>
+    </div>
     <Register @selectByCond="selectByCond"></Register>
     <Table
       stripe
@@ -10,10 +33,12 @@
       :data="data"
       style="position: absolute; top: 60px; overflow-y: scroll"
       height="480"
+      width="1300"
     ></Table>
     <Page
       :total="dataCount"
       :page-size="pageSize"
+      :current="current"
       show-total
       class="paging"
       @on-change="changePage"
@@ -95,7 +120,14 @@ export default {
       data: [],
       dataCount: 0,
       pageSize: 5,
-      ajaxData: [],
+      current: 1,
+      form: {
+        role: '',
+        account: '',
+        userName: '',
+        major: '',
+        index: 1,
+      },
     }
   },
   mounted() {
@@ -104,38 +136,45 @@ export default {
   methods: {
     selectByCond() {
       this.$store
-        .dispatch('selectByCond', {})
+        .dispatch('selectByCond', this.form)
         .then((res) => {
           // console.log(res)
-          this.sliceData(res)
+
+          this.pageReset(res.pageNum)
+          this.dataCount = res.total
+          this.data = res.list
+          this.$Notice.success({
+            title: '查询成功',
+          })
+
+          this.handleVerifyReset('form')
         })
         .catch((error) => {
           console.log(error)
-          this.$Notice.error({
-            desc: '获取成员列表失败咯',
-          })
         })
     },
+
     changePage(index) {
-      const start = (index - 1) * this.pageSize
-      const end = index * this.pageSize
-      this.data = this.ajaxData.slice(start, end)
+      this.form.index = index
+      this.current = index
+      this.selectByCond(this.form)
     },
-    setMember(data) {
-      this.sliceData(data)
+
+    pageReset(pageNum) {
+      this.current = pageNum
+      this.form.index = pageNum
     },
-    sliceData(data) {
-      this.ajaxData = data
-      this.dataCount = data.length
-      // console.log(this.dataCount)
-      if (this.dataCount < this.pageSize) {
-        this.data = this.ajaxData
-      } else {
-        this.data = this.ajaxData.slice(0, this.pageSize)
-      }
+
+    handleVerifyReset(name) {
+      this.$refs[name].resetFields()
     },
   },
 }
 </script>
 
-<style></style>
+<style>
+.input {
+  width: 100px;
+  height: 100px;
+}
+</style>

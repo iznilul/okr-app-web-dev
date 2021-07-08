@@ -47,7 +47,7 @@
         <Input clearable v-model="form.weixin"></Input>
       </FormItem>
       <FormItem label="学习/研究方向">
-        <Input rows="4" type="textarea" v-model="form.desc" size="large"></Input>
+        <Input :rows="rows" type="textarea" v-model="form.desc" size="large"></Input>
       </FormItem>
       <Button @click="updateUser" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
     </Form>
@@ -62,6 +62,7 @@ export default {
   name: 'UserInfo',
   data() {
     return {
+      rows: 4,
       avatar: '',
       uploadUrl: baseURL + api.upload,
       uploadData: {
@@ -99,6 +100,7 @@ export default {
         title: '头像上传成功',
       })
       this.avatar = res.data
+      sessionStorage.setItem('avatar', this.avatar)
     },
     handleFormatError(file) {
       this.$Notice.warning({

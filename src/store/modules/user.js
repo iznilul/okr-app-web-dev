@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 import { login, register, selectByCond, selectUser, updateUser, verifyPassword } from '@/api/user'
+import md5 from 'js-md5'
 
 const user = {
   state: {
@@ -61,6 +62,7 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
+      userInfo.password = md5(userInfo.password)
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         login(userInfo)
@@ -136,6 +138,8 @@ const user = {
 
     //修改密码
     verifyPassword({ commit }, verifyInfo) {
+      verifyInfo.oldPassword = md5(verifyInfo.oldPassword)
+      verifyInfo.newPassword = md5(verifyInfo.newPassword)
       return new Promise((resolve, reject) => {
         verifyPassword(verifyInfo)
           .then((response) => {

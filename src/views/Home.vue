@@ -10,19 +10,30 @@
 
 <script>
 import { fetchUserData } from '@/api/index'
-
+import api from '../api/index'
+import { selectUser } from '../api/user'
 export default {
   name: 'home',
   data() {
     return {
-      userInfo: ''
+      userInfo: '',
+      form: {
+        account: sessionStorage.getItem('account'),
+      },
     }
   },
   methods: {
     getUserData() {
-      this.userInfo = '来一起拉大便♂'
-    }
-  }
+      selectUser(this.form)
+        .then((res) => {
+          this.userInfo = res.data
+          console.log(res)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+  },
 }
 </script>
 

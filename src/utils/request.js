@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { showLoading, closeLoading } from '@/utils/loading'
 import dfaultSettings from '@/config/defaultSettings'
+import { Notice } from 'view-design'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
 
@@ -23,10 +24,17 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (response) => {
     closeLoading()
+    // console.log(response)
     const res = response.data
+    // console.log(res)
     // 如果后端返回类没有code标识则抛出
-    if (!res.code) {
-      return Promise.reject('返回出错')
+    if (res.code !== 200) {
+      //谜之bug，不能用this.$Notice
+      Notice.error({
+        title: '操作失败',
+        desc: res.msg,
+      })
+      return Promise.reject('数据返回失败')
     }
     // 如果接口正常，直接返回数据
     return res

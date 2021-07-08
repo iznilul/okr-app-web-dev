@@ -2,22 +2,34 @@
   <div class="login-vue" :style="bg">
     <div class="container">
       <p class="title">WELCOME</p>
-      <div class="input-c">
-        <Input prefix="ios-contact" v-model="form.account" placeholder="用户名" clearable @on-blur="verifyAccount" />
-        <p class="error">{{ accountError }}</p>
-      </div>
-      <div class="input-c">
-        <Input
-          type="password"
-          v-model="form.password"
-          prefix="md-lock"
-          placeholder="密码"
-          clearable
-          @on-blur="verifyPwd"
-          @keyup.enter.native="submit"
-        />
-        <p class="error">{{ pwdError }}</p>
-      </div>
+      <Form ref="form" :model="form">
+        <div class="input-c">
+          <FormItem prop="account">
+            <Input
+              prefix="ios-contact"
+              v-model="form.account"
+              placeholder="用户名"
+              clearable
+              @on-blur="verifyAccount"
+            />
+          </FormItem>
+          <p class="error">{{ accountError }}</p>
+        </div>
+        <div class="input-c">
+          <FormItem prop="password">
+            <Input
+              type="password"
+              v-model="form.password"
+              prefix="md-lock"
+              placeholder="密码"
+              clearable
+              @on-blur="verifyPwd"
+              @keyup.enter.native="submit"
+            />
+          </FormItem>
+          <p class="error">{{ pwdError }}</p>
+        </div>
+      </Form>
       <Button :loading="isShowLoading" class="submit" type="primary" @click="submit">登陆</Button>
     </div>
   </div>
@@ -60,6 +72,7 @@ export default {
         this.accountError = ''
       }
     },
+
     verifyPwd() {
       if (this.form.password === '') {
         this.pwdError = '密码不能为空'
@@ -67,27 +80,23 @@ export default {
         this.pwdError = ''
       }
     },
+
     submit() {
       this.$store
         .dispatch('Login', this.form) // 表单会在序列化时转换成json格式
         .then((res) => {
           // console.log(res.data)
-          if (res.code === 200) {
-            this.$store.dispatch('saveSession', res.data)
-            localStorage.setItem('token', 'token')
-            this.loginSuccess()
-          } else {
-            this.$Message.error({
-              content: res.msg,
-            })
-            this.loginFailed()
-          }
+          this.$store.dispatch('saveSession', res.data)
+          localStorage.setItem('token', 'token')
+          this.loginSuccess()
         })
         .catch((error) => {
           this.requestFailed()
           console.error(error)
         })
+      this.handleVerifyReset('form')
     },
+
     loginSuccess() {
       // console.log()
       this.$router.push({ path: this.redirect || '/' })
@@ -99,23 +108,16 @@ export default {
         })
       }, 1000)
     },
-    loginFailed() {
-      this.$Notice.error({
-        title: '登录失败',
-        desc: '请检查用户名和密码',
-      })
-    },
-    getUserInfoFailed() {
-      this.$Notice.error({
-        title: '获取用户信息失败',
-        desc: '请检查用户名和密码',
-      })
-    },
+
     requestFailed() {
       this.$Notice.error({
-        title: '网络错误',
-        desc: '请检查网络连接',
+        title: '登录失败',
+        desc: '请检查用户名密码或者网络连接',
       })
+    },
+
+    handleVerifyReset(name) {
+      this.$refs[name].resetFields()
     },
   },
 }

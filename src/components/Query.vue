@@ -45,7 +45,6 @@ export default {
         .dispatch('selectByCond', this.form)
         .then((res) => {
           console.log(res)
-          this.dataCount = res.length
           // console.log(this.dataCount)
           this.$emit('setMember', res)
           this.$Notice.info({

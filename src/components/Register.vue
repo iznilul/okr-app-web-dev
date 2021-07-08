@@ -1,8 +1,8 @@
 <template>
   <div>
     <Button @click="visible = true" type="primary" style="position: absolute; left: 800px">注册新用户</Button>
-    <Modal v-model="visible" title="注册新用户" @on-ok="handleSubmit('registerForm')" @on-cancel="cancel">
-      <Form ref="registerForm" :lable-width="50">
+    <Modal v-model="visible" title="注册新用户" @on-ok="handleSubmit('form')" @on-cancel="cancel">
+      <Form ref="form" :lable-width="50" :model="form" :rules="rules">
         <form-item label="账号" prop="account">
           <Input v-model="form.account" placeholder="新用户的初始密码为账号" style="width: 200px"></Input>
         </form-item>
@@ -38,31 +38,15 @@ export default {
         account: [
           {
             required: true,
-            // message: '请输入账号',
-            trigger: 'change',
-          },
-          {
-            validator(rule, value, callback) {
-              if (value[0] === '') {
-                callback('账号不能为空')
-              }
-              callback()
-            },
+            message: '账号不能为空',
+            trigger: 'blur',
           },
         ],
         role: [
           {
             required: true,
-            // message: '请输入身份',
-            trigger: 'change',
-          },
-          {
-            validator(rule, value, callback) {
-              if (value[0] === '') {
-                callback('身份不能为空')
-              }
-              callback()
-            },
+            message: '身份不能为空',
+            trigger: 'blur',
           },
         ],
       },
@@ -83,7 +67,7 @@ export default {
               this.$Notice.info({
                 desc: res.data,
               })
-              this.$emit('selectByCond')
+              this.$emit('selectByCond', {})
             })
             .catch((error) => {
               console.log(error)
