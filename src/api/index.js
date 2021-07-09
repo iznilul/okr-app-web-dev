@@ -5,7 +5,7 @@ const api = {
   selectUser: '/user/selectUser',
   selectByCond: '/user/selectByCond',
   upload: '/user/upload',
-  verifyPassword: '/user/verifyPassword',
+  verifyPassword: '/user/verifyPassword'
 }
 
 export default api

@@ -12,10 +12,10 @@ export default {
   storageOptions: {
     namespace: 'pro__', // key prefix
     name: 'ls', // name variable Vue.[ls] or this.[$ls],
-    storage: 'local' // storage name session, local, memory
+    storage: 'local', // storage name session, local, memory
   },
   baseURL: {
     dev: 'http://127.0.0.1:9101',
-    prod: 'http://123.57.55.125:9101'
-  }
+    prod: 'http://123.57.55.125:9101',
+  },
 }

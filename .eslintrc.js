@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    node: true,
+    node: true
   },
 
   extends: ['eslint-config-ali/vue', 'plugin:prettier/recommended'],
@@ -12,6 +12,6 @@ module.exports = {
     'vue/require-prop-type-constructor': 0,
     'vue/use-v-on-exact': 0,
     // 只使用单引号
-    quotes: [1, 'single'],
-  },
+    quotes: [1, 'single']
+  }
 }

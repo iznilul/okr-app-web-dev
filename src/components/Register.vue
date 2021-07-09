@@ -26,12 +26,12 @@ export default {
       roleList: [
         {
           value: '老师',
-          label: '老师',
+          label: '老师'
         },
         {
           value: '学生',
-          label: '学生',
-        },
+          label: '学生'
+        }
       ],
       rules: {
         //判空规则
@@ -39,40 +39,40 @@ export default {
           {
             required: true,
             message: '账号不能为空',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         role: [
           {
             required: true,
             message: '身份不能为空',
-            trigger: 'blur',
-          },
-        ],
+            trigger: 'blur'
+          }
+        ]
       },
       form: {
         account: '',
-        role: '',
-      },
+        role: ''
+      }
     }
   },
   methods: {
     handleSubmit(name) {
-      this.$refs[name].validate((valid) => {
+      this.$refs[name].validate(valid => {
         if (valid) {
           this.$store
             .dispatch('Register', this.form)
-            .then((res) => {
+            .then(res => {
               console.log(res)
               this.$Notice.info({
-                desc: res.data,
+                desc: res.data
               })
               this.$emit('selectByCond', {})
             })
-            .catch((error) => {
+            .catch(error => {
               console.log(error)
               this.$Notice.error({
-                desc: '注册失败',
+                desc: '注册失败'
               })
             })
         } else {
@@ -82,8 +82,8 @@ export default {
     },
     cancel() {
       this.visible = false
-    },
-  },
+    }
+  }
 }
 </script>
 

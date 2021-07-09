@@ -17,5 +17,5 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: (h) => h(App), // 渲染APP.vue组件
+  render: h => h(App) // 渲染APP.vue组件
 })

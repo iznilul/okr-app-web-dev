@@ -66,12 +66,12 @@ export default {
       avatar: '',
       uploadUrl: baseURL + api.upload,
       uploadData: {
-        account: sessionStorage.getItem('account'),
+        account: sessionStorage.getItem('account')
       },
       verify: {
         oldPassword: '',
         newPassword: '',
-        account: sessionStorage.getItem('account'),
+        account: sessionStorage.getItem('account')
       },
       form: {
         account: sessionStorage.getItem('account'),
@@ -80,8 +80,8 @@ export default {
         qq: '',
         phone: '',
         weixin: '',
-        desc: '',
-      },
+        desc: ''
+      }
     }
   },
   mounted() {
@@ -97,7 +97,7 @@ export default {
     handleSuccess(res) {
       // console.log(res)
       this.$Notice.success({
-        title: '头像上传成功',
+        title: '头像上传成功'
       })
       this.avatar = res.data
       sessionStorage.setItem('avatar', this.avatar)
@@ -105,24 +105,24 @@ export default {
     handleFormatError(file) {
       this.$Notice.warning({
         title: '文件格式不对',
-        desc: file.name + ' 文件格式不符合要求，请选择jpg或png格式文件',
+        desc: file.name + ' 文件格式不符合要求，请选择jpg或png格式文件'
       })
     },
     handleMaxSize(file) {
       this.$Notice.warning({
         title: '文件太大',
-        desc: file.name + '太大了， 请上传1M以内的文件.',
+        desc: file.name + '太大了， 请上传1M以内的文件.'
       })
     },
     verifyPassword() {
       this.$store
         .dispatch('verifyPassword', this.verify)
-        .then((res) => {
+        .then(res => {
           console.log(res)
           this.$Message.success('密码修改完成')
           this.handleVerifyReset('verify')
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
           this.$Message.error('密码修改失败')
         })
@@ -130,20 +130,20 @@ export default {
     updateUser() {
       this.$store
         .dispatch('updateUser', this.form)
-        .then((res) => {
+        .then(res => {
           console.log(res)
           this.$store.dispatch('updateSession', this.form)
           this.$Message.success(res)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
           this.$Message.error('用户信息更新失败')
         })
     },
     handleVerifyReset(name) {
       this.$refs[name].resetFields()
-    },
-  },
+    }
+  }
 }
 </script>
 

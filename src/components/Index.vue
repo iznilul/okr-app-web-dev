@@ -167,7 +167,7 @@ export default {
       userName: '',
       avatar: '',
       // 主页路由名称
-      home: 'home',
+      home: 'home'
     }
   },
   mounted() {
@@ -176,7 +176,7 @@ export default {
     this.currentPage = name
     this.tagsArry.push({
       text: this.nameToTitle[name],
-      name,
+      name
     })
 
     // 根据路由打开对应的菜单栏
@@ -215,7 +215,7 @@ export default {
       setTimeout(() => {
         this.crumbs = this.paths[name]
       }, 0)
-    },
+    }
   },
   computed: {
     // 菜单栏
@@ -225,18 +225,18 @@ export default {
     },
     // 需要缓存的路由
     keepAliveData() {
-      return this.tagsArry.map((item) => item.name)
+      return this.tagsArry.map(item => item.name)
     },
     // 由于iView的导航菜单比较坑 只能设定一个name参数
     // 所以需要在这定义组件名称和标签栏标题的映射表 有多少个页面就有多少个映射条数
     nameToTitle() {
       const obj = {}
-      this.menuItems.forEach((e) => {
+      this.menuItems.forEach(e => {
         this.processNameToTitle(obj, e)
       })
 
       return obj
-    },
+    }
   },
   methods: {
     getMenus(name) {
@@ -463,7 +463,7 @@ export default {
             {
               attrs: {
                 type: 'info',
-                size: 'small',
+                size: 'small'
               },
               on: {
                 click() {
@@ -471,12 +471,12 @@ export default {
                   self.gotoPage('msg')
                   self.hasNewMsg = false
                   self.msgNum = 0
-                },
-              },
+                }
+              }
             },
             ['点击查看']
           )
-        },
+        }
       })
     },
     // 菜单栏改变事件
@@ -489,12 +489,12 @@ export default {
         this.paths[data.name] = text ? `${text} / ${data.text}` : data.text
       }
       if (data.children) {
-        data.children.forEach((e) => {
+        data.children.forEach(e => {
           this.processNameToTitle(obj, e, text ? `${text} / ${data.text}` : data.text)
         })
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

@@ -66,56 +66,56 @@ export default {
             return h('Avatar', {
               attrs: {
                 shape: 'square',
-                src: params.row.avatar,
+                src: params.row.avatar
                 // size: 100,
               },
               style: {
                 width: '100px',
-                height: '120px',
-              },
+                height: '120px'
+              }
             })
-          },
+          }
         },
         {
           title: '账号',
           key: 'account',
-          width: '130px',
+          width: '130px'
         },
         {
           title: '姓名',
           key: 'userName',
-          width: '100px',
+          width: '100px'
         },
         {
           title: '身份',
           key: 'role',
-          width: '70px',
+          width: '70px'
         },
         {
           title: '专业班级',
           key: 'major',
-          width: '120px',
+          width: '120px'
         },
         {
           title: 'qq号',
           key: 'qq',
-          width: '120px',
+          width: '120px'
         },
         {
           title: '手机号',
           key: 'phone',
-          width: '130px',
+          width: '130px'
         },
         {
           title: '微信号',
           key: 'weixin',
-          width: '130px',
+          width: '130px'
         },
         {
           title: '学习/研究方向',
-          key: 'desc',
+          key: 'desc'
           // width: '200px',
-        },
+        }
       ],
       data: [],
       dataCount: 0,
@@ -126,8 +126,8 @@ export default {
         account: '',
         userName: '',
         major: '',
-        index: 1,
-      },
+        index: 1
+      }
     }
   },
   mounted() {
@@ -137,19 +137,19 @@ export default {
     selectByCond() {
       this.$store
         .dispatch('selectByCond', this.form)
-        .then((res) => {
+        .then(res => {
           // console.log(res)
 
           this.pageReset(res.pageNum)
           this.dataCount = res.total
           this.data = res.list
           this.$Notice.success({
-            title: '查询成功',
+            title: '查询成功'
           })
 
           this.handleVerifyReset('form')
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
         })
     },
@@ -167,8 +167,8 @@ export default {
 
     handleVerifyReset(name) {
       this.$refs[name].resetFields()
-    },
-  },
+    }
+  }
 }
 </script>
 

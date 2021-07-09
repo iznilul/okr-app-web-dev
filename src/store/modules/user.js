@@ -14,7 +14,7 @@ const user = {
     qq: '',
     phone: '',
     weixin: '',
-    desc: '',
+    desc: ''
   },
 
   mutations: {
@@ -56,7 +56,7 @@ const user = {
       state.phone = param.phone
       state.weixin = param.weixin
       state.desc = param.desc
-    },
+    }
   },
 
   actions: {
@@ -66,11 +66,11 @@ const user = {
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         login(userInfo)
-          .then((response) => {
+          .then(response => {
             const result = response
             resolve(result)
           })
-          .catch((error) => {
+          .catch(error => {
             reject(error)
           })
       })
@@ -81,11 +81,11 @@ const user = {
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         register(userInfo)
-          .then((response) => {
+          .then(response => {
             const result = response
             resolve(result)
           })
-          .catch((error) => {
+          .catch(error => {
             reject(error)
           })
       })
@@ -108,12 +108,12 @@ const user = {
     updateUser({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         updateUser(userInfo)
-          .then((response) => {
+          .then(response => {
             const result = response
             console.log(result)
             resolve(result.data)
           })
-          .catch((error) => {
+          .catch(error => {
             // console.log("error",error)
             reject(error)
           })
@@ -124,12 +124,12 @@ const user = {
     selectByCond({ commit }, cond) {
       return new Promise((resolve, reject) => {
         selectByCond(cond)
-          .then((response) => {
+          .then(response => {
             const result = response
             console.log(result)
             resolve(result.data)
           })
-          .catch((error) => {
+          .catch(error => {
             // console.log("error",error)
             reject(error)
           })
@@ -142,12 +142,12 @@ const user = {
       verifyInfo.newPassword = md5(verifyInfo.newPassword)
       return new Promise((resolve, reject) => {
         verifyPassword(verifyInfo)
-          .then((response) => {
+          .then(response => {
             const result = response
             console.log(result)
             resolve(result.data)
           })
-          .catch((error) => {
+          .catch(error => {
             // console.log("error",error)
             reject(error)
           })
@@ -166,7 +166,7 @@ const user = {
 
     // 登出
     Logout({ commit, state }) {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         Vue.ls.remove(ACCESS_TOKEN)
@@ -179,8 +179,8 @@ const user = {
             resolve()
           })
       })
-    },
-  },
+    }
+  }
 }
 
 export default user

@@ -18,22 +18,22 @@ export default {
     return {
       userInfo: '',
       form: {
-        account: sessionStorage.getItem('account'),
-      },
+        account: sessionStorage.getItem('account')
+      }
     }
   },
   methods: {
     getUserData() {
       selectUser(this.form)
-        .then((res) => {
+        .then(res => {
           this.userInfo = res.data
           console.log(res)
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
         })
-    },
-  },
+    }
+  }
 }
 </script>
 

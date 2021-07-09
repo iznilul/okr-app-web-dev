@@ -47,8 +47,8 @@ export default {
       form: {
         // 一般把请求参数封装到form里
         account: '',
-        password: '',
-      },
+        password: ''
+      }
     }
   },
   created() {
@@ -61,8 +61,8 @@ export default {
         console.log(route)
         this.redirect = route.query && route.query.redirect
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   methods: {
     verifyAccount() {
@@ -84,13 +84,13 @@ export default {
     submit() {
       this.$store
         .dispatch('Login', this.form) // 表单会在序列化时转换成json格式
-        .then((res) => {
+        .then(res => {
           // console.log(res.data)
           this.$store.dispatch('saveSession', res.data)
           localStorage.setItem('token', 'token')
           this.loginSuccess()
         })
-        .catch((error) => {
+        .catch(error => {
           this.requestFailed()
           console.error(error)
         })
@@ -104,7 +104,7 @@ export default {
       setTimeout(() => {
         this.$Notice.success({
           title: '登录成功，欢迎回来',
-          desc: 'hello',
+          desc: 'hello'
         })
       }, 1000)
     },
@@ -112,14 +112,14 @@ export default {
     requestFailed() {
       this.$Notice.error({
         title: '登录失败',
-        desc: '请检查用户名密码或者网络连接',
+        desc: '请检查用户名密码或者网络连接'
       })
     },
 
     handleVerifyReset(name) {
       this.$refs[name].resetFields()
-    },
-  },
+    }
+  }
 }
 </script>
 

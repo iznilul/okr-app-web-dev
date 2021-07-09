@@ -35,30 +35,30 @@ export default {
         role: '',
         account: '',
         userName: '',
-        major: '',
-      },
+        major: ''
+      }
     }
   },
   methods: {
     search() {
       this.$store
         .dispatch('selectByCond', this.form)
-        .then((res) => {
+        .then(res => {
           console.log(res)
           // console.log(this.dataCount)
           this.$emit('setMember', res)
           this.$Notice.info({
-            desc: '查询成功',
+            desc: '查询成功'
           })
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error)
           this.$Notice.error({
-            desc: '获取成员列表失败咯',
+            desc: '获取成员列表失败咯'
           })
         })
-    },
-  },
+    }
+  }
 }
 </script>
 
