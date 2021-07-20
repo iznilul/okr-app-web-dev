@@ -15,12 +15,12 @@ export default {
   name: 'App',
   data() {
     return {
-      keepAliveData: ['manage']
+      keepAliveData: ['manage'],
     }
   },
   computed: {
-    ...mapState(['isShowLoading'])
-  }
+    ...mapState(['isShowLoading']),
+  },
 }
 </script>
 
