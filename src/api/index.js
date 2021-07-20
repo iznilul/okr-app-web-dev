@@ -1,11 +1,11 @@
 const api = {
-  login: '/user/login',
-  register: '/user/register',
-  updateUser: '/user/updateUser',
-  selectUser: '/user/selectUser',
-  selectByCond: '/user/selectByCond',
-  upload: '/user/upload',
-  verifyPassword: '/user/verifyPassword'
+  login: '/api/login',
+  register: '/api/admin/register',
+  modifyUserInfo: '/api/user/modifyUserInfo',
+  getUserInfoByUsername: '/api/user/getUserInfoByUsername',
+  getUserInfoByCond: '/api/user/getUserInfoByCond',
+  upload: '/api/user/upload',
+  modifyPassword: '/api/user/modifyPassword',
 }
 
 export default api

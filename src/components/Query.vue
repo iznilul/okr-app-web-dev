@@ -2,10 +2,10 @@
   <div>
     <Form :label-width="50">
       <FormItem label="账号" style="position: absolute; top: 20px">
-        <Input clearable v-model="form.account" class="input" type="text" @keyup.enter.native="search"></Input>
+        <Input clearable v-model="form.username" class="input" type="text" @keyup.enter.native="search"></Input>
       </FormItem>
       <FormItem label="姓名" style="position: absolute; top: 20px; left: 150px">
-        <Input clearable v-model="form.userName" class="input" type="text" @keyup.enter.native="search"></Input>
+        <Input clearable v-model="form.name" class="input" type="text" @keyup.enter.native="search"></Input>
       </FormItem>
       <FormItem label="身份" style="position: absolute; top: 20px; left: 300px">
         <Input clearable v-model="form.role" class="input" type="text" @keyup.enter.native="search"></Input>
@@ -33,32 +33,32 @@ export default {
     return {
       form: {
         role: '',
-        account: '',
-        userName: '',
-        major: ''
-      }
+        username: '',
+        name: '',
+        major: '',
+      },
     }
   },
   methods: {
     search() {
       this.$store
-        .dispatch('selectByCond', this.form)
-        .then(res => {
+        .dispatch('getUserInfoByCond', this.form)
+        .then((res) => {
           console.log(res)
           // console.log(this.dataCount)
           this.$emit('setMember', res)
           this.$Notice.info({
-            desc: '查询成功'
+            desc: '查询成功',
           })
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
           this.$Notice.error({
-            desc: '获取成员列表失败咯'
+            desc: '获取成员列表失败咯',
           })
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

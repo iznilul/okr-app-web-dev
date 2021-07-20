@@ -1,20 +1,20 @@
 import Vue from 'vue'
 
-import { login, register, selectByCond, selectUser, updateUser, verifyPassword } from '@/api/user'
+import { login, register, getUserInfoByCond, getUserInfoByUsername, modifyUserInfo, modifyPassword } from '@/api/user'
 import md5 from 'js-md5'
 
 const user = {
   state: {
     token: '',
     role: '',
-    account: '',
-    userName: '',
+    username: '',
+    name: '',
     avatar: '',
     major: '',
     qq: '',
     phone: '',
     weixin: '',
-    desc: ''
+    desc: '',
   },
 
   mutations: {
@@ -24,8 +24,8 @@ const user = {
     SET_ROLE: (state, role) => {
       state.role = role
     },
-    SET_USERNAME: (state, userName) => {
-      state.userName = userName
+    SET_USERNAME: (state, name) => {
+      state.name = name
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -48,29 +48,29 @@ const user = {
     SET_USER: (state, param) => {
       console.log(param)
       state.role = param.role
-      state.account = param.account
-      state.userName = param.userName
+      state.username = param.username
+      state.name = param.name
       state.avatar = param.avatar
       state.major = param.major
       state.qq = param.qq
       state.phone = param.phone
       state.weixin = param.weixin
       state.desc = param.desc
-    }
+    },
   },
 
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      userInfo.password = md5(userInfo.password)
+      // userInfo.password = md5(userInfo.password)
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         login(userInfo)
-          .then(response => {
+          .then((response) => {
             const result = response
             resolve(result)
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error)
           })
       })
@@ -81,39 +81,54 @@ const user = {
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         register(userInfo)
-          .then(response => {
+          .then((response) => {
             const result = response
             resolve(result)
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error)
           })
       })
     },
 
     //保存到session
-    saveSession({ commit }, res) {
-      sessionStorage.setItem('account', res.account)
-      sessionStorage.setItem('userName', res.userName)
-      sessionStorage.setItem('role', res.role)
-      sessionStorage.setItem('avatar', res.avatar)
-      sessionStorage.setItem('major', res.major)
-      sessionStorage.setItem('qq', res.qq)
-      sessionStorage.setItem('phone', res.phone)
-      sessionStorage.setItem('weixin', res.weixin)
-      sessionStorage.setItem('desc', res.desc)
+    saveSession({ commit }, data) {
+      sessionStorage.setItem('username', data.username)
+      sessionStorage.setItem('name', data.name)
+      sessionStorage.setItem('avatar', data.avatar)
+      sessionStorage.setItem('major', data.major)
+      sessionStorage.setItem('qq', data.qq)
+      sessionStorage.setItem('phone', data.phone)
+      sessionStorage.setItem('weixin', data.weixin)
+      sessionStorage.setItem('desc', data.desc)
     },
 
     //更新用户资料
-    updateUser({ commit }, userInfo) {
+    modifyUserInfo({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        updateUser(userInfo)
-          .then(response => {
+        modifyUserInfo(userInfo)
+          .then((response) => {
             const result = response
             console.log(result)
             resolve(result.data)
           })
-          .catch(error => {
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+
+    //根据用户名获取用户
+    getUserInfoByUsername({ commit }, username) {
+      return new Promise((resolve, reject) => {
+        getUserInfoByUsername(username)
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
             // console.log("error",error)
             reject(error)
           })
@@ -121,15 +136,15 @@ const user = {
     },
 
     //根据条件获取用户
-    selectByCond({ commit }, cond) {
+    getUserInfoByCond({ commit }, cond) {
       return new Promise((resolve, reject) => {
-        selectByCond(cond)
-          .then(response => {
+        getUserInfoByCond(cond)
+          .then((response) => {
             const result = response
             console.log(result)
             resolve(result.data)
           })
-          .catch(error => {
+          .catch((error) => {
             // console.log("error",error)
             reject(error)
           })
@@ -137,17 +152,17 @@ const user = {
     },
 
     //修改密码
-    verifyPassword({ commit }, verifyInfo) {
-      verifyInfo.oldPassword = md5(verifyInfo.oldPassword)
-      verifyInfo.newPassword = md5(verifyInfo.newPassword)
+    modifyPassword({ commit }, modifyInfo) {
+      modifyInfo.oldPassword = md5(modifyInfo.oldPassword)
+      modifyInfo.newPassword = md5(modifyInfo.newPassword)
       return new Promise((resolve, reject) => {
-        verifyPassword(verifyInfo)
-          .then(response => {
+        modifyPassword(modifyInfo)
+          .then((response) => {
             const result = response
             console.log(result)
             resolve(result.data)
           })
-          .catch(error => {
+          .catch((error) => {
             // console.log("error",error)
             reject(error)
           })
@@ -155,18 +170,18 @@ const user = {
     },
 
     //更新session
-    updateSession({ commit }, res) {
-      sessionStorage.setItem('userName', res.userName)
-      sessionStorage.setItem('major', res.major)
-      sessionStorage.setItem('qq', res.qq)
-      sessionStorage.setItem('phone', res.phone)
-      sessionStorage.setItem('weixin', res.weixin)
-      sessionStorage.setItem('desc', res.desc)
+    updateSession({ commit }, data) {
+      sessionStorage.setItem('name', data.name)
+      sessionStorage.setItem('major', data.major)
+      sessionStorage.setItem('qq', data.qq)
+      sessionStorage.setItem('phone', data.phone)
+      sessionStorage.setItem('weixin', data.weixin)
+      sessionStorage.setItem('desc', data.desc)
     },
 
     // 登出
     Logout({ commit, state }) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         Vue.ls.remove(ACCESS_TOKEN)
@@ -179,8 +194,8 @@ const user = {
             resolve()
           })
       })
-    }
-  }
+    },
+  },
 }
 
 export default user

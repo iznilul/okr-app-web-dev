@@ -11,29 +11,47 @@
 <script>
 import { fetchUserData } from '@/api/index'
 import api from '../api/index'
-import { selectUser } from '../api/user'
+import { getUserInfoByUsername } from '../api/user'
 export default {
   name: 'home',
   data() {
     return {
       userInfo: '',
       form: {
-        account: sessionStorage.getItem('account')
-      }
+        username: sessionStorage.getItem('username'),
+      },
     }
+  },
+  mounted() {
+    // this.getUserData()
   },
   methods: {
     getUserData() {
-      selectUser(this.form)
-        .then(res => {
-          this.userInfo = res.data
-          console.log(res)
+      this.$store
+        .dispatch('getUserInfoByUsername', { username: localStorage.getItem('username') })
+        .then((res) => {
+          this.$store.dispatch('saveSession', res)
+          this.getUserInfoSuccess()
         })
-        .catch(error => {
-          console.log(error)
+        .catch((error) => {
+          this.getUserInfoFailed()
+          console.error(error)
         })
-    }
-  }
+    },
+
+    getUserInfoSuccess() {
+      this.$Notice.error({
+        title: '获取用户信息成功',
+      })
+    },
+
+    getUserInfoFailed() {
+      this.$Notice.error({
+        title: '获取用户信息失败',
+        desc: '请检查用户名密码或者网络连接',
+      })
+    },
+  },
 }
 </script>
 

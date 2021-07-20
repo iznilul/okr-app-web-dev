@@ -3,14 +3,32 @@
     成员管理，开发ing( ╯□╰ )
     <div class="query">
       <Form ref="form" :model="form" :label-width="50">
-        <FormItem label="账号" prop="account" style="position: absolute; top: 20px">
-          <Input clearable v-model="form.account" class="input" type="text" @keyup.enter.native="selectByCond"></Input>
+        <FormItem label="账号" prop="username" style="position: absolute; top: 20px">
+          <Input
+            clearable
+            v-model="form.username"
+            class="input"
+            type="text"
+            @keyup.enter.native="getUserInfoByCond"
+          ></Input>
         </FormItem>
-        <FormItem label="姓名" prop="userName" style="position: absolute; top: 20px; left: 150px">
-          <Input clearable v-model="form.userName" class="input" type="text" @keyup.enter.native="selectByCond"></Input>
+        <FormItem label="姓名" prop="name" style="position: absolute; top: 20px; left: 150px">
+          <Input
+            clearable
+            v-model="form.name"
+            class="input"
+            type="text"
+            @keyup.enter.native="getUserInfoByCond"
+          ></Input>
         </FormItem>
         <FormItem label="身份" prop="role" style="position: absolute; top: 20px; left: 300px">
-          <Input clearable v-model="form.role" class="input" type="text" @keyup.enter.native="selectByCond"></Input>
+          <Input
+            clearable
+            v-model="form.role"
+            class="input"
+            type="text"
+            @keyup.enter.native="getUserInfoByCond"
+          ></Input>
         </FormItem>
         <FormItem label="专业班级" prop="major" style="position: absolute; top: 20px; left: 450px" :label-width="80">
           <Input
@@ -19,13 +37,13 @@
             class="input"
             type="text"
             style="width: 150px"
-            @keyup.enter.native="selectByCond"
+            @keyup.enter.native="getUserInfoByCond"
           ></Input>
         </FormItem>
-        <Button @click="selectByCond" type="primary" style="position: absolute; left: 700px">查询</Button>
+        <Button @click="getUserInfoByCond" type="primary" style="position: absolute; left: 700px">查询</Button>
       </Form>
     </div>
-    <Register @selectByCond="selectByCond"></Register>
+    <Register @getUserInfoByCond="getUserInfoByCond"></Register>
     <Table
       stripe
       border
@@ -48,7 +66,7 @@
 </template>
 
 <script>
-import { selectByCond } from '../api/user'
+import { getUserInfoByCond } from '../api/user'
 import Query from '../components/Query'
 import Register from '../components/Register'
 export default {
@@ -66,56 +84,51 @@ export default {
             return h('Avatar', {
               attrs: {
                 shape: 'square',
-                src: params.row.avatar
+                src: params.row.avatar,
                 // size: 100,
               },
               style: {
                 width: '100px',
-                height: '120px'
-              }
+                height: '120px',
+              },
             })
-          }
+          },
         },
         {
           title: '账号',
-          key: 'account',
-          width: '130px'
+          key: 'username',
+          width: '130px',
         },
         {
           title: '姓名',
-          key: 'userName',
-          width: '100px'
-        },
-        {
-          title: '身份',
-          key: 'role',
-          width: '70px'
+          key: 'name',
+          width: '100px',
         },
         {
           title: '专业班级',
           key: 'major',
-          width: '120px'
+          width: '120px',
         },
         {
           title: 'qq号',
           key: 'qq',
-          width: '120px'
+          width: '120px',
         },
         {
           title: '手机号',
           key: 'phone',
-          width: '130px'
+          width: '130px',
         },
         {
           title: '微信号',
           key: 'weixin',
-          width: '130px'
+          width: '130px',
         },
         {
           title: '学习/研究方向',
-          key: 'desc'
+          key: 'desc',
           // width: '200px',
-        }
+        },
       ],
       data: [],
       dataCount: 0,
@@ -123,33 +136,33 @@ export default {
       current: 1,
       form: {
         role: '',
-        account: '',
-        userName: '',
+        username: '',
+        name: '',
         major: '',
-        index: 1
-      }
+        index: 1,
+      },
     }
   },
   mounted() {
-    this.selectByCond()
+    this.getUserInfoByCond()
   },
   methods: {
-    selectByCond() {
+    getUserInfoByCond() {
       this.$store
-        .dispatch('selectByCond', this.form)
-        .then(res => {
+        .dispatch('getUserInfoByCond', this.form)
+        .then((res) => {
           // console.log(res)
 
           this.pageReset(res.pageNum)
           this.dataCount = res.total
           this.data = res.list
           this.$Notice.success({
-            title: '查询成功'
+            title: '查询成功',
           })
 
-          this.handleVerifyReset('form')
+          this.handlemodifyReset('form')
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
         })
     },
@@ -157,7 +170,7 @@ export default {
     changePage(index) {
       this.form.index = index
       this.current = index
-      this.selectByCond(this.form)
+      this.getUserInfoByCond(this.form)
     },
 
     pageReset(pageNum) {
@@ -165,10 +178,10 @@ export default {
       this.form.index = pageNum
     },
 
-    handleVerifyReset(name) {
+    handlemodifyReset(name) {
       this.$refs[name].resetFields()
-    }
-  }
+    },
+  },
 }
 </script>
 

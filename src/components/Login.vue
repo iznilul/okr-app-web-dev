@@ -4,16 +4,16 @@
       <p class="title">WELCOME</p>
       <Form ref="form" :model="form">
         <div class="input-c">
-          <FormItem prop="account">
+          <FormItem prop="username">
             <Input
               prefix="ios-contact"
-              v-model="form.account"
+              v-model="form.username"
               placeholder="用户名"
               clearable
-              @on-blur="verifyAccount"
+              @on-blur="modifyusername"
             />
           </FormItem>
-          <p class="error">{{ accountError }}</p>
+          <p class="error">{{ usernameError }}</p>
         </div>
         <div class="input-c">
           <FormItem prop="password">
@@ -23,7 +23,7 @@
               prefix="md-lock"
               placeholder="密码"
               clearable
-              @on-blur="verifyPwd"
+              @on-blur="modifyPwd"
               @keyup.enter.native="submit"
             />
           </FormItem>
@@ -40,15 +40,15 @@ export default {
   name: 'login',
   data() {
     return {
-      accountError: '',
+      usernameError: '',
       pwdError: '',
       isShowLoading: false,
       bg: {},
       form: {
         // 一般把请求参数封装到form里
-        account: '',
-        password: ''
-      }
+        username: '',
+        password: '',
+      },
     }
   },
   created() {
@@ -61,19 +61,19 @@ export default {
         console.log(route)
         this.redirect = route.query && route.query.redirect
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
-    verifyAccount() {
-      if (this.form.account === '') {
-        this.accountError = '用户名不能为空'
+    modifyusername() {
+      if (this.form.username === '') {
+        this.usernameError = '用户名不能为空'
       } else {
-        this.accountError = ''
+        this.usernameError = ''
       }
     },
 
-    verifyPwd() {
+    modifyPwd() {
       if (this.form.password === '') {
         this.pwdError = '密码不能为空'
       } else {
@@ -84,17 +84,18 @@ export default {
     submit() {
       this.$store
         .dispatch('Login', this.form) // 表单会在序列化时转换成json格式
-        .then(res => {
+        .then((res) => {
           // console.log(res.data)
-          this.$store.dispatch('saveSession', res.data)
-          localStorage.setItem('token', 'token')
+          const data = res.data
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('username', data.username)
           this.loginSuccess()
         })
-        .catch(error => {
+        .catch((error) => {
           this.requestFailed()
           console.error(error)
         })
-      this.handleVerifyReset('form')
+      this.handlemodifyReset('form')
     },
 
     loginSuccess() {
@@ -104,7 +105,6 @@ export default {
       setTimeout(() => {
         this.$Notice.success({
           title: '登录成功，欢迎回来',
-          desc: 'hello'
         })
       }, 1000)
     },
@@ -112,14 +112,14 @@ export default {
     requestFailed() {
       this.$Notice.error({
         title: '登录失败',
-        desc: '请检查用户名密码或者网络连接'
+        desc: '请检查用户名密码或者网络连接',
       })
     },
 
-    handleVerifyReset(name) {
+    handlemodifyReset(name) {
       this.$refs[name].resetFields()
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -190,11 +190,11 @@ export default {
   width: 200px;
 }
 
-.login-vue .account {
+.login-vue .username {
   margin-top: 30px;
 }
 
-.login-vue .account span {
+.login-vue .username span {
   cursor: pointer;
 }
 

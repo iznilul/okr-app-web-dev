@@ -5,7 +5,7 @@ export function login(data) {
   return axios({
     url: api.login,
     method: 'post',
-    data: data
+    data: data,
   })
 }
 
@@ -13,31 +13,31 @@ export function register(data) {
   return axios({
     url: api.register,
     method: 'post',
-    data: data
+    data: data,
   })
 }
 
-export function updateUser(data) {
+export function modifyUserInfo(data) {
   return axios({
-    url: api.updateUser,
+    url: api.modifyUserInfo,
     method: 'post',
-    data: data
+    data: data,
   })
 }
 
-export function selectUser(param) {
+export function getUserInfoByUsername(param) {
   return axios({
-    url: api.selectUser,
+    url: api.getUserInfoByUsername,
     method: 'get',
-    params: param
+    params: param,
   })
 }
 
-export function selectByCond(data) {
+export function getUserInfoByCond(data) {
   return axios({
-    url: api.selectByCond,
+    url: api.getUserInfoByCond,
     method: 'post',
-    data: data
+    data: data,
   })
 }
 
@@ -45,14 +45,14 @@ export function upload(data) {
   return axios({
     url: api.upload,
     method: 'post',
-    data: data
+    data: data,
   })
 }
 
-export function verifyPassword(data) {
+export function modifyPassword(data) {
   return axios({
-    url: api.verifyPassword,
+    url: api.modifyPassword,
     method: 'post',
-    data: data
+    data: data,
   })
 }
