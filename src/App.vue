@@ -2,9 +2,9 @@
   <div id="app">
     <!--        挂载路由对象组件-->
     <router-view />
-    <!--        <div class="global-loading" v-show="isShowLoading">-->
-    <!--            <Spin size="large"></Spin>-->
-    <!--        </div>-->
+    <!--    <div class="global-loading" v-show="isShowLoading">-->
+    <!--      <Spin size="large"></Spin>-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -15,12 +15,12 @@ export default {
   name: 'App',
   data() {
     return {
-      keepAliveData: ['manage']
+      keepAliveData: ['manage'],
     }
   },
   computed: {
-    ...mapState(['isShowLoading'])
-  }
+    ...mapState(['isShowLoading']),
+  },
 }
 </script>
 

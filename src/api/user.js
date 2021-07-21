@@ -1,38 +1,58 @@
 import axios from '@/utils/request'
 import api from '@/api/index'
 
-export function login(parameter) {
+export function login(data) {
   return axios({
     url: api.login,
     method: 'post',
-    data: parameter
+    data: data,
   })
 }
-export function register(parameter) {
+
+export function register(data) {
   return axios({
     url: api.register,
     method: 'post',
-    data: parameter
+    data: data,
   })
 }
-export function update(parameter) {
+
+export function modifyUserInfo(data) {
   return axios({
-    url: api.update,
+    url: api.modifyUserInfo,
     method: 'post',
-    data: parameter
+    data: data,
   })
 }
-export function select(parameter) {
+
+export function getUserInfoByUsername(param) {
   return axios({
-    url: api.select,
-    method: 'post',
-    data: parameter
+    url: api.getUserInfoByUsername,
+    method: 'get',
+    params: param,
   })
 }
-export function selectByCond(parameter) {
+
+export function getUserInfoByCond(data) {
   return axios({
-    url: api.selectByCond,
+    url: api.getUserInfoByCond,
     method: 'post',
-    data: parameter
+    data: data,
+  })
+}
+
+export function upload(data) {
+  return axios({
+    url: api.upload,
+    method: 'post',
+    data: data,
+  })
+}
+
+export function modifyPassword(data) {
+  return axios({
+    url: api.modifyPassword,
+    method: 'post',
+    data: data,
   })
 }

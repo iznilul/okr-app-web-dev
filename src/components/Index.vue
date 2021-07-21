@@ -73,12 +73,12 @@
             <!--                        </div>-->
             <!-- 用户头像 -->
             <div class="user-img-c">
-              <img :src="userImg" />
+              <img :src="avatar" />
             </div>
             <!-- 下拉菜单 -->
             <Dropdown trigger="click" @on-click="userOperate" @on-visible-change="showArrow">
               <div class="pointer">
-                <span>{{ userName }}</span>
+                <span>{{ name }}</span>
                 <Icon v-show="arrowDown" type="md-arrow-dropdown" />
                 <Icon v-show="arrowUp" type="md-arrow-dropup" />
               </div>
@@ -128,7 +128,7 @@
         <div class="view-c">
           <keep-alive :include="keepAliveData">
             <!-- 子页面 -->
-            <router-view v-if="isShowRouter" />
+            <router-view v-if="isShowRouter" @setAvatar="setAvatar" />
           </keep-alive>
         </div>
       </div>
@@ -164,10 +164,10 @@ export default {
       asideArrowIcons: [], // 缓存侧边栏箭头图标 收缩时用
       // 面包屑
       crumbs: '主页',
-      userName: '',
-      userImg: '',
+      name: '',
+      avatar: '',
       // 主页路由名称
-      home: 'home'
+      home: 'home',
     }
   },
   mounted() {
@@ -176,7 +176,7 @@ export default {
     this.currentPage = name
     this.tagsArry.push({
       text: this.nameToTitle[name],
-      name
+      name,
     })
 
     // 根据路由打开对应的菜单栏
@@ -186,8 +186,7 @@ export default {
     })
 
     // 设置用户信息
-    this.userName = localStorage.getItem('userName')
-    this.userImg = localStorage.getItem('userImg')
+    this.getUserInfo()
 
     this.main = document.querySelector('.sec-right')
     this.asideArrowIcons = document.querySelectorAll('aside .ivu-icon-ios-arrow-down')
@@ -215,7 +214,7 @@ export default {
       setTimeout(() => {
         this.crumbs = this.paths[name]
       }, 0)
-    }
+    },
   },
   computed: {
     // 菜单栏
@@ -225,20 +224,53 @@ export default {
     },
     // 需要缓存的路由
     keepAliveData() {
-      return this.tagsArry.map(item => item.name)
+      return this.tagsArry.map((item) => item.name)
     },
     // 由于iView的导航菜单比较坑 只能设定一个name参数
     // 所以需要在这定义组件名称和标签栏标题的映射表 有多少个页面就有多少个映射条数
     nameToTitle() {
       const obj = {}
-      this.menuItems.forEach(e => {
+      this.menuItems.forEach((e) => {
         this.processNameToTitle(obj, e)
       })
 
       return obj
-    }
+    },
   },
   methods: {
+    getUserInfo() {
+      this.$store
+        .dispatch('getUserInfoByUsername', { username: localStorage.getItem('username') })
+        .then((res) => {
+          const data = res
+          this.$store.dispatch('saveSession', res)
+          this.name = sessionStorage.getItem('name')
+          this.avatar = sessionStorage.getItem('avatar')
+          this.getUserInfoSuccess()
+        })
+        .catch((error) => {
+          this.getUserInfoFailed()
+          console.error(error)
+        })
+    },
+
+    getUserInfoSuccess() {
+      this.$Notice.success({
+        title: '获取用户信息成功',
+      })
+    },
+
+    getUserInfoFailed() {
+      this.$Notice.error({
+        title: '获取用户信息失败',
+        desc: '请检查用户名密码或者网络连接',
+      })
+    },
+
+    setAvatar(avatar) {
+      this.avatar = avatar
+    },
+
     getMenus(name) {
       let menus
       const tagTitle = this.nameToTitle[name]
@@ -463,7 +495,7 @@ export default {
             {
               attrs: {
                 type: 'info',
-                size: 'small'
+                size: 'small',
               },
               on: {
                 click() {
@@ -471,12 +503,12 @@ export default {
                   self.gotoPage('msg')
                   self.hasNewMsg = false
                   self.msgNum = 0
-                }
-              }
+                },
+              },
             },
             ['点击查看']
           )
-        }
+        },
       })
     },
     // 菜单栏改变事件
@@ -489,12 +521,12 @@ export default {
         this.paths[data.name] = text ? `${text} / ${data.text}` : data.text
       }
       if (data.children) {
-        data.children.forEach(e => {
+        data.children.forEach((e) => {
           this.processNameToTitle(obj, e, text ? `${text} / ${data.text}` : data.text)
         })
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

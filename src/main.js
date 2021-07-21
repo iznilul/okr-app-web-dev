@@ -12,10 +12,10 @@ Vue.use(ViewUI)
 
 Vue.prototype.$axios = axios
 
-//被index.html挂载的vue实例
+// 被index.html挂载的vue实例
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App) //渲染APP.vue组件
+  render: (h) => h(App), // 渲染APP.vue组件
 })
