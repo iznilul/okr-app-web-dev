@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import user from '@/store/modules/user'
 import menu from '@/store/modules/menu'
 import getters from '@/store/getters'
+import aside from '@/store/modules/aside'
 
 Vue.use(Vuex)
 
@@ -11,9 +12,10 @@ const store = new Vuex.Store({
   mutations: {},
   modules: {
     user,
-    menu
+    menu,
+    aside,
   },
-  getters
+  getters,
 })
 
 export default store

@@ -1,6 +1,5 @@
 <template>
   <div>
-    成员管理，开发ing( ╯□╰ )
     <div class="query">
       <Form ref="form" :model="form" :label-width="50">
         <FormItem label="账号" prop="username" style="position: absolute; top: 20px">
@@ -40,10 +39,12 @@
             @keyup.enter.native="getUserInfoByCond"
           ></Input>
         </FormItem>
-        <Button @click="getUserInfoByCond" type="primary" style="position: absolute; left: 700px">查询</Button>
+        <Button @click="getUserInfoByCond" type="primary" style="position: absolute; top: 20px; left: 700px"
+          >查询</Button
+        >
       </Form>
     </div>
-    <Register @getUserInfoByCond="getUserInfoByCond"></Register>
+    <Register @getUserInfoByCond="getUserInfoByCond" style="position: absolute; top: 20px"></Register>
     <Table
       stripe
       border
@@ -67,69 +68,15 @@
 
 <script>
 import { getUserInfoByCond } from '../api/user'
-import Query from '../components/Query'
-import Register from '../components/Register'
+import Query from '../components/util/Query'
+import Register from '../components/util/Register'
+import columns from '../config/PageColumn'
 export default {
   name: 'member',
   components: { Register, Query },
   data() {
     return {
-      columns: [
-        {
-          title: '头像',
-          key: 'avatar',
-          width: '120px',
-          render: (h, params) => {
-            // console.log(params.row.avatar)
-            return h('Avatar', {
-              attrs: {
-                shape: 'square',
-                src: params.row.avatar,
-                // size: 100,
-              },
-              style: {
-                width: '100px',
-                height: '120px',
-              },
-            })
-          },
-        },
-        {
-          title: '账号',
-          key: 'username',
-          width: '130px',
-        },
-        {
-          title: '姓名',
-          key: 'name',
-          width: '100px',
-        },
-        {
-          title: '专业班级',
-          key: 'major',
-          width: '120px',
-        },
-        {
-          title: 'qq号',
-          key: 'qq',
-          width: '120px',
-        },
-        {
-          title: '手机号',
-          key: 'phone',
-          width: '130px',
-        },
-        {
-          title: '微信号',
-          key: 'weixin',
-          width: '130px',
-        },
-        {
-          title: '学习/研究方向',
-          key: 'desc',
-          // width: '200px',
-        },
-      ],
+      columns: columns,
       data: [],
       dataCount: 0,
       pageSize: 5,

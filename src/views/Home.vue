@@ -1,10 +1,6 @@
 <template>
-  <div class="home-container">
-    <div class="home-content">
-      <Button @click="getUserData">ajax测试</Button>
-
-      <Input :rows="30" style="margin-top: 20px" v-model="userInfo" type="textarea" />
-    </div>
+  <div style="position: absolute; left: 50px; top: 60px">
+    <Button @click="getUserData">ajax测试</Button>
   </div>
 </template>
 
@@ -40,7 +36,7 @@ export default {
     },
 
     getUserInfoSuccess() {
-      this.$Notice.error({
+      this.$Notice.success({
         title: '获取用户信息成功',
       })
     },
@@ -57,8 +53,7 @@ export default {
 
 <style scoped>
 .home-container {
-  padding: 10px;
-  padding-top: 5px;
+  background-color: rgba(0, 0, 0, 0);
 }
 .home-content {
   padding: 10px;

@@ -1,7 +1,5 @@
 <template>
   <div>
-    用户信息页，开发中( ╯□╰ )
-    <br />
     <Avatar
       :src="avatar"
       shape="square"

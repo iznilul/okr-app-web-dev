@@ -8,7 +8,7 @@ const commonRoutes = [
     path: '/login',
     name: 'login',
     meta: { title: '登录' },
-    component: () => import('../components/Login.vue'),
+    component: () => import('../views/Login.vue'),
   },
   {
     path: '/404',
