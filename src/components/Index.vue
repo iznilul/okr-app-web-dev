@@ -5,7 +5,7 @@
       <!-- logo -->
       <div class="logo-c">
         <img src="../assets/imgs/logo.png" alt="logo" class="logo" />
-        <span v-show="isShowAsideTitle">实验室管理系统</span>
+        <span v-show="isShowAsideTitle">实验室后台管理系统</span>
       </div>
       <!-- 菜单栏 -->
       <Menu
@@ -66,12 +66,6 @@
             <p class="crumbs">{{ crumbs }}</p>
           </div>
           <div class="h-right">
-            <!-- 消息 -->
-            <!--                        <div class="notice-c" @click="info" title="查看新消息">-->
-            <!--                            <div :class="{newMsg: hasNewMsg}"></div>-->
-            <!--                            <Icon type="ios-notifications-outline" />-->
-            <!--                        </div>-->
-            <!-- 用户头像 -->
             <div class="user-img-c">
               <img :src="avatar" />
             </div>
@@ -110,7 +104,7 @@
           </div>
           <ul class="ul-c">
             <li
-              v-for="(item, index) in tagsArry"
+              v-for="(item, index) in tagsArray"
               :key="index"
               :class="{ active: isActive(item.name) }"
               @click="activeTag(index)"
@@ -126,9 +120,29 @@
       <!-- 页面主体 -->
       <div class="main-content">
         <div class="view-c">
+          <vue-particles
+            color="#1FD8DE"
+            :particleOpacity="0.7"
+            :particlesNumber="75"
+            shapeType="circle"
+            :particleSize="4"
+            linesColor="#198BDE"
+            :linesWidth="1"
+            :lineLinked="true"
+            :lineOpacity="0.4"
+            :linesDistance="150"
+            :moveSpeed="2"
+            :hoverEffect="true"
+            hoverMode="grab"
+            :clickEffect="true"
+            clickMode="push"
+            class="lizi"
+          ></vue-particles>
           <keep-alive :include="keepAliveData">
-            <!-- 子页面 -->
-            <router-view v-if="isShowRouter" @setAvatar="setAvatar" />
+            <transition appear name="move">
+              <!-- 子页面 -->
+              <router-view v-if="isShowRouter" @setAvatar="setAvatar" />
+            </transition>
           </keep-alive>
         </div>
       </div>
@@ -151,11 +165,11 @@ export default {
       menuCache: [], // 缓存已经打开的菜单
       hasNewMsg: true, // 是否有新消息
       isShowRouter: true,
-      msgNum: '10', // 新消息条数
+
       // 标签栏         标签标题     路由名称
       // 数据格式 {text: '首页', name: 'home'}
       // 用于缓存打开的路由 在标签栏上展示
-      tagsArry: [],
+      tagsArray: [],
       arrowUp: false, // 用户详情向上箭头
       arrowDown: true, // 用户详情向下箭头
       isShowAsideTitle: true, // 是否展示侧边栏内容
@@ -174,7 +188,7 @@ export default {
     // 第一个标签
     const name = this.$route.name
     this.currentPage = name
-    this.tagsArry.push({
+    this.tagsArray.push({
       text: this.nameToTitle[name],
       name,
     })
@@ -190,6 +204,7 @@ export default {
 
     this.main = document.querySelector('.sec-right')
     this.asideArrowIcons = document.querySelectorAll('aside .ivu-icon-ios-arrow-down')
+    // console.log(this.asideArrowIcons)
 
     // 监听窗口大小 自动收缩侧边栏
     this.monitorWindowSize()
@@ -198,17 +213,17 @@ export default {
     $route(to) {
       const name = to.name
       this.currentPage = name
-      if (name == 'error') {
+      if (name === 'error') {
         this.crumbs = '404'
         return
       }
 
       if (!this.keepAliveData.includes(name)) {
         // 如果标签超过8个 则将第一个标签删除
-        if (this.tagsArry.length == 8) {
-          this.tagsArry.shift()
+        if (this.tagsArray.length === 8) {
+          this.tagsArray.shift()
         }
-        this.tagsArry.push({ name, text: this.nameToTitle[name] })
+        this.tagsArray.push({ name, text: this.nameToTitle[name] })
       }
 
       setTimeout(() => {
@@ -222,18 +237,19 @@ export default {
       // return this.$store.state.menuItems
       return this.$store.getters.menuItems
     },
-    // 需要缓存的路由
+    // 需要缓存的路由,已在标签中打开的路由
     keepAliveData() {
-      return this.tagsArry.map((item) => item.name)
+      return this.tagsArray.map((item) => item.name)
     },
     // 由于iView的导航菜单比较坑 只能设定一个name参数
     // 所以需要在这定义组件名称和标签栏标题的映射表 有多少个页面就有多少个映射条数
     nameToTitle() {
+      // console.log('this path', this.paths)
       const obj = {}
       this.menuItems.forEach((e) => {
         this.processNameToTitle(obj, e)
       })
-
+      // console.log('this path', this.paths)
       return obj
     },
   },
@@ -337,10 +353,10 @@ export default {
 
       if (!this.keepAliveData.includes(name)) {
         // 如果标签超过8个 则将第一个标签删除
-        if (this.tagsArry.length == 8) {
-          this.tagsArry.shift()
+        if (this.tagsArray.length == 8) {
+          this.tagsArray.shift()
         }
-        this.tagsArry.push({ name, text: this.nameToTitle[name] })
+        this.tagsArray.push({ name, text: this.nameToTitle[name] })
       }
     },
     // 选择菜单回调函数
@@ -418,18 +434,18 @@ export default {
       let name = this.$route.name
       let index = this.keepAliveData.indexOf(name)
       this.$nextTick(() => {
-        if (this.tagsArry.length) {
+        if (this.tagsArray.length) {
           this.isShowRouter = false
-          this.tagsArry.splice(index, 1)
+          this.tagsArray.splice(index, 1)
           this.$nextTick(() => {
-            this.tagsArry.splice(index, 0, { name, text: this.nameToTitle[name] })
+            this.tagsArray.splice(index, 0, { name, text: this.nameToTitle[name] })
             this.gotoPage(name)
             this.isShowRouter = true
           })
         } else {
           this.isShowRouter = false
           this.$nextTick(() => {
-            this.tagsArry.push({ name, text: this.nameToTitle[name] })
+            this.tagsArray.push({ name, text: this.nameToTitle[name] })
             this.gotoPage(name)
             this.isShowRouter = true
           })
@@ -438,17 +454,17 @@ export default {
     },
     // 关闭单个标签
     closeTag(i) {
-      let name = this.tagsArry[i].name
-      this.tagsArry.splice(i, 1)
+      let name = this.tagsArray[i].name
+      this.tagsArray.splice(i, 1)
       window.event.stopPropagation()
       // 如果关闭的是当前标签 则激活前一个标签
       // 如果关闭的是第一个标签 则激活后一个标签
-      if (this.tagsArry.length) {
+      if (this.tagsArray.length) {
         if (this.isActive(name)) {
           if (i != 0) {
-            this.gotoPage(this.tagsArry[i - 1].name)
+            this.gotoPage(this.tagsArray[i - 1].name)
           } else {
-            this.gotoPage(this.tagsArry[i].name)
+            this.gotoPage(this.tagsArray[i].name)
           }
         }
       } else if (name != this.home) {
@@ -460,8 +476,8 @@ export default {
     },
     // 根据路由名称关闭页面
     closeName(name) {
-      for (let i = 0, len = this.tagsArry.length; i < len; i++) {
-        if (this.tagsArry[i].name == name) {
+      for (let i = 0, len = this.tagsArray.length; i < len; i++) {
+        if (this.tagsArray[i].name == name) {
           this.closeTag(i)
           break
         }
@@ -469,48 +485,23 @@ export default {
     },
     // 批量关闭标签
     closeTags(flag) {
-      if (flag == 1) {
+      if (flag === 1) {
         // 关闭其他标签
-        this.tagsArry = []
+        this.tagsArray = []
         this.gotoPage(this.$route.name)
       } else {
         // 关闭所有标签
-        this.tagsArry = []
+        this.tagsArray = []
         this.gotoPage(this.home)
         this.reloadPage()
       }
     },
+
     // 激活标签
     activeTag(i) {
-      this.gotoPage(this.tagsArry[i].name)
+      this.gotoPage(this.tagsArray[i].name)
     },
-    // 消息通知
-    info() {
-      const self = this
-      this.$Notice.info({
-        title: `您有${this.msgNum}条消息`,
-        render(h) {
-          return h(
-            'Button',
-            {
-              attrs: {
-                type: 'info',
-                size: 'small',
-              },
-              on: {
-                click() {
-                  // 点击查看跳转到消息页
-                  self.gotoPage('msg')
-                  self.hasNewMsg = false
-                  self.msgNum = 0
-                },
-              },
-            },
-            ['点击查看']
-          )
-        },
-      })
-    },
+
     // 菜单栏改变事件
     menuChange(data) {
       this.menuCache = data
@@ -530,189 +521,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.index-vue {
-  height: 100%;
-  color: #666;
-}
-/* 侧边栏 */
-aside {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 90px;
-  background: #20222a;
-  height: 100%;
-  transition: width 0.3s;
-  overflow: auto;
-}
-.logo-c {
-  display: flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 16px;
-  margin: 20px 0;
-  justify-content: center;
-}
-.logo {
-  width: 40px;
-  margin-right: 10px;
-}
-.aside-big {
-  width: 220px;
-}
-/* 主体页面 */
-.sec-right {
-  height: 100%;
-  margin-left: 220px;
-  transition: margin-left 0.3s;
-  overflow: hidden;
-  background: #f3f7fd;
-}
-/* 主体页面头部 */
-header {
-  height: 50px;
-  border-bottom: none;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 40px;
-  padding-left: 10px;
-  font-size: 14px;
-}
-header .ivu-icon {
-  font-size: 24px;
-}
-.refresh-c {
-  margin: 0 30px;
-  cursor: pointer;
-}
-.h-right {
-  display: flex;
-  align-items: center;
-}
-.h-left {
-  display: flex;
-  align-items: center;
-}
-.user-img-c img {
-  width: 100%;
-}
-.notice-c {
-  cursor: pointer;
-  position: relative;
-}
-.newMsg {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #ff5722;
-  right: 0;
-  top: 0;
-}
-.user-img-c {
-  width: 34px;
-  height: 34px;
-  background: #ddd;
-  border-radius: 50%;
-  margin: 0 40px;
-  overflow: hidden;
-}
-.tag-options {
-  cursor: pointer;
-  position: relative;
-}
-.div-tags {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 4px 0;
-}
-.div-icons {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background: #fff;
-  height: 34px;
-  width: 160px;
-  font-size: 18px;
-}
-/* 标签栏 */
-.ul-c {
-  height: 34px;
-  background: #fff;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 10px;
-  overflow: hidden;
-  width: calc(100% - 160px);
-}
-.ul-c li {
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 12px;
-  height: 24px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 3px 5px 2px 3px;
-  border: 1px solid #e6e6e6;
-}
-a {
-  color: #666;
-  transition: none;
-}
-.li-a {
-  max-width: 80px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.ul-c .ivu-icon {
-  margin-left: 6px;
-}
-.active {
-  background: #409eff;
-  border: 1px solid #409eff;
-}
-.active a {
-  color: #fff;
-}
-.active .ivu-icon {
-  color: #fff;
-}
-/* 主要内容区域 */
-.main-content {
-  height: calc(100% - 88px);
-  overflow: hidden;
-}
-.view-c {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-}
-.pointer {
-  cursor: pointer;
-}
-.crumbs {
-  margin-left: 10px;
-  color: #97a8be;
-  cursor: default;
-}
-.menu-level-3 .ivu-icon {
-  font-size: 18px;
-}
-.shrink {
-  text-align: center;
-}
-.external {
-  color: rgba(255, 255, 255, 0.7);
-}
-.external > i {
-  margin-right: 6px;
-}
+<style lang="less">
+@import '../style/animation/Move';
+@import '../style/Index';
 </style>

@@ -6,7 +6,7 @@
         <form-item label="账号" prop="username">
           <Input v-model="form.username" placeholder="新用户的初始密码为账号" style="width: 200px"></Input>
         </form-item>
-        <form-item label="身份" prop="role">
+        <form-item label="身份" prop="name">
           <Select v-model="form.name" style="width: 100px">
             <Option v-for="item in roleList" :value="item.value" :key="item.value">{{ item.label }}</Option>
           </Select>

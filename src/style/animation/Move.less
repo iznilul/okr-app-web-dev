@@ -1,0 +1,39 @@
+@keyframes animationIn {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes animationOut {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+
+.move-enter {
+  transform: translate(-100%, 0);
+  position: absolute !important;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.move-enter-active {
+  animation: animationIn 0.5s;
+  position: absolute !important;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.move-leave {
+  transform: translate(0, 0);
+}
+.move-leave-active {
+  animation: animationOut 0.5s;
+}
