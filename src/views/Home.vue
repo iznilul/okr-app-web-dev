@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { fetchUserData } from '@/api/index'
-import api from '../api/index'
 import { getUserInfoByUsername } from '../api/user'
 export default {
   name: 'home',
