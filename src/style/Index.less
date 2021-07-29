@@ -1,0 +1,184 @@
+.index-vue {
+  height: 100%;
+  color: #666;
+}
+/* 侧边栏 */
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90px;
+  background: #20222a;
+  height: 100%;
+  transition: width 0.3s;
+  overflow: auto;
+}
+.logo-c {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 20px 0;
+  justify-content: center;
+}
+.logo {
+  width: 40px;
+  margin-right: 10px;
+}
+.aside-big {
+  width: 220px;
+}
+/* 主体页面 */
+.sec-right {
+  height: 100%;
+  margin-left: 220px;
+  transition: margin-left 0.3s;
+  overflow: hidden;
+  background: #f3f7fd;
+}
+/* 主体页面头部 */
+header {
+  height: 50px;
+  border-bottom: none;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 40px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+header .ivu-icon {
+  font-size: 24px;
+}
+.refresh-c {
+  margin: 0 30px;
+  cursor: pointer;
+}
+.h-right {
+  display: flex;
+  align-items: center;
+}
+.h-left {
+  display: flex;
+  align-items: center;
+}
+.user-img-c img {
+  width: 100%;
+}
+.notice-c {
+  cursor: pointer;
+  position: relative;
+}
+.newMsg {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ff5722;
+  right: 0;
+  top: 0;
+}
+.user-img-c {
+  width: 34px;
+  height: 34px;
+  background: #ddd;
+  border-radius: 50%;
+  margin: 0 40px;
+  overflow: hidden;
+}
+.tag-options {
+  cursor: pointer;
+  position: relative;
+}
+.div-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+.div-icons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
+  height: 34px;
+  width: 160px;
+  font-size: 18px;
+}
+/* 标签栏 */
+.ul-c {
+  height: 34px;
+  background: #fff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 10px;
+  overflow: hidden;
+  width: calc(100% - 160px);
+}
+.ul-c li {
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  height: 24px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 3px 5px 2px 3px;
+  border: 1px solid #e6e6e6;
+}
+a {
+  color: #666;
+  transition: none;
+}
+.li-a {
+  max-width: 80px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ul-c .ivu-icon {
+  margin-left: 6px;
+}
+.active {
+  background: #409eff;
+  border: 1px solid #409eff;
+}
+.active a {
+  color: #fff;
+}
+.active .ivu-icon {
+  color: #fff;
+}
+/* 主要内容区域 */
+.main-content {
+  height: calc(100% - 88px);
+  overflow: hidden;
+}
+.view-c {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.pointer {
+  cursor: pointer;
+}
+.crumbs {
+  margin-left: 10px;
+  color: #97a8be;
+  cursor: default;
+}
+.menu-level-3 .ivu-icon {
+  font-size: 18px;
+}
+.shrink {
+  text-align: center;
+}
+.external {
+  color: rgba(255, 255, 255, 0.7);
+}
+.external > i {
+  margin-right: 6px;
+}

@@ -5,10 +5,14 @@ import App from './App'
 import store from './store'
 import router from './router'
 import 'view-design/dist/styles/iview.css'
+import animated from 'animate.css'
 import './permission'
+import VueParticles from 'vue-particles'
 
 Vue.config.productionTip = false
 Vue.use(ViewUI)
+Vue.use(animated)
+Vue.use(VueParticles)
 
 Vue.prototype.$axios = axios
 
