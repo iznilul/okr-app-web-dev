@@ -1,5 +1,6 @@
 <template>
   <div class="layout">
+
     <a-side ref="aside" @gotoPage="gotoPage" @changeMain="changeMain"> </a-side>
     <section class="sec-right">
       <AHeader

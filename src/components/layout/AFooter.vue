@@ -10,6 +10,7 @@ export default {
 }
 </script>
 
+
 <style lang="less" scoped>
 @import '../../style/layout/AFooter';
 </style>
