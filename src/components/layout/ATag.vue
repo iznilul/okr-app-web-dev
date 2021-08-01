@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'Tags',
+  name: 'ATag',
   computed: {
     tagsArray() {
       return this.$store.getters.tagsArray
@@ -88,10 +88,14 @@ export default {
     },
     // 批量关闭标签
     closeTags(flag) {
-      if (flag === 1) {
+      // console.log('flag', flag)
+      // console.log(typeof flag)
+      // console.log(this.$route.name)
+      if (flag === '1') {
         // 关闭其他标签
         this.$store.commit('setTagsArray', [])
         this.$emit('gotoPage', this.$route.name)
+        this.reloadPage()
       } else {
         // 关闭所有标签
         this.$store.commit('setTagsArray', [])
@@ -118,6 +122,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import '../../style/layout/ATag';
 </style>

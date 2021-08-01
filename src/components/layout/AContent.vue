@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Content',
+  name: 'AContent',
   data() {
     return {}
   },

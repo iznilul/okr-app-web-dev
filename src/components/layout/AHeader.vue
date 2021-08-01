@@ -36,8 +36,8 @@ export default {
     return {
       arrowUp: false, // 用户详情向上箭头
       arrowDown: true, // 用户详情向下箭头
-      name: '',
-      avatar: '',
+      name: sessionStorage.getItem('name'),
+      avatar: sessionStorage.getItem('avatar'),
     }
   },
   mounted() {
@@ -134,12 +134,12 @@ export default {
       this.$emit('changeMain', '200px')
     },
     setAvatar(avatar) {
-      this.avatar = avatar
+      this.avatar = avatarc
     },
   },
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import '../../style/layout/AHeader';
 </style>

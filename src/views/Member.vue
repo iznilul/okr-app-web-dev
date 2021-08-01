@@ -1,67 +1,32 @@
 <template>
-  <div>
+  <div id="member">
     <div class="query">
-      <Form ref="form" :model="form" :label-width="50">
-        <FormItem label="账号" prop="username" style="position: absolute; top: 20px">
-          <Input
-            clearable
-            v-model="form.username"
-            class="input"
-            type="text"
-            @keyup.enter.native="getUserInfoByCond"
-          ></Input>
+      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="getUserInfoByCond">
+        <FormItem label="账号" prop="username">
+          <Input clearable v-model="form.username" type="text"></Input>
         </FormItem>
-        <FormItem label="姓名" prop="name" style="position: absolute; top: 20px; left: 150px">
-          <Input
-            clearable
-            v-model="form.name"
-            class="input"
-            type="text"
-            @keyup.enter.native="getUserInfoByCond"
-          ></Input>
+        <FormItem label="姓名" prop="name">
+          <Input clearable v-model="form.name" type="text"></Input>
         </FormItem>
-        <FormItem label="身份" prop="role" style="position: absolute; top: 20px; left: 300px">
-          <Input
-            clearable
-            v-model="form.role"
-            class="input"
-            type="text"
-            @keyup.enter.native="getUserInfoByCond"
-          ></Input>
+        <FormItem label="专业班级" prop="major" :label-width="80">
+          <Input clearable v-model="form.major" type="text"></Input>
         </FormItem>
-        <FormItem label="专业班级" prop="major" style="position: absolute; top: 20px; left: 450px" :label-width="80">
-          <Input
-            clearable
-            v-model="form.major"
-            class="input"
-            type="text"
-            style="width: 150px"
-            @keyup.enter.native="getUserInfoByCond"
-          ></Input>
-        </FormItem>
-        <Button @click="getUserInfoByCond" type="primary" style="position: absolute; top: 20px; left: 700px"
-          >查询</Button
-        >
       </Form>
     </div>
-    <Register @getUserInfoByCond="getUserInfoByCond" style="position: absolute; top: 20px"></Register>
-    <Table
-      stripe
-      border
-      :columns="columns"
-      :data="data"
-      style="position: absolute; top: 60px; overflow-y: scroll"
-      height="480"
-      width="1300"
-    ></Table>
+    <Button id="button" @click="getUserInfoByCond" type="primary">查询</Button>
+    <Register @getUserInfoByCond="getUserInfoByCond"></Register>
+    <ModifyUserInfo ref="modifyUserInfo" @getUserInfoByCond="getUserInfoByCond"></ModifyUserInfo>
+    <transition appear name="fade">
+      <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    </transition>
     <Page
+      id="page"
       :total="dataCount"
       :page-size="pageSize"
       :current="current"
       show-total
       class="paging"
       @on-change="changePage"
-      style="position: absolute; top: 560px"
     ></Page>
   </div>
 </template>
@@ -70,19 +35,19 @@
 import { getUserInfoByCond } from '../api/user'
 import Query from '../components/util/Query'
 import Register from '../components/util/Register'
+import ModifyUserInfo from '../components/util/ModifyUserInfo'
 import columns from '../config/PageColumn'
 export default {
   name: 'member',
-  components: { Register, Query },
+  components: { Register, Query, ModifyUserInfo },
   data() {
     return {
       columns: columns,
       data: [],
       dataCount: 0,
-      pageSize: 5,
+      pageSize: 8,
       current: 1,
       form: {
-        role: '',
         username: '',
         name: '',
         major: '',
@@ -92,6 +57,9 @@ export default {
   },
   mounted() {
     this.getUserInfoByCond()
+    window.showModifyUserInfo = this.showModifyUserInfo
+    // window.setUsername = this.setUsername
+    window.getUserInfoByUsername = this.getUserInfoByUsername
   },
   methods: {
     getUserInfoByCond() {
@@ -99,7 +67,6 @@ export default {
         .dispatch('getUserInfoByCond', this.form)
         .then((res) => {
           // console.log(res)
-
           this.pageReset(res.pageNum)
           this.dataCount = res.total
           this.data = res.list
@@ -128,13 +95,23 @@ export default {
     handlemodifyReset(name) {
       this.$refs[name].resetFields()
     },
+
+    showModifyUserInfo() {
+      this.$refs.modifyUserInfo.show()
+    },
+    // setUsername(item) {
+    //   console.log(item)
+    //   this.$refs.modifyUserInfo.setUsername(item)
+    // },
+    getUserInfoByUsername(item) {
+      // console.log(item)
+      this.$refs.modifyUserInfo.getUserInfoByUsername(item)
+    },
   },
 }
 </script>
 
-<style>
-.input {
-  width: 100px;
-  height: 100px;
-}
+<style lang="less">
+@import '../style/views/Member';
+@import '../style/animation/Fade';
 </style>

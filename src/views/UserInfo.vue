@@ -1,12 +1,6 @@
 <template>
-  <div>
-    <Avatar
-      :src="avatar"
-      shape="square"
-      icon="ios-person"
-      size="200"
-      style="position: absolute; left: 50px; top: 60px"
-    />
+  <div id="userInfo">
+    <Avatar id="avatar" :src="avatar" shape="square" icon="ios-person" size="150" />
     <Upload
       :data="uploadData"
       :headers="uploadHeader"
@@ -18,18 +12,19 @@
       :action="uploadUrl"
       :show-upload-list="false"
     >
-      <Button icon="ios-cloud-upload-outline" style="position: absolute; left: 95px; top: 280px">上传头像</Button>
+      <Button id="upload" icon="ios-cloud-upload-outline">上传头像</Button>
     </Upload>
-    <Form ref="modify" :model="modify" :label-width="100" style="position: absolute; top: 60px; left: 350px">
+    <Form id="passwordForm" ref="modify" :model="modify" :label-width="100">
       <FormItem label="当前密码" prop="oldPassword">
-        <Input clearable v-model="modify.oldPassword"></Input>
+        <Input clearable class="input" placeholder="请输入当前密码" v-model="modify.oldPassword"></Input>
       </FormItem>
       <FormItem label="新密码" prop="newPassword">
-        <Input clearable v-model="modify.newPassword"></Input>
+        <Input clearable placeholder="请输入新密码" v-model="modify.newPassword"></Input>
       </FormItem>
-      <Button @click="modifyPassword" type="primary" style="position: absolute; left: 100px">修改密码 </Button>
+      <Button @click="modifyPassword" type="primary">修改密码 </Button>
     </Form>
-    <Form :model="form" :label-width="100" style="position: absolute; top: 60px; left: 750px">
+
+    <Form id="userInfoForm" :model="form" :label-width="100">
       <FormItem label="真实姓名">
         <Input clearable v-model="form.name"></Input>
       </FormItem>
@@ -123,7 +118,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.$Message.success('密码修改完成')
-          this.handlemodifyReset('modify')
+          this.handleModifyReset('modify')
         })
         .catch((error) => {
           console.log(error)
@@ -143,11 +138,13 @@ export default {
           this.$Message.error('用户信息更新失败')
         })
     },
-    handlemodifyReset(name) {
+    handleModifyReset(name) {
       this.$refs[name].resetFields()
     },
   },
 }
 </script>
 
-<style></style>
+<style lang="less">
+@import '../style/views/UserInfo';
+</style>

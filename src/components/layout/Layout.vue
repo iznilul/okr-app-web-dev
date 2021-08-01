@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <a-side ref="aside" @gotoPage="gotoPage"> </a-side>
+    <a-side ref="aside" @gotoPage="gotoPage" @changeMain="changeMain"> </a-side>
     <section class="sec-right">
       <AHeader
         ref="aHeader"
@@ -23,7 +23,7 @@ import ATag from './ATag'
 import AContent from './AContent'
 import AFooter from './AFooter'
 export default {
-  name: 'index',
+  name: 'Layout',
   components: {
     ASide,
     AHeader,
@@ -39,7 +39,7 @@ export default {
   },
   watch: {
     $route(to) {
-      // console.log(to)
+      console.log(to)
       const name = to.name
       this.$store.commit('setCurrentPage', name)
       if (name === 'error') {
@@ -51,7 +51,9 @@ export default {
         if (this.$store.getters.tagsArray.length === 8) {
           this.$store.commit('shiftTagsArray')
         }
-        this.$store.commit('pushTagsArray', { name, text: this.nameToTitle[name] })
+        const tagsArray = { name, text: this.nameToTitle[name] }
+        // console.log('tagsArray', tagsArray)
+        this.$store.commit('pushTagsArray', tagsArray)
       }
 
       setTimeout(() => {
@@ -93,15 +95,18 @@ export default {
       this.menuItems.forEach((e) => {
         this.processNameToTitle(obj, e)
       })
+      console.log('obj', obj)
       return obj
     },
   },
   methods: {
     changeMain(item) {
+      // console.log(item)
       this.main.style.marginLeft = item
     },
-    gotoPage(name, params) {
-      this.$router.push({ name, params })
+    gotoPage(path) {
+      // console.log(path)
+      this.$router.push(path)
     },
     processNameToTitle(obj, data, text) {
       if (data.name) {

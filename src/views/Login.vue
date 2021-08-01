@@ -105,7 +105,7 @@ export default {
       if (this.mouse === false) {
         this.currentTab = 'tab' + (this.tabNum++ % 4)
       }
-      console.log(this.currentTab)
+      // console.log(this.currentTab)
     }, 3000)
     particlesJS('login', config)
   },
@@ -171,8 +171,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import '../style/views/Login';
-/*@import '../style/star';*/
 @import '../style/animation/Fade';
 </style>
