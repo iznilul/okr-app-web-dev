@@ -171,7 +171,6 @@ export default {
 }
 </script>
 
-
 <style lang="less" scoped>
 @import '../style/views/Login';
 @import '../style/animation/Fade';

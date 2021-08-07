@@ -151,7 +151,6 @@ export default {
       this.$emit('changeMain', '200px')
     },
     setAvatar(avatar) {
-
       this.avatar = avatarc
     },
   },
@@ -159,6 +158,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 @import '../../style/layout/AHeader';
 </style>

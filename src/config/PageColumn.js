@@ -1,4 +1,3 @@
-
 import vue from '../main.js'
 const columns = [
   {
@@ -127,7 +126,6 @@ const columns = [
         ),
       ]
     },
-
   },
 ]
 export default columns
