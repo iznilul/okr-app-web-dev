@@ -67,9 +67,6 @@ export default {
     show() {
       this.visible = true
     },
-    // setUsername(item) {
-    //   this.form.username = item
-    // },
     getUserInfoByUsername(username) {
       console.log(username)
       this.$store

@@ -102,7 +102,7 @@ const columns = [
           'Button',
           {
             attrs: {
-              type: type,
+              type: sessionStorage.getItem('username') === 'admin' ? 'primary' : 'warning',
             },
             style: {
               position: 'relative',
@@ -111,12 +111,8 @@ const columns = [
             on: {
               click: () => {
                 // console.log(params.row.username)
-                if (
-                  params.row.username === sessionStorage.getItem('username') ||
-                  sessionStorage.getItem('username') === 'admin'
-                ) {
-                  getUserInfoByUsername(params.row.username)
-                  showModifyUserInfo()
+                if (sessionStorage.getItem('username') === 'admin') {
+                  removeByUsername(params.row.username)
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

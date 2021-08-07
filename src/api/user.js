@@ -41,6 +41,38 @@ export function getUserInfoByCond(data) {
   })
 }
 
+export function removeByUsername(data) {
+  return axios({
+    url: api.removeByUsername,
+    method: 'get',
+    params: data,
+  })
+}
+
+export function reloadAdminRoleResource(data) {
+  return axios({
+    url: api.reloadAdminRoleResource,
+    method: 'get',
+    params: data,
+  })
+}
+
+export function reloadUserRoleResource(data) {
+  return axios({
+    url: api.reloadUserRoleResource,
+    method: 'get',
+    params: data,
+  })
+}
+
+export function getMonitorData(data) {
+  return axios({
+    url: api.getMonitorData,
+    method: 'get',
+    params: data,
+  })
+}
+
 export function upload(data) {
   return axios({
     url: api.upload,

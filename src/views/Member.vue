@@ -14,7 +14,8 @@
       </Form>
     </div>
     <Button id="button" @click="getUserInfoByCond" type="primary">查询</Button>
-    <Register @getUserInfoByCond="getUserInfoByCond"></Register>
+    <Register @getUserInfoByCond="getUserInfoByCond" @validate="validate"></Register>
+    <reload-role-resource @validate="validate"></reload-role-resource>
     <ModifyUserInfo ref="modifyUserInfo" @getUserInfoByCond="getUserInfoByCond"></ModifyUserInfo>
     <transition appear name="fade">
       <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
@@ -22,7 +23,7 @@
     <Page
       id="page"
       :total="dataCount"
-      :page-size="pageSize"
+      :page-size="form.pageSize"
       :current="current"
       show-total
       class="paging"
@@ -36,30 +37,31 @@ import { getUserInfoByCond } from '../api/user'
 import Query from '../components/util/Query'
 import Register from '../components/util/Register'
 import ModifyUserInfo from '../components/util/ModifyUserInfo'
+import ReloadRoleResource from '../components/util/ReloadRoleResource'
 import columns from '../config/PageColumn'
 export default {
   name: 'member',
-  components: { Register, Query, ModifyUserInfo },
+  components: { Register, Query, ModifyUserInfo, ReloadRoleResource },
   data() {
     return {
       columns: columns,
       data: [],
       dataCount: 0,
-      pageSize: 8,
       current: 1,
       form: {
         username: '',
         name: '',
         major: '',
         index: 1,
+        pageSize: 8,
       },
     }
   },
   mounted() {
     this.getUserInfoByCond()
     window.showModifyUserInfo = this.showModifyUserInfo
-    // window.setUsername = this.setUsername
     window.getUserInfoByUsername = this.getUserInfoByUsername
+    window.removeByUsername = this.removeByUsername
   },
   methods: {
     getUserInfoByCond() {
@@ -80,6 +82,20 @@ export default {
           console.log(error)
         })
     },
+    removeByUsername(username) {
+      this.$store
+        .dispatch('removeByUsername', { username: username })
+        .then((res) => {
+          // console.log(res)
+          this.$Notice.success({
+            title: '删除成功',
+          })
+          this.getUserInfoByCond()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
 
     changePage(index) {
       this.form.index = index
@@ -95,14 +111,19 @@ export default {
     handlemodifyReset(name) {
       this.$refs[name].resetFields()
     },
-
+    validate(callback) {
+      if (sessionStorage.getItem('username') === 'admin') {
+        let res = true
+        callback(res)
+      } else {
+        this.$Notice.error({
+          title: '没有操作权限',
+        })
+      }
+    },
     showModifyUserInfo() {
       this.$refs.modifyUserInfo.show()
     },
-    // setUsername(item) {
-    //   console.log(item)
-    //   this.$refs.modifyUserInfo.setUsername(item)
-    // },
     getUserInfoByUsername(item) {
       // console.log(item)
       this.$refs.modifyUserInfo.getUserInfoByUsername(item)

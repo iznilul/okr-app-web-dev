@@ -1,6 +1,17 @@
 import Vue from 'vue'
 
-import { login, register, getUserInfoByCond, getUserInfoByUsername, modifyUserInfo, modifyPassword } from '@/api/user'
+import {
+  login,
+  register,
+  getUserInfoByCond,
+  getUserInfoByUsername,
+  modifyUserInfo,
+  modifyPassword,
+  removeByUsername,
+  reloadAdminRoleResource,
+  reloadUserRoleResource,
+  getMonitorData,
+} from '@/api/user'
 import md5 from 'js-md5'
 
 const user = {
@@ -139,6 +150,68 @@ const user = {
     getUserInfoByCond({ commit }, cond) {
       return new Promise((resolve, reject) => {
         getUserInfoByCond(cond)
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+
+    //根据用户名删除用户
+    removeByUsername({ commit }, username) {
+      return new Promise((resolve, reject) => {
+        removeByUsername(username)
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+    //重载管理员资源
+    reloadAdminRoleResource({ commit }, {}) {
+      return new Promise((resolve, reject) => {
+        reloadAdminRoleResource({})
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+    //重载用户资源
+    reloadUserRoleResource({ commit }, {}) {
+      return new Promise((resolve, reject) => {
+        reloadUserRoleResource({})
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+
+    //获取性能监控数据
+    getMonitorData({ commit }, {}) {
+      return new Promise((resolve, reject) => {
+        getMonitorData({})
           .then((response) => {
             const result = response
             console.log(result)

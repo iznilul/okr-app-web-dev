@@ -9,9 +9,13 @@ const aside = {
     crumbs: '主页', //面包屑
     openMenus: [], // 要打开的菜单名字 name属性
     menuCache: [], // 缓存已经打开的菜单
+    theme: 0, //主题模式
   },
 
   mutations: {
+    setTheme(state, item) {
+      state.theme = item
+    },
     setIsShowAsideTitles(state, item) {
       state.isShowAsideTitle = item
     },

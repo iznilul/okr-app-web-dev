@@ -1,6 +1,6 @@
 <template>
   <div id="register">
-    <Button @click="visible = true" :type="type">注册新用户</Button>
+    <Button @click="validate" :type="type">注册新用户</Button>
     <Modal id="registerModal" v-model="visible" title="注册新用户" @on-ok="handleSubmit('form')" @on-cancel="change">
       <Form ref="form" :lable-width="50" :model="form" :rules="rules">
         <form-item label="账号" prop="username">
@@ -58,6 +58,11 @@ export default {
     }
   },
   methods: {
+    validate() {
+      this.$emit('validate', (val) => {
+        this.visible = val
+      })
+    },
     handleSubmit(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {

@@ -33,7 +33,7 @@
                   prefix="md-lock"
                   placeholder="密码"
                   clearable
-                  @keyup.enter.native="submit"
+                  @keyup.enter.native="verify('form')"
                 />
               </FormItem>
             </Form>
@@ -122,7 +122,7 @@ export default {
     verify(name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.$refs.verification.change()
+          this.$refs.verification.show()
         } else {
           this.$Message.error('用户名或密码格式不符，请重新输入')
         }
@@ -140,7 +140,7 @@ export default {
           this.loginSuccess()
         })
         .catch((error) => {
-          // this.requestFailed()
+          this.requestFailed()
           console.error(error)
         })
       this.handlemodifyReset('form')
