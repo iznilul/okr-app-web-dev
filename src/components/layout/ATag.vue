@@ -96,6 +96,7 @@ export default {
         this.$store.commit('setTagsArray', [])
         this.$emit('gotoPage', this.$route.name)
         this.reloadPage()
+
       } else {
         // 关闭所有标签
         this.$store.commit('setTagsArray', [])
@@ -123,5 +124,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 @import '../../style/layout/ATag';
 </style>

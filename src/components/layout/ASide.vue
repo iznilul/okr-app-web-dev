@@ -85,6 +85,7 @@ export default {
     // 选择菜单回调函数
     selectMenuCallback(name) {
       // console.log(name)
+
       if (name.includes('external-link')) return
       this.$emit('gotoPage', name)
       this.expandAside()
@@ -131,5 +132,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 @import '../../style/layout/ASide';
 </style>

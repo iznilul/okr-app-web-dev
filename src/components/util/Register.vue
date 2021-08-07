@@ -87,6 +87,7 @@ export default {
       })
     },
     change() {
+
       this.visible = false
     },
   },
@@ -96,3 +97,4 @@ export default {
 <style lang="less">
 @import '../../style/util/Register';
 </style>
+

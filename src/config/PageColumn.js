@@ -1,3 +1,4 @@
+
 import vue from '../main.js'
 const columns = [
   {
@@ -6,6 +7,7 @@ const columns = [
     width: '70px',
     height: '70px',
     className: 'avatar',
+
     render: (h, params) => {
       // console.log(params.row.avatar)
       return h('Avatar', {
@@ -125,6 +127,7 @@ const columns = [
         ),
       ]
     },
+
   },
 ]
 export default columns
