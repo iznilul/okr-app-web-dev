@@ -1,14 +1,14 @@
 <template>
-  <div id="cpu"></div>
+  <div id="mem"></div>
 </template>
 
 <script>
 export default {
-  name: 'Cpu',
+  name: 'Mem',
   data() {
     return {
-      cpu: {},
-      cpuIndex: -1,
+      mem: {},
+      memIndex: -1,
       timer: null,
     }
   },
@@ -21,11 +21,11 @@ export default {
   watch: {
     data(newVal) {
       // console.log(newVal)
-      this.cpuOption.series[0].data[0].value = this.data.free
-      this.cpuOption.series[0].data[1].value = this.data.used
-      this.cpuOption.series[0].data[2].value = this.data.sys
-      this.cpuOption.series[0].data[3].value = this.data.wait
-      this.cpuChart.setOption(this.cpuOption)
+      this.memOption.series[0].data[0].value = 100 - this.data.usage
+      this.memOption.series[0].data[0].num = this.data.free
+      this.memOption.series[0].data[1].value = this.data.usage
+      this.memOption.series[0].data[1].num = this.data.used
+      this.memChart.setOption(this.memOption)
       setTimeout(() => {
         this.slideShow()
       }, 1000)
@@ -37,13 +37,13 @@ export default {
     }, 5000)
   },
   computed: {
-    cpuChart() {
-      return this.$echarts.init(document.getElementById('cpu'))
+    memChart() {
+      return this.$echarts.init(document.getElementById('mem'))
     },
-    cpuLen() {
-      return this.cpuOption.series[0].data.length
+    memLen() {
+      return this.memOption.series[0].data.length
     },
-    cpuOption() {
+    memOption() {
       return {
         tooltip: {
           trigger: 'item',
@@ -52,15 +52,15 @@ export default {
           orient: 'vertical',
           left: '10px',
           top: '20%',
-          data: ['空闲', '使用中', '系统', '等待'],
+          data: ['空闲', '使用中'],
           textStyle: {
             color: '#27D9C8',
             fontSize: 14,
           },
         },
-        color: ['#00e8ff', '#ff1f00', '#44ff02', '#ffffff'],
+        color: ['#00e8ff', '#ff1f00'],
         title: {
-          text: 'cpu情况',
+          text: '主内存情况',
           top: '5%',
           left: '5%',
           textStyle: {
@@ -71,7 +71,7 @@ export default {
         },
         series: [
           {
-            name: 'cpu情况',
+            name: '主内存情况',
             type: 'pie',
             radius: ['60%', '75%'],
             left: '50px',
@@ -89,7 +89,8 @@ export default {
                 show: false,
                 position: 'center',
                 formatter: function (params) {
-                  return '{name|' + params.name + '}\n{value|' + params.value + ' %}'
+                  // console.log(params)
+                  return '{name|' + params.name + '}\n{value|' + params.value + ' %}\n{value|' + params.data.num + 'G}'
                 },
                 rich: {
                   value: {
@@ -110,18 +111,12 @@ export default {
               {
                 value: '',
                 name: '空闲',
+                num: '',
               },
               {
                 value: '',
                 name: '使用中',
-              },
-              {
-                value: '',
-                name: '系统',
-              },
-              {
-                value: '',
-                name: '等待',
+                num: '',
               },
             ],
           },
@@ -131,12 +126,12 @@ export default {
   },
   methods: {
     slideShow() {
-      this.cpuChart.dispatchAction({ type: 'downplay', seriesIndex: 0, dataIndex: this.cpuIndex })
-      this.cpuIndex = (this.cpuIndex + 1) % this.cpuLen
-      this.cpuChart.dispatchAction({
+      this.memChart.dispatchAction({ type: 'downplay', seriesIndex: 0, dataIndex: this.memIndex })
+      this.memIndex = (this.memIndex + 1) % this.memLen
+      this.memChart.dispatchAction({
         type: 'highlight',
         seriesIndex: 0,
-        dataIndex: this.cpuIndex,
+        dataIndex: this.memIndex,
       })
     },
   },
