@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content">
+  <div :class="[theme === 1 ? 'body-theme-dark' : 'body-theme-light']">
     <div class="view-c">
       <vue-particles
         color="#1FD8DE"
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Content',
+  name: 'AContent',
   data() {
     return {}
   },
@@ -43,6 +43,9 @@ export default {
     keepAliveData() {
       return this.$store.getters.tagsArray.map((item) => item.name)
     },
+    theme() {
+      return this.$store.getters.theme
+    },
   },
   methods: {
     setAvatar(avatar) {
@@ -53,6 +56,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/layout/AContent';
 @import '../../style/animation/Move';
+@import '../../style/theme/Theme';
+@import '../../style/layout/AContent';
 </style>

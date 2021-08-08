@@ -1,5 +1,5 @@
 <template>
-  <Modal v-model="visible" title="验证码" @on-success="change" @on-cancel="change">
+  <Modal v-model="visible" title="验证码" @on-success="hide" @on-cancel="hide">
     <verify type="slide" @success="onVerifySuccess" @error="onVerifyError" :show-button="false"></verify>
   </Modal>
 </template>
@@ -16,14 +16,18 @@ export default {
   },
 
   methods: {
-    change() {
-      this.visible = !this.visible
+    show() {
+      this.visible = true
+    },
+    hide() {
+      this.visible = false
     },
 
     onVerifySuccess(obj) {
       //验证码正确回调
       console.log('验证成功')
       this.$parent.submit('form')
+      this.hide()
       obj.refresh()
     },
 
@@ -36,7 +40,7 @@ export default {
       })
       //错误刷新验证码
       obj.refresh()
-      this.change()
+      this.hide()
     },
   },
 }

@@ -6,6 +6,13 @@
       </div>
       <p class="crumbs">{{ crumbs }}</p>
     </div>
+    <div id="switch">
+      <span>夜间模式</span>
+      <i-switch size="large" @on-change="changeTheme">
+        <span slot="open">ON</span>
+        <span slot="close">OFF</span>
+      </i-switch>
+    </div>
     <div class="h-right">
       <div class="user-img-c">
         <img :src="avatar" />
@@ -36,8 +43,9 @@ export default {
     return {
       arrowUp: false, // 用户详情向上箭头
       arrowDown: true, // 用户详情向下箭头
-      name: '',
-      avatar: '',
+      name: sessionStorage.getItem('name'),
+      avatar: sessionStorage.getItem('avatar'),
+      switch1: false,
     }
   },
   mounted() {
@@ -91,6 +99,15 @@ export default {
           break
       }
     },
+    changeTheme(status) {
+      // console.log(status)
+      if (status) {
+        this.$store.commit('setTheme', 1)
+      } else {
+        this.$store.commit('setTheme', 0)
+      }
+      this.$Message.info('模式已切换')
+    },
 
     // 控制用户三角箭头显示状态
     showArrow(flag) {
@@ -134,12 +151,12 @@ export default {
       this.$emit('changeMain', '200px')
     },
     setAvatar(avatar) {
-      this.avatar = avatar
+      this.avatar = avatarc
     },
   },
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import '../../style/layout/AHeader';
 </style>

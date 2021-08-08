@@ -1,61 +1,60 @@
 <template>
-  <div style="position: absolute; left: 50px; top: 60px">
-    <Button @click="getUserData">ajax测试</Button>
+  <div id="home">
+    <span>服务器性能监控</span>
+    <div id="server">
+      <Cpu :data="form.cpu"></Cpu>
+      <Mem :data="form.mem"></Mem>
+      <Jvm :data="form.jvm"></Jvm>
+    </div>
   </div>
 </template>
 
 <script>
-import { getUserInfoByUsername } from '../api/user'
+import { getMonitorData } from '../api/user'
+import Cpu from '../components/charts/Cpu'
+import Mem from '../components/charts/Mem'
+import Jvm from '../components/charts/Jvm'
 export default {
-  name: 'home',
+  name: 'Home',
   data() {
     return {
-      userInfo: '',
       form: {
-        username: sessionStorage.getItem('username'),
+        cpu: {},
+        mem: {},
+        jvm: {},
       },
+      timer: null,
     }
   },
+  components: { Cpu, Mem, Jvm },
+  computed: {},
   mounted() {
-    // this.getUserData()
+    this.getMonitorData()
+    this.timer = setInterval(() => {
+      this.getMonitorData()
+    }, 20000)
   },
   methods: {
-    getUserData() {
+    getMonitorData() {
       this.$store
-        .dispatch('getUserInfoByUsername', { username: localStorage.getItem('username') })
+        .dispatch('getMonitorData', {})
         .then((res) => {
-          this.$store.dispatch('saveSession', res)
-          this.getUserInfoSuccess()
+          console.log(res)
+          this.form.cpu = res.cpu
+          this.form.mem = res.mem
+          this.form.jvm = res.jvm
         })
         .catch((error) => {
-          this.getUserInfoFailed()
           console.error(error)
         })
     },
-
-    getUserInfoSuccess() {
-      this.$Notice.success({
-        title: '获取用户信息成功',
-      })
-    },
-
-    getUserInfoFailed() {
-      this.$Notice.error({
-        title: '获取用户信息失败',
-        desc: '请检查用户名密码或者网络连接',
-      })
-    },
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   },
 }
 </script>
 
-<style scoped>
-.home-container {
-  background-color: rgba(0, 0, 0, 0);
-}
-.home-content {
-  padding: 10px;
-  border-radius: 5px;
-  background: #fff;
-}
+<style lang="less">
+@import '../style/views/Home';
 </style>

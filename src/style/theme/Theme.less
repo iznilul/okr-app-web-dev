@@ -1,0 +1,59 @@
+//白天模式下色值
+@color-main-text-light: #000;
+@color-main-border-light: #000;
+@color-main-background-light: #fff;
+
+//夜间模式下色值
+@color-main-text-dark: #fff;
+@color-main-border-dark: #fff;
+@color-main-background-dark: #000;
+
+.styleChange(@theme) {
+  @color-main-background: 'color-main-background-@{theme}';
+  @color-main-border: 'color-main-border-@{theme}';
+  @color-main-text: 'color-main-text-@{theme}';
+  .view-c {
+    background: @@color-main-background;
+    .ivu-form-item-label {
+      color: @@color-main-text;
+    }
+    .ivu-input {
+      background: @@color-main-background;
+      color: @@color-main-text;
+      border: 2px solid @@color-main-border;
+    }
+    #upload {
+      border: 2px solid @@color-main-border;
+      color: @@color-main-text;
+      background: @@color-main-background;
+    }
+    #avatar {
+      border: 2px solid @@color-main-border;
+    }
+    #member {
+      .ivu-table {
+        background: @@color-main-background;
+        th {
+          background: @@color-main-background;
+        }
+        td {
+          background: @@color-main-background;
+        }
+        .ivu-table-cell > span {
+          color: @@color-main-text;
+        }
+      }
+      ul span {
+        color: @@color-main-text;
+      }
+    }
+  }
+  height: calc(100% - 120px);
+  overflow: hidden;
+}
+.body-theme-light {
+  .styleChange(light);
+}
+.body-theme-dark {
+  .styleChange(dark);
+}

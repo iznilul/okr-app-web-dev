@@ -8,6 +8,7 @@ const getters = {
   menuCache: (state) => state.aside.menuCache,
   asideClassName: (state) => state.aside.asideClassName,
   crumbs: (state) => state.aside.crumbs,
+  theme: (state) => state.aside.theme,
 }
 
 export default getters

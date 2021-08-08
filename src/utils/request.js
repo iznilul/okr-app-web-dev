@@ -2,6 +2,7 @@ import axios from 'axios'
 import { showLoading, closeLoading } from '@/utils/loading'
 import dfaultSettings from '@/config/defaultSettings'
 import { Notice } from 'view-design'
+import router from '@/router'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
 
@@ -26,9 +27,15 @@ service.interceptors.response.use(
     closeLoading()
     // console.log(response)
     const res = response.data
-    console.log(res)
-    // 如果后端返回类没有code标识则抛出
-    if (res.code !== 200) {
+    // console.log(res)
+    // 如果token已经过期，则进行重定向
+    if (res.code === 2004) {
+      Notice.error({
+        title: '登录过期，请重新登录',
+      })
+      localStorage.clear()
+      router.push('/login')
+    } else if (res.code !== 200) {
       //谜之bug，不能用this.$Notice
       Notice.error({
         title: '操作失败',
