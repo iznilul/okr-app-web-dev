@@ -34,7 +34,7 @@ export default {
   mounted() {
     this.timer = setInterval(() => {
       this.slideShow()
-    }, 5000)
+    }, 3000)
   },
   computed: {
     memChart() {
@@ -47,6 +47,20 @@ export default {
       return {
         tooltip: {
           trigger: 'item',
+          formatter: function (params) {
+            // console.log(params)
+            return (
+              '状态:' +
+              params.data.name +
+              '<br/>' +
+              '比例:' +
+              params.data.value +
+              '%<br/>' +
+              '大小:' +
+              params.data.num +
+              'GB'
+            )
+          },
         },
         legend: {
           orient: 'vertical',
@@ -90,7 +104,15 @@ export default {
                 position: 'center',
                 formatter: function (params) {
                   // console.log(params)
-                  return '{name|' + params.name + '}\n{value|' + params.value + ' %}\n{value|' + params.data.num + 'G}'
+                  return (
+                    '{name|' +
+                    params.data.name +
+                    '}\n{value|' +
+                    params.data.value +
+                    ' %}\n{value|' +
+                    params.data.num +
+                    'GB}'
+                  )
                 },
                 rich: {
                   value: {

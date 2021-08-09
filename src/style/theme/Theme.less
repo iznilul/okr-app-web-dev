@@ -47,6 +47,28 @@
         color: @@color-main-text;
       }
     }
+    #home {
+      #title {
+        color: @@color-main-text;
+      }
+      #serverInfo {
+        .ivu-table {
+          background: @@color-main-background;
+
+          th {
+            background: @@color-main-background;
+          }
+
+          td {
+            background: @@color-main-background;
+          }
+
+          .ivu-table-cell > span {
+            color: @@color-main-text;
+          }
+        }
+      }
+    }
   }
   height: calc(100% - 120px);
   overflow: hidden;

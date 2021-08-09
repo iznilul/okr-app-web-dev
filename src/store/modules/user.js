@@ -10,7 +10,6 @@ import {
   removeByUsername,
   reloadAdminRoleResource,
   reloadUserRoleResource,
-  getMonitorData,
 } from '@/api/user'
 import md5 from 'js-md5'
 
@@ -196,22 +195,6 @@ const user = {
     reloadUserRoleResource({ commit }, {}) {
       return new Promise((resolve, reject) => {
         reloadUserRoleResource({})
-          .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
-          })
-          .catch((error) => {
-            // console.log("error",error)
-            reject(error)
-          })
-      })
-    },
-
-    //获取性能监控数据
-    getMonitorData({ commit }, {}) {
-      return new Promise((resolve, reject) => {
-        getMonitorData({})
           .then((response) => {
             const result = response
             console.log(result)

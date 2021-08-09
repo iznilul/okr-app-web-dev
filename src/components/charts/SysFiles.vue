@@ -1,14 +1,14 @@
 <template>
-  <div id="cpu"></div>
+  <div id="sysFiles"></div>
 </template>
 
 <script>
 export default {
-  name: 'Cpu',
+  name: 'SysFiles',
   data() {
     return {
-      cpu: {},
-      cpuIndex: -1,
+      sysFiles: {},
+      sysFilesIndex: -1,
       timer: null,
     }
   },
@@ -21,11 +21,11 @@ export default {
   watch: {
     data(newVal) {
       // console.log(newVal)
-      this.cpuOption.series[0].data[0].value = this.data.free
-      this.cpuOption.series[0].data[1].value = this.data.used
-      this.cpuOption.series[0].data[2].value = this.data.sys
-      this.cpuOption.series[0].data[3].value = this.data.wait
-      this.cpuChart.setOption(this.cpuOption)
+      this.sysFilesOption.series[0].data[0].value = 100 - this.data.usage
+      this.sysFilesOption.series[0].data[0].num = this.data.free
+      this.sysFilesOption.series[0].data[1].value = this.data.usage
+      this.sysFilesOption.series[0].data[1].num = this.data.used
+      this.sysFilesChart.setOption(this.sysFilesOption)
       setTimeout(() => {
         this.slideShow()
       }, 1000)
@@ -37,34 +37,36 @@ export default {
     }, 3000)
   },
   computed: {
-    cpuChart() {
-      return this.$echarts.init(document.getElementById('cpu'))
+    sysFilesChart() {
+      return this.$echarts.init(document.getElementById('sysFiles'))
     },
-    cpuLen() {
-      return this.cpuOption.series[0].data.length
+    sysFilesLen() {
+      return this.sysFilesOption.series[0].data.length
     },
-    cpuOption() {
+    sysFilesOption() {
       return {
         tooltip: {
           trigger: 'item',
           formatter: function (params) {
             // console.log(params)
-            return '状态:' + params.data.name + '<br/>' + '比例:' + params.data.value + '%'
+            return (
+              '状态:' + params.data.name + '<br/>' + '比例:' + params.data.value + '%<br/>' + '大小:' + params.data.num
+            )
           },
         },
         legend: {
           orient: 'vertical',
           left: '10px',
           top: '20%',
-          data: ['空闲', '使用中', '系统', '等待'],
+          data: ['空闲', '使用中'],
           textStyle: {
             color: '#27D9C8',
             fontSize: 14,
           },
         },
-        color: ['#00e8ff', '#ff1f00', '#44ff02', '#ffeb00'],
+        color: ['#00e8ff', '#ff1f00'],
         title: {
-          text: 'cpu情况',
+          text: '主磁盘情况',
           top: '5%',
           left: '5%',
           textStyle: {
@@ -75,7 +77,7 @@ export default {
         },
         series: [
           {
-            name: 'cpu情况',
+            name: '主磁盘情况',
             type: 'pie',
             radius: ['60%', '75%'],
             left: '50px',
@@ -93,7 +95,16 @@ export default {
                 show: false,
                 position: 'center',
                 formatter: function (params) {
-                  return '{name|' + params.data.name + '}\n{value|' + params.data.value + ' %}'
+                  // console.log(params)
+                  return (
+                    '{name|' +
+                    params.data.name +
+                    '}\n{value|' +
+                    params.data.value +
+                    ' %}\n{value|' +
+                    params.data.num +
+                    '}'
+                  )
                 },
                 rich: {
                   value: {
@@ -114,18 +125,12 @@ export default {
               {
                 value: '',
                 name: '空闲',
+                num: '',
               },
               {
                 value: '',
                 name: '使用中',
-              },
-              {
-                value: '',
-                name: '系统',
-              },
-              {
-                value: '',
-                name: '等待',
+                num: '',
               },
             ],
           },
@@ -135,12 +140,12 @@ export default {
   },
   methods: {
     slideShow() {
-      this.cpuChart.dispatchAction({ type: 'downplay', seriesIndex: 0, dataIndex: this.cpuIndex })
-      this.cpuIndex = (this.cpuIndex + 1) % this.cpuLen
-      this.cpuChart.dispatchAction({
+      this.sysFilesChart.dispatchAction({ type: 'downplay', seriesIndex: 0, dataIndex: this.sysFilesIndex })
+      this.sysFilesIndex = (this.sysFilesIndex + 1) % this.sysFilesLen
+      this.sysFilesChart.dispatchAction({
         type: 'highlight',
         seriesIndex: 0,
-        dataIndex: this.cpuIndex,
+        dataIndex: this.sysFilesIndex,
       })
     },
   },
