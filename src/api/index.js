@@ -8,6 +8,7 @@ const api = {
   reloadUserRoleResource: '/api/admin/reloadUserRoleResource',
   getUserInfoByCond: '/api/user/getUserInfoByCond',
   getMonitorData: '/api/user/monitor/server',
+  getHttpActuator: '/api/actuator/metrics/http.server.requests',
   upload: '/api/user/upload',
   modifyPassword: '/api/user/modifyPassword',
 }

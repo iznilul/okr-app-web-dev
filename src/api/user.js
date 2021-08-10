@@ -73,6 +73,14 @@ export function getMonitorData(data) {
   })
 }
 
+export function getHttpActuator(data) {
+  return axios({
+    url: api.getHttpActuator,
+    method: 'get',
+    params: data,
+  })
+}
+
 export function upload(data) {
   return axios({
     url: api.upload,

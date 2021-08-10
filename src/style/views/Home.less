@@ -1,5 +1,5 @@
 #home {
-  span {
+  #title {
     position: absolute;
     left: 1%;
     top: 1%;
@@ -7,27 +7,52 @@
     font-family: 'SFUDINEngschrift', serif;
     font-size: 16px;
   }
-  #server {
+  #pie {
     position: absolute;
     top: 8%;
-    left: 7%;
-    height: 250px;
-    width: 90%;
+    left: 2%;
+    height: 200px;
+    width: 98%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    //flex: 0 1 0;
     #cpu {
       height: 100%;
-      width: 400px;
+      width: 320px;
     }
     #mem {
       height: 100%;
-      width: 400px;
+      width: 320px;
     }
     #jvm {
       height: 100%;
-      width: 400px;
+      width: 320px;
+    }
+    #sysFiles {
+      height: 100%;
+      width: 320px;
+    }
+  }
+  #serverInfo {
+    position: absolute;
+    top: 40%;
+    left: 2%;
+    height: 150px;
+    width: 100%;
+    #table {
+      position: absolute;
+      overflow-y: scroll;
+    }
+  }
+  #api {
+    position: absolute;
+    top: 60%;
+    left: 2%;
+    height: 1000px;
+    width: 100%;
+    #apiCount {
+      height: 400px;
+      width: 100%;
     }
   }
 }
