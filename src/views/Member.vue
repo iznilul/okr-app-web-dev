@@ -1,7 +1,7 @@
 <template>
   <div id="member">
     <div class="query">
-      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="getUserInfoByCond">
+      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="userInfoByCond">
         <FormItem label="账号" prop="username">
           <Input clearable v-model="form.username" type="text"></Input>
         </FormItem>
@@ -13,10 +13,10 @@
         </FormItem>
       </Form>
     </div>
-    <Button id="button" @click="getUserInfoByCond" type="primary">查询</Button>
-    <Register @getUserInfoByCond="getUserInfoByCond" @validate="validate"></Register>
+    <Button id="button" @click="userInfoByCond" type="primary">查询</Button>
+    <Register @userInfoByCond="userInfoByCond" @validate="validate"></Register>
     <reload-role-resource @validate="validate"></reload-role-resource>
-    <ModifyUserInfo ref="modifyUserInfo" @getUserInfoByCond="getUserInfoByCond"></ModifyUserInfo>
+    <ModifyUserInfo ref="modifyUserInfo" @userInfoByCond="userInfoByCond"></ModifyUserInfo>
     <transition appear name="fade">
       <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     </transition>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { getUserInfoByCond } from '../api/user'
+import { userInfoByCond } from '../api/user'
 import Query from '../components/util/Query'
 import Register from '../components/util/Register'
 import ModifyUserInfo from '../components/util/ModifyUserInfo'
@@ -58,15 +58,15 @@ export default {
     }
   },
   mounted() {
-    this.getUserInfoByCond()
+    this.userInfoByCond()
     window.showModifyUserInfo = this.showModifyUserInfo
-    window.getUserInfoByUsername = this.getUserInfoByUsername
+    window.userInfoByUsername = this.userInfoByUsername
     window.removeByUsername = this.removeByUsername
   },
   methods: {
-    getUserInfoByCond() {
+    userInfoByCond() {
       this.$store
-        .dispatch('getUserInfoByCond', this.form)
+        .dispatch('userInfoByCond', this.form)
         .then((res) => {
           // console.log(res)
           this.pageReset(res.pageNum)
@@ -90,7 +90,7 @@ export default {
           this.$Notice.success({
             title: '删除成功',
           })
-          this.getUserInfoByCond()
+          this.userInfoByCond()
         })
         .catch((error) => {
           console.log(error)
@@ -100,7 +100,7 @@ export default {
     changePage(index) {
       this.form.index = index
       this.current = index
-      this.getUserInfoByCond(this.form)
+      this.userInfoByCond(this.form)
     },
 
     pageReset(pageNum) {
@@ -124,9 +124,9 @@ export default {
     showModifyUserInfo() {
       this.$refs.modifyUserInfo.show()
     },
-    getUserInfoByUsername(item) {
+    userInfoByUsername(item) {
       // console.log(item)
-      this.$refs.modifyUserInfo.getUserInfoByUsername(item)
+      this.$refs.modifyUserInfo.userInfoByUsername(item)
     },
   },
 }

@@ -13,8 +13,8 @@ export default {
   methods: {
     reback() {
       this.$router.back()
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -52,7 +52,7 @@ export default {
           this.$Notice.success({
             desc: '更新成功',
           })
-          this.$emit('getUserInfoByCond', {})
+          this.$emit('userInfoByCond', {})
         })
         .catch((error) => {
           console.log(error)
@@ -67,10 +67,10 @@ export default {
     show() {
       this.visible = true
     },
-    getUserInfoByUsername(username) {
+    userInfoByUsername(username) {
       console.log(username)
       this.$store
-        .dispatch('getUserInfoByUsername', { username: username })
+        .dispatch('userInfoByUsername', { username: username })
         .then((res) => {
           console.log(res)
           this.form.username = res.username

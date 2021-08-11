@@ -25,17 +25,17 @@ export function modifyUserInfo(data) {
   })
 }
 
-export function getUserInfoByUsername(param) {
+export function userInfoByUsername(param) {
   return axios({
-    url: api.getUserInfoByUsername,
+    url: api.userInfoByUsername,
     method: 'get',
     params: param,
   })
 }
 
-export function getUserInfoByCond(data) {
+export function userInfoByCond(data) {
   return axios({
-    url: api.getUserInfoByCond,
+    url: api.userInfoByCond,
     method: 'post',
     data: data,
   })
@@ -65,17 +65,17 @@ export function reloadUserRoleResource(data) {
   })
 }
 
-export function getMonitorData(data) {
+export function monitorData(data) {
   return axios({
-    url: api.getMonitorData,
+    url: api.monitorData,
     method: 'get',
     params: data,
   })
 }
 
-export function getHttpActuator(data) {
+export function httpActuator(data) {
   return axios({
-    url: api.getHttpActuator,
+    url: api.httpActuator,
     method: 'get',
     params: data,
   })
