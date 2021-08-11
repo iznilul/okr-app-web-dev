@@ -131,7 +131,7 @@ export default {
         .then((res) => {
           console.log(res)
           this.$store.dispatch('updateSession', this.form)
-          this.$Message.success(res)
+          this.$Message.success(res.msg)
         })
         .catch((error) => {
           console.log(error)

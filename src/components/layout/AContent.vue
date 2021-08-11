@@ -11,7 +11,7 @@
         :linesWidth="1"
         :lineLinked="true"
         :lineOpacity="0.4"
-        :linesDistance="150"
+        :linesDistance="200"
         :moveSpeed="2"
         :hoverEffect="true"
         hoverMode="grab"

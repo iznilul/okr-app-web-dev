@@ -10,14 +10,11 @@
     <div id="serverInfo">
       <server-info :data="form.serverInfo"></server-info>
     </div>
-    <!--    <div id="api">-->
-    <!--      <ApiCount></ApiCount>-->
-    <!--    </div>-->
   </div>
 </template>
 
 <script>
-import { getMonitorData } from '../api/user'
+import { monitorData } from '../api/user'
 import Cpu from '../components/charts/Cpu'
 import Mem from '../components/charts/Mem'
 import Jvm from '../components/charts/Jvm'
@@ -41,15 +38,15 @@ export default {
   components: { ApiCount, ServerInfo, SysFiles, Cpu, Mem, Jvm },
   computed: {},
   mounted() {
-    this.getMonitorData()
+    this.monitorData()
     this.timer = setInterval(() => {
-      this.getMonitorData()
+      this.monitorData()
     }, 20000)
   },
   methods: {
-    getMonitorData() {
+    monitorData() {
       this.$store
-        .dispatch('getMonitorData', {})
+        .dispatch('monitorData', {})
         .then((res) => {
           console.log(res)
           this.form.cpu = res.cpu

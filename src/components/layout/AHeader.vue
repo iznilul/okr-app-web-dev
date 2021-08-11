@@ -59,7 +59,7 @@ export default {
   methods: {
     getUserInfo() {
       this.$store
-        .dispatch('getUserInfoByUsername', { username: localStorage.getItem('username') })
+        .dispatch('userInfoByUsername', { username: localStorage.getItem('username') })
         .then((res) => {
           const data = res
           this.$store.dispatch('saveSession', res)

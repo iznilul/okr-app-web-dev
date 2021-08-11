@@ -1,16 +1,16 @@
 const api = {
-  login: '/api/login',
+  login: '/api/common/login',
   register: '/api/admin/register',
-  modifyUserInfo: '/api/user/modifyUserInfo',
-  getUserInfoByUsername: '/api/user/getUserInfoByUsername',
+  modifyUserInfo: '/api/user/info/modifyUserInfo',
+  userInfoByUsername: '/api/user/info/userInfoByUsername',
   removeByUsername: '/api/admin/removeByUsername',
   reloadAdminRoleResource: '/api/admin/reloadAdminRoleResource',
   reloadUserRoleResource: '/api/admin/reloadUserRoleResource',
-  getUserInfoByCond: '/api/user/getUserInfoByCond',
-  getMonitorData: '/api/user/monitor/server',
-  getHttpActuator: '/api/actuator/metrics/http.server.requests',
-  upload: '/api/user/upload',
-  modifyPassword: '/api/user/modifyPassword',
+  userInfoByCond: '/api/user/info/userInfoByCond',
+  monitorData: '/api/user/monitor/server',
+  httpActuator: '/api/actuator/metrics/http.server.requests',
+  upload: '/api/user/info/upload',
+  modifyPassword: '/api/user/info/modifyPassword',
 }
 
 export default api

@@ -11,13 +11,14 @@ const columns = [
       // console.log(params.row.avatar)
       return h('Avatar', {
         attrs: {
-          shape: 'square',
+          shape: 'circle',
           src: params.row.avatar,
           // size: 100,
         },
         style: {
-          width: '60px',
-          height: '70px',
+          width: '50px',
+          height: '50px',
+          margin: '5px',
         },
       })
     },
@@ -87,7 +88,7 @@ const columns = [
                   params.row.username === sessionStorage.getItem('username') ||
                   sessionStorage.getItem('username') === 'admin'
                 ) {
-                  getUserInfoByUsername(params.row.username)
+                  userInfoByUsername(params.row.username)
                   showModifyUserInfo()
                 } else {
                   vue.$Notice.error({

@@ -1,6 +1,3 @@
-// import { ACCESS_TOKEN } from '@/store/mutation-types'
-// import { welcome } from '@/utils/util'
-
 const menu = {
   state: {
     isShowLoading: false, // 全局 loading
