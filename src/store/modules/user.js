@@ -3,8 +3,8 @@ import Vue from 'vue'
 import {
   login,
   register,
-  getUserInfoByCond,
-  getUserInfoByUsername,
+  userInfoByCond,
+  userInfoByUsername,
   modifyUserInfo,
   modifyPassword,
   removeByUsername,
@@ -130,9 +130,9 @@ const user = {
     },
 
     //根据用户名获取用户
-    getUserInfoByUsername({ commit }, username) {
+    userInfoByUsername({ commit }, username) {
       return new Promise((resolve, reject) => {
-        getUserInfoByUsername(username)
+        userInfoByUsername(username)
           .then((response) => {
             const result = response
             console.log(result)
@@ -146,9 +146,9 @@ const user = {
     },
 
     //根据条件获取用户
-    getUserInfoByCond({ commit }, cond) {
+    userInfoByCond({ commit }, cond) {
       return new Promise((resolve, reject) => {
-        getUserInfoByCond(cond)
+        userInfoByCond(cond)
           .then((response) => {
             const result = response
             console.log(result)

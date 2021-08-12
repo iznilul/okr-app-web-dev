@@ -73,7 +73,7 @@ export default {
               this.$Notice.info({
                 desc: res.data,
               })
-              this.$emit('getUserInfoByCond', {})
+              this.$emit('userInfoByCond', {})
             })
             .catch((error) => {
               console.log(error)

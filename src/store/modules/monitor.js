@@ -1,4 +1,4 @@
-import { getHttpActuator, getMonitorData } from '@/api/user'
+import { httpActuator, monitorData } from '@/api/user'
 
 const monitor = {
   state: {},
@@ -7,9 +7,9 @@ const monitor = {
 
   actions: {
     //获取服务器监控数据
-    getMonitorData({ commit }, {}) {
+    monitorData({ commit }, {}) {
       return new Promise((resolve, reject) => {
-        getMonitorData({})
+        monitorData({})
           .then((response) => {
             const result = response
             console.log(result)
@@ -22,9 +22,9 @@ const monitor = {
       })
     },
     //获取Http接口请求统计数据
-    getHttpActuator({ commit }, {}) {
+    httpActuator({ commit }, {}) {
       return new Promise((resolve, reject) => {
-        getHttpActuator({})
+        httpActuator({})
           .then((response) => {
             const result = response
             console.log(result)
