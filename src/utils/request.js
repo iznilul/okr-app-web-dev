@@ -75,16 +75,16 @@ service.interceptors.response.use(
       })
       localStorage.clear()
       router.push('/login')
-    } else if (res.code !== 200) {
-      //谜之bug，不能用this.$Notice
-      Notice.error({
-        title: '操作失败',
-        desc: res.msg,
-      })
-      return Promise.reject('数据返回失败')
+    } else {
+      if (res.code === 200) {
+        return res
+      } else {
+        Notice.error({
+          title: '操作失败',
+          desc: res.msg,
+        })
+      }
     }
-    // 如果接口正常，直接返回数据
-    return res
   },
   (error) => {
     // console.log(error)

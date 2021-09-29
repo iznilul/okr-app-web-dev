@@ -76,7 +76,7 @@ export default {
             title: '查询成功',
           })
 
-          this.handlemodifyReset('form')
+          this.handleModifyReset('form')
         })
         .catch((error) => {
           console.log(error)
@@ -108,7 +108,7 @@ export default {
       this.form.index = pageNum
     },
 
-    handlemodifyReset(name) {
+    handleModifyReset(name) {
       this.$refs[name].resetFields()
     },
     validate(callback) {

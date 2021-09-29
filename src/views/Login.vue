@@ -14,6 +14,8 @@
             <TabPane label="掘金" name="tab1">https://juejin.cn/?sort=three_days_hottest</TabPane>
             <TabPane label="博客园" name="tab2">https://www.cnblogs.com/pick/</TabPane>
             <TabPane label="思否" name="tab3">https://segmentfault.com/blogs</TabPane>
+            <TabPane label="牛客" name="tab4">https://www.nowcoder.com/discuss?order=1&type=0&expTag=0</TabPane>
+            <TabPane label="力扣" name="tab5">https://leetcode-cn.com/circle/?query=&page=1</TabPane>
           </Tabs>
         </Card>
       </transition>
@@ -136,14 +138,15 @@ export default {
           // console.log(res.data)
           const data = res.data
           localStorage.setItem('token', data.token)
-          localStorage.setItem('username', data.username)
+          // this.$store.commit()
+          // localStorage.setItem('username', data.username)
           this.loginSuccess()
         })
         .catch((error) => {
           this.requestFailed()
           console.error(error)
         })
-      this.handlemodifyReset('form')
+      this.handleModifyReset('form')
     },
 
     loginSuccess() {
@@ -164,7 +167,7 @@ export default {
       })
     },
 
-    handlemodifyReset(name) {
+    handleModifyReset(name) {
       this.$refs[name].resetFields()
     },
   },

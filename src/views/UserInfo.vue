@@ -122,7 +122,6 @@ export default {
         })
         .catch((error) => {
           console.log(error)
-          this.$Message.error('密码修改失败')
         })
     },
     modifyUserInfo() {
@@ -135,7 +134,6 @@ export default {
         })
         .catch((error) => {
           console.log(error)
-          this.$Message.error('用户信息更新失败')
         })
     },
     handleModifyReset(name) {

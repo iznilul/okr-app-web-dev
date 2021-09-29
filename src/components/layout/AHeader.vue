@@ -151,7 +151,7 @@ export default {
       this.$emit('changeMain', '200px')
     },
     setAvatar(avatar) {
-      this.avatar = avatarc
+      this.avatar = avatar
     },
   },
 }
