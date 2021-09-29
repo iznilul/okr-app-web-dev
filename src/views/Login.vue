@@ -8,7 +8,7 @@
 
     <div class="news" @mouseenter="mouseChange" @mouseleave="mouseChange">
       <transition appear name="fade">
-        <Card title="实时热门技术博客">
+        <Card title="技术社区实时热门话题">
           <Tabs class="tabs" type="card" :value="currentTab">
             <TabPane label="CSDN" name="tab0">https://www.csdn.net/</TabPane>
             <TabPane label="掘金" name="tab1">https://juejin.cn/?sort=three_days_hottest</TabPane>
@@ -16,6 +16,8 @@
             <TabPane label="思否" name="tab3">https://segmentfault.com/blogs</TabPane>
             <TabPane label="牛客" name="tab4">https://www.nowcoder.com/discuss?order=1&type=0&expTag=0</TabPane>
             <TabPane label="力扣" name="tab5">https://leetcode-cn.com/circle/?query=&page=1</TabPane>
+            <TabPane label="kaggle" name="tab6">https://www.kaggle.com/discussion</TabPane>
+            <TabPane label="Github" name="tab7">https://github.com/trending</TabPane>
           </Tabs>
         </Card>
       </transition>
@@ -47,7 +49,7 @@
       </transition>
     </div>
     <div class="verify">
-      <Verification ref="verification"> </Verification>
+      <Verification ref="verification"></Verification>
     </div>
   </div>
 </template>
@@ -56,6 +58,7 @@
 import Verification from '../components/util/Verification'
 import particles from 'particles.js'
 import config from '../config/particlesConfig'
+
 export default {
   name: 'login',
   components: { Verification },
@@ -105,7 +108,7 @@ export default {
   mounted() {
     this.timer = setInterval(() => {
       if (this.mouse === false) {
-        this.currentTab = 'tab' + (this.tabNum++ % 4)
+        this.currentTab = 'tab' + (this.tabNum++ % 8)
       }
       // console.log(this.currentTab)
     }, 3000)
