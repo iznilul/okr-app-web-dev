@@ -10,7 +10,7 @@
         @changeMain="changeMain"
       ></AHeader>
       <ATag @getNameToTitle="getNameToTitle" @gotoPage="gotoPage"> </ATag>
-      <AContent @setAvatar="setAvatar"></AContent>
+      <AContent></AContent>
       <AFooter></AFooter>
     </section>
   </div>
@@ -129,9 +129,6 @@ export default {
     getNameToTitle(name, callback) {
       let res = this.nameToTitle[name]
       callback(res)
-    },
-    setAvatar(avatar) {
-      this.$refs.aHeader.setAvatar(avatar)
     },
     getMenus(name) {
       let menus = []

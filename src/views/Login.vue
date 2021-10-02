@@ -141,8 +141,6 @@ export default {
           // console.log(res.data)
           const data = res.data
           localStorage.setItem('token', data.token)
-          // this.$store.commit()
-          // localStorage.setItem('username', data.username)
           this.loginSuccess()
         })
         .catch((error) => {

@@ -43,8 +43,6 @@ export default {
     return {
       arrowUp: false, // 用户详情向上箭头
       arrowDown: true, // 用户详情向下箭头
-      name: sessionStorage.getItem('name'),
-      avatar: sessionStorage.getItem('avatar'),
       switch1: false,
     }
   },
@@ -55,16 +53,21 @@ export default {
     crumbs() {
       return this.$store.getters.crumbs
     },
+    name() {
+      return this.$store.getters.name
+    },
+    avatar() {
+      return this.$store.getters.avatar
+    },
   },
   methods: {
     getUserInfo() {
       this.$store
-        .dispatch('userInfoByUsername', { username: localStorage.getItem('username') })
+        .dispatch('getUserInfo')
         .then((res) => {
+          console.log(res)
           const data = res
-          this.$store.dispatch('saveSession', res)
-          this.name = sessionStorage.getItem('name')
-          this.avatar = sessionStorage.getItem('avatar')
+          this.$store.dispatch('saveSession', data)
           this.getUserInfoSuccess()
         })
         .catch((error) => {
@@ -149,9 +152,6 @@ export default {
       }, 200)
       this.$store.commit('setAsideClassName', 'aside-big')
       this.$emit('changeMain', '200px')
-    },
-    setAvatar(avatar) {
-      this.avatar = avatar
     },
   },
 }

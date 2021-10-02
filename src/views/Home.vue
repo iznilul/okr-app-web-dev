@@ -41,7 +41,7 @@ export default {
     this.monitorData()
     this.timer = setInterval(() => {
       this.monitorData()
-    }, 20000)
+    }, 200000)
   },
   methods: {
     monitorData() {

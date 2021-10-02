@@ -2,7 +2,6 @@
   <div id="userInfo">
     <Avatar id="avatar" :src="avatar" shape="square" icon="ios-person" size="150" />
     <Upload
-      :data="uploadData"
       :headers="uploadHeader"
       :on-success="handleSuccess"
       :format="['jpg', 'jpeg', 'png']"
@@ -41,7 +40,7 @@
         <Input clearable v-model="form.weixin"></Input>
       </FormItem>
       <FormItem label="学习/研究方向">
-        <Input :rows="rows" type="textarea" v-model="form.desc" size="large"></Input>
+        <Input :rows="rows" type="textarea" v-model="form.research" size="large"></Input>
       </FormItem>
       <Button @click="modifyUserInfo" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
     </Form>
@@ -57,38 +56,31 @@ export default {
   data() {
     return {
       rows: 4,
-      avatar: '',
       uploadUrl: baseURL + api.upload,
-      uploadData: {
-        username: sessionStorage.getItem('username'),
-      },
       uploadHeader: {
         Authorization: localStorage.getItem('token'),
       },
       modify: {
         oldPassword: '',
         newPassword: '',
-        username: sessionStorage.getItem('username'),
-      },
-      form: {
-        username: sessionStorage.getItem('username'),
-        name: '',
-        major: '',
-        qq: '',
-        phone: '',
-        weixin: '',
-        desc: '',
       },
     }
   },
-  mounted() {
-    this.avatar = sessionStorage.getItem('avatar')
-    this.form.name = sessionStorage.getItem('name')
-    this.form.major = sessionStorage.getItem('major')
-    this.form.qq = sessionStorage.getItem('qq')
-    this.form.phone = sessionStorage.getItem('phone')
-    this.form.weixin = sessionStorage.getItem('weixin')
-    this.form.desc = sessionStorage.getItem('desc')
+  mounted() {},
+  computed: {
+    avatar() {
+      return this.$store.getters.avatar
+    },
+    form() {
+      return {
+        name: this.$store.getters.name,
+        major: this.$store.getters.major,
+        qq: this.$store.getters.qq,
+        phone: this.$store.getters.phone,
+        weixin: this.$store.getters.weixin,
+        research: this.$store.getters.research,
+      }
+    },
   },
   methods: {
     handleSuccess(res) {
@@ -96,9 +88,7 @@ export default {
       this.$Notice.success({
         title: '头像上传成功',
       })
-      this.avatar = res.data
-      this.$emit('setAvatar', this.avatar)
-      sessionStorage.setItem('avatar', this.avatar)
+      this.$store.commit('SET_AVATAR', res.data)
     },
     handleFormatError(file) {
       this.$Notice.warning({
@@ -121,6 +111,7 @@ export default {
           this.handleModifyReset('modify')
         })
         .catch((error) => {
+          this.handleModifyReset('modify')
           console.log(error)
         })
     },
@@ -129,7 +120,7 @@ export default {
         .dispatch('modifyUserInfo', this.form)
         .then((res) => {
           console.log(res)
-          this.$store.dispatch('updateSession', this.form)
+          this.$store.commit('SET_USER', this.form)
           this.$Message.success(res.msg)
         })
         .catch((error) => {

@@ -25,11 +25,11 @@ export function modifyUserInfo(data) {
   })
 }
 
-export function userInfoByUsername(param) {
+export function getUserInfo() {
   return axios({
-    url: api.userInfoByUsername,
+    url: api.getUserInfo,
     method: 'get',
-    params: param,
+    // params: param,
   })
 }
 

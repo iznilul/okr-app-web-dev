@@ -88,7 +88,7 @@ const columns = [
                   params.row.username === sessionStorage.getItem('username') ||
                   sessionStorage.getItem('username') === 'admin'
                 ) {
-                  userInfoByUsername(params.row.username)
+                  getUserInfo(params.row.username)
                   showModifyUserInfo()
                 } else {
                   vue.$Notice.error({

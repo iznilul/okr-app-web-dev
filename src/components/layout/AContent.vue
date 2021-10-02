@@ -22,7 +22,7 @@
       <keep-alive :include="keepAliveData">
         <transition appear name="move">
           <!-- 子页面 -->
-          <router-view v-if="isShowRouter" @setAvatar="setAvatar" />
+          <router-view v-if="isShowRouter" />
         </transition>
       </keep-alive>
     </div>
@@ -47,11 +47,7 @@ export default {
       return this.$store.getters.theme
     },
   },
-  methods: {
-    setAvatar(avatar) {
-      this.emit('setAvatar', avatar)
-    },
-  },
+  methods: {},
 }
 </script>
 

@@ -2,7 +2,7 @@ const api = {
   login: '/api/common/login',
   register: '/api/admin/register',
   modifyUserInfo: '/api/user/info/modifyUserInfo',
-  userInfoByUsername: '/api/user/info/userInfoByUsername',
+  getUserInfo: '/api/user/info/getUserInfo',
   removeByUsername: '/api/admin/removeByUsername',
   reloadAdminRoleResource: '/api/admin/reloadAdminRoleResource',
   reloadUserRoleResource: '/api/admin/reloadUserRoleResource',

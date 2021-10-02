@@ -9,6 +9,14 @@ const getters = {
   asideClassName: (state) => state.aside.asideClassName,
   crumbs: (state) => state.aside.crumbs,
   theme: (state) => state.aside.theme,
+  username: (state) => state.user.username,
+  name: (state) => state.user.name,
+  avatar: (state) => state.user.avatar,
+  major: (state) => state.user.major,
+  qq: (state) => state.user.qq,
+  phone: (state) => state.user.phone,
+  weixin: (state) => state.user.weixin,
+  research: (state) => state.user.research,
 }
 
 export default getters

@@ -60,7 +60,7 @@ export default {
   mounted() {
     this.userInfoByCond()
     window.showModifyUserInfo = this.showModifyUserInfo
-    window.userInfoByUsername = this.userInfoByUsername
+    window.getUserInfo = this.getUserInfo
     window.removeByUsername = this.removeByUsername
   },
   methods: {
@@ -124,9 +124,9 @@ export default {
     showModifyUserInfo() {
       this.$refs.modifyUserInfo.show()
     },
-    userInfoByUsername(item) {
+    getUserInfo(item) {
       // console.log(item)
-      this.$refs.modifyUserInfo.userInfoByUsername(item)
+      this.$refs.modifyUserInfo.getUserInfo(item)
     },
   },
 }

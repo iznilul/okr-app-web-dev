@@ -4,7 +4,7 @@ import {
   login,
   register,
   userInfoByCond,
-  userInfoByUsername,
+  getUserInfo,
   modifyUserInfo,
   modifyPassword,
   removeByUsername,
@@ -15,7 +15,6 @@ import md5 from 'js-md5'
 
 const user = {
   state: {
-    role: '',
     username: '',
     name: '',
     avatar: '',
@@ -23,18 +22,12 @@ const user = {
     qq: '',
     phone: '',
     weixin: '',
-    desc: '',
+    research: '',
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
-    },
-    SET_ROLE: (state, role) => {
-      state.role = role
-    },
-    SET_USERNAME: (state, name) => {
-      state.name = name
+    SET_USERNAME: (state, username) => {
+      state.username = username
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
@@ -51,20 +44,17 @@ const user = {
     SET_WEIXIN: (state, weixin) => {
       state.weixin = weixin
     },
-    SET_DESC: (state, desc) => {
-      state.desc = desc
+    SET_RESEARCH: (state, research) => {
+      state.research = research
     },
     SET_USER: (state, param) => {
-      console.log(param)
-      state.role = param.role
-      state.username = param.username
+      // console.log(param)
       state.name = param.name
-      state.avatar = param.avatar
       state.major = param.major
       state.qq = param.qq
       state.phone = param.phone
       state.weixin = param.weixin
-      state.desc = param.desc
+      state.research = param.research
     },
   },
 
@@ -102,14 +92,10 @@ const user = {
 
     //保存到session
     saveSession({ commit }, data) {
-      sessionStorage.setItem('username', data.username)
-      sessionStorage.setItem('name', data.name)
-      sessionStorage.setItem('avatar', data.avatar)
-      sessionStorage.setItem('major', data.major)
-      sessionStorage.setItem('qq', data.qq)
-      sessionStorage.setItem('phone', data.phone)
-      sessionStorage.setItem('weixin', data.weixin)
-      sessionStorage.setItem('desc', data.desc)
+      // console.log('data:', data)
+      commit('SET_USERNAME', data.username)
+      commit('SET_AVATAR', data.avatar)
+      commit('SET_USER', data)
     },
 
     //更新用户资料
@@ -129,9 +115,9 @@ const user = {
     },
 
     //根据用户名获取用户
-    userInfoByUsername({ commit }, username) {
+    getUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        userInfoByUsername(username)
+        getUserInfo()
           .then((response) => {
             const result = response
             console.log(result)
@@ -222,16 +208,6 @@ const user = {
             reject(error)
           })
       })
-    },
-
-    //更新session
-    updateSession({ commit }, data) {
-      sessionStorage.setItem('name', data.name)
-      sessionStorage.setItem('major', data.major)
-      sessionStorage.setItem('qq', data.qq)
-      sessionStorage.setItem('phone', data.phone)
-      sessionStorage.setItem('weixin', data.weixin)
-      sessionStorage.setItem('desc', data.desc)
     },
 
     // 登出

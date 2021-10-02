@@ -19,8 +19,8 @@
       <form-item label="微信号" prop="weixin">
         <Input v-model="form.weixin"></Input>
       </form-item>
-      <FormItem label="学习/研究方向" prop="desc">
-        <Input :rows="3" type="textarea" v-model="form.desc" size="large"></Input>
+      <FormItem label="学习/研究方向" prop="research">
+        <Input :rows="3" type="textarea" v-model="form.research" size="large"></Input>
       </FormItem>
     </Form>
   </Modal>
@@ -67,10 +67,10 @@ export default {
     show() {
       this.visible = true
     },
-    userInfoByUsername(username) {
+    getUserInfo(username) {
       console.log(username)
       this.$store
-        .dispatch('userInfoByUsername', { username: username })
+        .dispatch('getUserInfo', { username: username })
         .then((res) => {
           console.log(res)
           this.form.username = res.username
