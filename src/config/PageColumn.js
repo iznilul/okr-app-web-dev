@@ -1,4 +1,6 @@
 import vue from '../main.js'
+import store from '@/store'
+import { handleConfirm } from '@/utils/confirm'
 const columns = [
   {
     title: '头像',
@@ -55,7 +57,7 @@ const columns = [
   },
   {
     title: '学习/研究方向',
-    key: 'desc',
+    key: 'research',
     width: '270px',
   },
   {
@@ -66,10 +68,7 @@ const columns = [
     render: (h, params) => {
       // console.log(params.row)
       let type
-      if (
-        params.row.username === sessionStorage.getItem('username') ||
-        sessionStorage.getItem('username') === 'admin'
-      ) {
+      if (params.row.username === store.getters.username || store.getters.username === 'admin') {
         type = 'primary'
       } else {
         type = 'warning'
@@ -84,10 +83,7 @@ const columns = [
             on: {
               click: () => {
                 // console.log(params.row.username)
-                if (
-                  params.row.username === sessionStorage.getItem('username') ||
-                  sessionStorage.getItem('username') === 'admin'
-                ) {
+                if (params.row.username === store.getters.username || store.getters.username === 'admin') {
                   getUserInfo(params.row.username)
                   showModifyUserInfo()
                 } else {
@@ -104,7 +100,7 @@ const columns = [
           'Button',
           {
             attrs: {
-              type: sessionStorage.getItem('username') === 'admin' ? 'primary' : 'warning',
+              type: store.getters.username === 'admin' ? 'primary' : 'warning',
             },
             style: {
               position: 'relative',
@@ -113,8 +109,9 @@ const columns = [
             on: {
               click: () => {
                 // console.log(params.row.username)
-                if (sessionStorage.getItem('username') === 'admin') {
-                  removeByUsername(params.row.username)
+                if (store.getters.username === 'admin') {
+                  handleConfirm(removeByUsername, params.row.username)
+                  // removeByUsername(params.row.username)
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

@@ -61,7 +61,7 @@ const user = {
   actions: {
     // 登录
     Login({ commit }, userInfo) {
-      // userInfo.password = md5(userInfo.password)
+      userInfo.password = md5(userInfo.password)
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
         login(userInfo)
@@ -135,9 +135,9 @@ const user = {
       return new Promise((resolve, reject) => {
         userInfoByCond(cond)
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            // const result = response
+            // console.log(result)
+            resolve(response)
           })
           .catch((error) => {
             // console.log("error",error)
@@ -151,9 +151,9 @@ const user = {
       return new Promise((resolve, reject) => {
         removeByUsername(username)
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            // const result = response
+            // console.log(result)
+            resolve(response)
           })
           .catch((error) => {
             // console.log("error",error)

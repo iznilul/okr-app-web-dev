@@ -5,6 +5,7 @@ import menu from '@/store/modules/menu'
 import getters from '@/store/getters'
 import aside from '@/store/modules/aside'
 import monitor from '@/store/modules/monitor'
+import common from '@/store/modules/common'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ const store = new Vuex.Store({
     menu,
     aside,
     monitor,
+    common,
   },
   getters,
 })

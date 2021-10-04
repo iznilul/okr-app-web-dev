@@ -17,6 +17,7 @@ const getters = {
   phone: (state) => state.user.phone,
   weixin: (state) => state.user.weixin,
   research: (state) => state.user.research,
+  type: (state) => (state.user.username === 'admin' ? 'primary' : 'warning'),
 }
 
 export default getters

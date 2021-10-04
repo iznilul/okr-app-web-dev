@@ -96,3 +96,17 @@ export function modifyPassword(data) {
     data: data,
   })
 }
+export function getLikeRole(param) {
+  return axios({
+    url: api.getLikeRole,
+    method: 'get',
+    params: param,
+  })
+}
+export function getLikeUsername(param) {
+  return axios({
+    url: api.getLikeUsername,
+    method: 'get',
+    params: param,
+  })
+}

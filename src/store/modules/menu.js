@@ -18,19 +18,6 @@ const menu = {
         // hidden: true
       },
       {
-        name: 'okr', // 要跳转的路由名称 不是路径
-        size: 18, // icon大小
-        type: 'ios-egg-outline', // icon类型
-        text: 'okr管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
-      },
-      {
-        size: 18, // icon大小
-        type: 'md-arrow-forward', // icon类型
-        text: 'okr主页跳转',
-        url: 'https://www.baidu.com',
-        isExternal: true, // 外链 跳到一个外部的 URL 页面
-      },
-      {
         name: 'member', // 要跳转的路由名称 不是路径
         size: 18, // icon大小
         type: 'md-person', // icon类型
@@ -53,6 +40,12 @@ const menu = {
         size: 18, // icon大小
         type: 'md-school', // icon类型
         text: '报名管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+      },
+      {
+        name: 'okr', // 要跳转的路由名称 不是路径
+        size: 18, // icon大小
+        type: 'ios-egg-outline', // icon类型
+        text: 'okr管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
       },
       {
         text: '安全管理',

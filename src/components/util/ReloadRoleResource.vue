@@ -12,9 +12,12 @@ export default {
   name: 'ReloadRoleResource',
 
   data() {
-    return {
-      type: sessionStorage.getItem('username') === 'admin' ? 'primary' : 'warning',
-    }
+    return {}
+  },
+  computed: {
+    type() {
+      return this.$store.getters.type
+    },
   },
   methods: {
     handleSubmit(name) {

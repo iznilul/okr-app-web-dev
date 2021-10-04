@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       visible: false,
+      data: [],
       roleList: [
         {
           value: '管理员',
@@ -50,12 +51,16 @@ export default {
           },
         ],
       },
-      type: sessionStorage.getItem('username') === 'admin' ? 'primary' : 'warning',
       form: {
         username: '',
         name: '',
       },
     }
+  },
+  computed: {
+    type() {
+      return this.$store.getters.type
+    },
   },
   methods: {
     validate() {
@@ -71,7 +76,7 @@ export default {
             .then((res) => {
               console.log(res)
               this.$Notice.info({
-                desc: res.data,
+                title: '注册成功',
               })
               this.$emit('userInfoByCond', {})
             })

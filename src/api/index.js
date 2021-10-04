@@ -11,6 +11,8 @@ const api = {
   httpActuator: '/api/actuator/metrics/http.server.requests',
   upload: '/api/user/info/upload',
   modifyPassword: '/api/user/info/modifyPassword',
+  getLikeRole: '/api/user/enum/role',
+  getLikeUsername: '/api/user/enum/username',
 }
 
 export default api

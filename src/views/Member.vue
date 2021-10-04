@@ -3,7 +3,15 @@
     <div class="query">
       <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="userInfoByCond">
         <FormItem label="账号" prop="username">
-          <Input clearable v-model="form.username" type="text"></Input>
+          <!--          <Input clearable v-model="form.username" type="text"></Input>-->
+          <auto-complete
+            clearable
+            v-model="form.username"
+            :data="usernameData"
+            @on-search="getLikeUsername"
+            placeholder="请输入查询账号"
+          >
+          </auto-complete>
         </FormItem>
         <FormItem label="姓名" prop="name">
           <Input clearable v-model="form.name" type="text"></Input>
@@ -17,6 +25,7 @@
     <Register @userInfoByCond="userInfoByCond" @validate="validate"></Register>
     <reload-role-resource @validate="validate"></reload-role-resource>
     <ModifyUserInfo ref="modifyUserInfo" @userInfoByCond="userInfoByCond"></ModifyUserInfo>
+    <Confirm ref="confirm"></Confirm>
     <transition appear name="fade">
       <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     </transition>
@@ -27,6 +36,7 @@
       :current="current"
       show-total
       class="paging"
+      show-sizer
       @on-change="changePage"
     ></Page>
   </div>
@@ -46,6 +56,7 @@ export default {
     return {
       columns: columns,
       data: [],
+      usernameData: [],
       dataCount: 0,
       current: 1,
       form: {
@@ -53,7 +64,7 @@ export default {
         name: '',
         major: '',
         index: 1,
-        pageSize: 8,
+        pageSize: 10,
       },
     }
   },
@@ -64,18 +75,25 @@ export default {
     window.removeByUsername = this.removeByUsername
   },
   methods: {
+    getLikeUsername() {
+      this.$store
+        .dispatch('getLikeUsername', { username: this.form.username })
+        .then((res) => {
+          console.log(res)
+          this.usernameData = res
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
     userInfoByCond() {
       this.$store
         .dispatch('userInfoByCond', this.form)
         .then((res) => {
-          // console.log(res)
-          this.pageReset(res.pageNum)
+          console.log(res)
+          this.pageReset(res.current)
           this.dataCount = res.total
-          this.data = res.list
-          this.$Notice.success({
-            title: '查询成功',
-          })
-
+          this.data = res.data
           this.handleModifyReset('form')
         })
         .catch((error) => {
@@ -87,10 +105,13 @@ export default {
         .dispatch('removeByUsername', { username: username })
         .then((res) => {
           // console.log(res)
-          this.$Notice.success({
-            title: '删除成功',
+          this.data.forEach((user) => {
+            if (user.username === username) {
+              console.log(user.username)
+              let index = this.data.indexOf(user)
+              this.data.splice(index, 1)
+            }
           })
-          this.userInfoByCond()
         })
         .catch((error) => {
           console.log(error)
@@ -103,16 +124,16 @@ export default {
       this.userInfoByCond(this.form)
     },
 
-    pageReset(pageNum) {
-      this.current = pageNum
-      this.form.index = pageNum
+    pageReset(current) {
+      this.current = current
+      this.form.index = current
     },
 
     handleModifyReset(name) {
       this.$refs[name].resetFields()
     },
     validate(callback) {
-      if (sessionStorage.getItem('username') === 'admin') {
+      if (this.$store.getters.username === 'admin') {
         let res = true
         callback(res)
       } else {

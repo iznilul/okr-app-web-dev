@@ -67,7 +67,7 @@ service.interceptors.response.use(
       allowRequest(reqList, response.config.url)
     }, 1000)
     const res = response.data
-    // console.log(res)
+    console.log(res)
     // 如果token已经过期，则进行重定向
     if (res.code === 2004) {
       Notice.error({

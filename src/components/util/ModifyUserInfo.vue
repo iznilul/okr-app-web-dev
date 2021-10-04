@@ -39,7 +39,7 @@ export default {
         qq: '',
         phone: '',
         weixin: '',
-        desc: '',
+        research: '',
       },
     }
   },
@@ -79,7 +79,7 @@ export default {
           this.form.qq = res.qq
           this.form.phone = res.phone
           this.form.weixin = res.weixin
-          this.form.desc = res.desc
+          this.form.research = res.research
         })
         .catch((error) => {
           console.error(error)
