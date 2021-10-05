@@ -14,10 +14,22 @@
           </auto-complete>
         </FormItem>
         <FormItem label="姓名" prop="name">
-          <Input clearable v-model="form.name" type="text"></Input>
+          <auto-complete
+            clearable
+            v-model="form.name"
+            :data="nameData"
+            @on-search="getLikeName"
+            placeholder="请输入查询姓名"
+          ></auto-complete>
         </FormItem>
         <FormItem label="专业班级" prop="major" :label-width="80">
-          <Input clearable v-model="form.major" type="text"></Input>
+          <auto-complete
+            clearable
+            v-model="form.major"
+            :data="majorData"
+            @on-search="getLikeMajor"
+            placeholder="请输入查询专业"
+          ></auto-complete>
         </FormItem>
       </Form>
     </div>
@@ -25,10 +37,7 @@
     <Register @userInfoByCond="userInfoByCond" @validate="validate"></Register>
     <reload-role-resource @validate="validate"></reload-role-resource>
     <ModifyUserInfo ref="modifyUserInfo" @userInfoByCond="userInfoByCond"></ModifyUserInfo>
-    <Confirm ref="confirm"></Confirm>
-    <transition appear name="fade">
-      <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
-    </transition>
+    <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <Page
       id="page"
       :total="dataCount"
@@ -38,17 +47,19 @@
       class="paging"
       show-sizer
       @on-change="changePage"
+      @on-page-size-change="changePageSize"
     ></Page>
   </div>
 </template>
 
 <script>
-import { userInfoByCond } from '../api/user'
+import { userInfoByCond } from '../api/User'
 import Query from '../components/util/Query'
 import Register from '../components/util/Register'
 import ModifyUserInfo from '../components/util/ModifyUserInfo'
 import ReloadRoleResource from '../components/util/ReloadRoleResource'
 import columns from '../config/PageColumn'
+import { queryLikeMajor, queryLikeName, queryLikeUsername } from '../utils/queryLike'
 export default {
   name: 'member',
   components: { Register, Query, ModifyUserInfo, ReloadRoleResource },
@@ -57,6 +68,8 @@ export default {
       columns: columns,
       data: [],
       usernameData: [],
+      nameData: [],
+      majorData: [],
       dataCount: 0,
       current: 1,
       form: {
@@ -76,11 +89,30 @@ export default {
   },
   methods: {
     getLikeUsername() {
-      this.$store
-        .dispatch('getLikeUsername', { username: this.form.username })
+      queryLikeUsername({ username: this.form.username })
         .then((res) => {
           console.log(res)
           this.usernameData = res
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getLikeName() {
+      queryLikeName({ name: this.form.name })
+        .then((res) => {
+          console.log(res)
+          this.nameData = res
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getLikeMajor() {
+      queryLikeMajor({ major: this.form.major })
+        .then((res) => {
+          console.log(res)
+          this.majorData = res
         })
         .catch((error) => {
           console.error(error)
@@ -124,6 +156,14 @@ export default {
       this.userInfoByCond(this.form)
     },
 
+    changePageSize(pageSize) {
+      // console.log(pageSize)
+      this.current = 1
+      this.form.index = 1
+      this.form.pageSize = pageSize
+      this.userInfoByCond()
+    },
+
     pageReset(current) {
       this.current = current
       this.form.index = current
@@ -155,5 +195,4 @@ export default {
 
 <style lang="less">
 @import '../style/views/Member';
-@import '../style/animation/Fade';
 </style>

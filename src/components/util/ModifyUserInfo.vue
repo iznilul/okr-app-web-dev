@@ -70,7 +70,7 @@ export default {
     getUserInfo(username) {
       console.log(username)
       this.$store
-        .dispatch('getUserInfo', { username: username })
+        .dispatch('getUserInfoByUsername', { username: username })
         .then((res) => {
           console.log(res)
           this.form.username = res.username

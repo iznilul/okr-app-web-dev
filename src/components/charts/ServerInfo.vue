@@ -1,7 +1,5 @@
 <template>
-  <transition appear name="fade">
-    <Table stripe id="table" :columns="column" :data="serverInfo"></Table>
-  </transition>
+  <Table stripe id="table" :columns="column" :data="serverInfo"></Table>
 </template>
 
 <script>
@@ -70,6 +68,4 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-@import '../../style/animation/Fade';
-</style>
+<style scoped lang="less"></style>

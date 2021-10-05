@@ -1,16 +1,4 @@
-import Vue from 'vue'
-
-import {
-  login,
-  register,
-  userInfoByCond,
-  getUserInfo,
-  modifyUserInfo,
-  modifyPassword,
-  removeByUsername,
-  reloadAdminRoleResource,
-  reloadUserRoleResource,
-} from '@/api/user'
+import { userInfoByCond, getUserInfo, modifyUserInfo, modifyPassword, getUserInfoByUsername } from '@/api/User'
 import md5 from 'js-md5'
 
 const user = {
@@ -59,37 +47,6 @@ const user = {
   },
 
   actions: {
-    // 登录
-    Login({ commit }, userInfo) {
-      userInfo.password = md5(userInfo.password)
-      return new Promise((resolve, reject) => {
-        console.log('userInfo', userInfo)
-        login(userInfo)
-          .then((response) => {
-            const result = response
-            resolve(result)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
-    },
-
-    //新用户注册
-    Register({ commit }, userInfo) {
-      return new Promise((resolve, reject) => {
-        console.log('userInfo', userInfo)
-        register(userInfo)
-          .then((response) => {
-            const result = response
-            resolve(result)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
-    },
-
     //保存到session
     saveSession({ commit }, data) {
       // console.log('data:', data)
@@ -114,10 +71,25 @@ const user = {
       })
     },
 
-    //根据用户名获取用户
     getUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
         getUserInfo()
+          .then((response) => {
+            const result = response
+            console.log(result)
+            resolve(result.data)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+
+    //根据用户名获取用户
+    getUserInfoByUsername({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        getUserInfoByUsername(param)
           .then((response) => {
             const result = response
             console.log(result)
@@ -146,52 +118,6 @@ const user = {
       })
     },
 
-    //根据用户名删除用户
-    removeByUsername({ commit }, username) {
-      return new Promise((resolve, reject) => {
-        removeByUsername(username)
-          .then((response) => {
-            // const result = response
-            // console.log(result)
-            resolve(response)
-          })
-          .catch((error) => {
-            // console.log("error",error)
-            reject(error)
-          })
-      })
-    },
-    //重载管理员资源
-    reloadAdminRoleResource({ commit }, {}) {
-      return new Promise((resolve, reject) => {
-        reloadAdminRoleResource({})
-          .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
-          })
-          .catch((error) => {
-            // console.log("error",error)
-            reject(error)
-          })
-      })
-    },
-    //重载用户资源
-    reloadUserRoleResource({ commit }, {}) {
-      return new Promise((resolve, reject) => {
-        reloadUserRoleResource({})
-          .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
-          })
-          .catch((error) => {
-            // console.log("error",error)
-            reject(error)
-          })
-      })
-    },
-
     //修改密码
     modifyPassword({ commit }, modifyInfo) {
       modifyInfo.oldPassword = md5(modifyInfo.oldPassword)
@@ -207,19 +133,6 @@ const user = {
             // console.log("error",error)
             reject(error)
           })
-      })
-    },
-
-    // 登出
-    Logout({ commit, state }) {
-      return new Promise((resolve) => {
-        // logout(state.token)
-        //   .then(() => {
-        //     resolve()
-        //   })
-        //   .catch(() => {
-        //     resolve()
-        //   })
       })
     },
   },

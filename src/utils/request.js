@@ -90,7 +90,7 @@ service.interceptors.response.use(
     // console.log(error)
     setTimeout(() => {
       allowRequest(reqList, error.config.url)
-    }, 1000)
+    }, 1500)
     return Promise.reject(error)
   }
 )

@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import api from '../api/index'
+import api from '../api'
 import { baseURL } from '../utils/request'
 
 export default {

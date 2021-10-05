@@ -1,9 +1,6 @@
 <template>
   <div id="reloadRoleResource">
-    <Button @click="handleSubmit('reloadAdminRoleResource')" :type="type">重载管理员资源</Button>
-    <Button @click="handleSubmit('reloadUserRoleResource')" :type="type" style="position: relative; left: 5px"
-      >重载用户资源</Button
-    >
+    <Button @click="handleSubmit" :type="type">重载角色资源</Button>
   </div>
 </template>
 
@@ -20,7 +17,7 @@ export default {
     },
   },
   methods: {
-    handleSubmit(name) {
+    handleSubmit() {
       // console.log(name)
       let res = false
       this.$emit('validate', (val) => {
@@ -28,11 +25,11 @@ export default {
       })
       if (res) {
         this.$store
-          .dispatch(name, {})
+          .dispatch('reloadRoleResource', {})
           .then((res) => {
             console.log(res)
             this.$Notice.info({
-              desc: res,
+              desc: '操作成功',
             })
           })
           .catch((error) => {

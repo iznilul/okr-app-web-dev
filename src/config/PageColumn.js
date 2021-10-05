@@ -100,7 +100,7 @@ const columns = [
           'Button',
           {
             attrs: {
-              type: store.getters.username === 'admin' ? 'primary' : 'warning',
+              type: store.getters.type,
             },
             style: {
               position: 'relative',
@@ -111,7 +111,6 @@ const columns = [
                 // console.log(params.row.username)
                 if (store.getters.username === 'admin') {
                   handleConfirm(removeByUsername, params.row.username)
-                  // removeByUsername(params.row.username)
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

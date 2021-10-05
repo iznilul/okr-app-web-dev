@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { monitorData } from '../api/user'
+import { monitorData } from '../api/User'
 import Cpu from '../components/charts/Cpu'
 import Mem from '../components/charts/Mem'
 import Jvm from '../components/charts/Jvm'

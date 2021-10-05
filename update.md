@@ -61,7 +61,7 @@
 
 退出当前用户，换账号重新登陆时，上个账号和现在的账号路由表会有冲突的问题，解决办法是在退出登陆时重置路由表。
 
-具体实现请查看 `router/index.js`、`Login.vue` 和 `Index.vue` 的退出登陆回调方法。
+具体实现请查看 `router/Index.js`、`Login.vue` 和 `Index.vue` 的退出登陆回调方法。
 
 ### 2019.6.18 更新
 
@@ -75,7 +75,7 @@
 
 另外，如果在未登陆时要访问某一指定页面，会重定向到登陆页，登陆成功后会自动跳到这个指定页面。
 
-具体实现请看 `permission.js` 和 `util` 目录下的 `index.js` 文件
+具体实现请看 `permission.js` 和 `util` 目录下的 `Index.js` 文件
 
 ### 2019.3.14 更新
 
@@ -104,7 +104,7 @@ menuItems: [
     name: 'Home', // 要跳转的路由名称 不是路径
     size: 18, // icon大小 非必填
     type: 'md-home', // icon类型 非必填
-    text: '主页' // 文本内容
+    text: '主页', // 文本内容
   },
   {
     text: '二级菜单',
@@ -114,7 +114,7 @@ menuItems: [
         type: 'ios-grid',
         name: 'T1',
         text: '表格',
-        hidden: true // 可以在菜单中隐藏此菜单项，但还是可以访问此页面，只是不能在菜单栏中看见。
+        hidden: true, // 可以在菜单中隐藏此菜单项，但还是可以访问此页面，只是不能在菜单栏中看见。
       },
       {
         text: '三级菜单',
@@ -123,21 +123,21 @@ menuItems: [
           {
             type: 'ios-notifications-outline',
             name: 'Msg',
-            text: '查看消息'
+            text: '查看消息',
           },
           {
             type: 'md-lock',
             name: 'Password',
-            text: '修改密码'
+            text: '修改密码',
           },
           {
             type: 'md-person',
             name: 'UserInfo',
-            text: '基本资料'
-          }
-        ]
-      }
-    ]
-  }
+            text: '基本资料',
+          },
+        ],
+      },
+    ],
+  },
 ]
 ```
