@@ -72,13 +72,13 @@ export default {
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$store
-            .dispatch('Register', this.form)
+            .dispatch('register', this.form)
             .then((res) => {
               console.log(res)
               this.$Notice.info({
                 title: '注册成功',
               })
-              this.$emit('userInfoByCond', {})
+              this.$emit('getUserInfoByCond', {})
             })
             .catch((error) => {
               console.log(error)

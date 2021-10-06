@@ -1,36 +1,11 @@
-import store from '@/store'
+import store from '../store'
 
-export function queryLikeUsername(param) {
+export function queryLike(pattern, param) {
   return new Promise((resolve, reject) => {
     store
-      .dispatch('getLikeUsername', param)
+      .dispatch('getLike' + pattern, param)
       .then((response) => {
-        resolve(response)
-      })
-      .catch((error) => {
-        reject(error)
-      })
-  })
-}
-
-export function queryLikeName(param) {
-  return new Promise((resolve, reject) => {
-    store
-      .dispatch('getLikeName', param)
-      .then((response) => {
-        resolve(response)
-      })
-      .catch((error) => {
-        reject(error)
-      })
-  })
-}
-
-export function queryLikeMajor(param) {
-  return new Promise((resolve, reject) => {
-    store
-      .dispatch('getLikeMajor', param)
-      .then((response) => {
+        console.log(response)
         resolve(response)
       })
       .catch((error) => {

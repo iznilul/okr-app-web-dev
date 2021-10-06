@@ -18,7 +18,7 @@ export default function createRoutes(data) {
   // console.log("after children:",children)
   // 最后添加404页面 否则会在登陆成功后跳到404页面
   result.push({ path: '*', redirect: '/404' })
-  // console.log("result :",result)
+  // console.log('result :', result)
   // 返回路由表，分为单独路由和子路由
   return result
 }

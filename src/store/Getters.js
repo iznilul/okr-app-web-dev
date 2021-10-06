@@ -9,6 +9,7 @@ const getters = {
   asideClassName: (state) => state.aside.asideClassName,
   crumbs: (state) => state.aside.crumbs,
   theme: (state) => state.aside.theme,
+  userId: (state) => state.user.userId,
   username: (state) => state.user.username,
   name: (state) => state.user.name,
   avatar: (state) => state.user.avatar,

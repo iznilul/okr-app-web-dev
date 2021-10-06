@@ -52,7 +52,7 @@ export default {
           this.$Notice.success({
             desc: '更新成功',
           })
-          this.$emit('userInfoByCond', {})
+          this.$emit('getUserInfoByCond', {})
         })
         .catch((error) => {
           console.log(error)
@@ -93,5 +93,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/util/ModifyUserInfo';
+@import '../../style/util/ModifyModal';
 </style>

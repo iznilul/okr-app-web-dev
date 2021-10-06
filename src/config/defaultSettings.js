@@ -10,7 +10,7 @@ export default {
   multiTab: false,
   // vue-ls options
   storageOptions: {
-    namespace: 'pro__', // key prefix
+    namespace: 'pro__', // userKey prefix
     name: 'ls', // name variable Vue.[ls] or this.[$ls],
     storage: 'local', // storage name session, local, memory
   },
