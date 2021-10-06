@@ -1,16 +1,16 @@
-import { reloadRoleResource, register, removeByUsername } from '@/api/Admin'
+import { addUser, cancelUser } from '@/api/admin/User'
 
-const admin = {
+const user = {
   state: {},
 
   mutations: {},
 
   actions: {
     //新用户注册
-    Register({ commit }, userInfo) {
+    register({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         console.log('userInfo', userInfo)
-        register(userInfo)
+        addUser(userInfo)
           .then((response) => {
             const result = response
             resolve(result)
@@ -21,9 +21,9 @@ const admin = {
       })
     },
     //根据用户名删除用户
-    removeByUsername({ commit }, username) {
+    removeUserByUsername({ commit }, username) {
       return new Promise((resolve, reject) => {
-        removeByUsername(username)
+        cancelUser(username)
           .then((response) => {
             // const result = response
             // console.log(result)
@@ -35,22 +35,7 @@ const admin = {
           })
       })
     },
-    //重载管理员资源
-    reloadRoleResource({ commit }, {}) {
-      return new Promise((resolve, reject) => {
-        reloadRoleResource({})
-          .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result)
-          })
-          .catch((error) => {
-            // console.log("error",error)
-            reject(error)
-          })
-      })
-    },
   },
 }
 
-export default admin
+export default user

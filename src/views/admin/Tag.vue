@@ -1,6 +1,6 @@
 <template>
   <div>
-    IP记录，还没有开发( ╯□╰ )
+    书籍管理，还没有开发( ╯□╰ )
     <div>
       <Button @click="reback" type="primary" style="margin-left: 100px">返回</Button>
     </div>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: 'IP',
+  name: 'book',
   methods: {
     reback() {
       this.$router.back()

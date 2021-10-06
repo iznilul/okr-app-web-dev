@@ -48,15 +48,15 @@
 </template>
 
 <script>
-import api from '../api'
-import { baseURL } from '../utils/request'
+import { userApi } from '../../api'
+import { baseURL } from '../../utils/request'
 
 export default {
   name: 'UserInfo',
   data() {
     return {
       rows: 4,
-      uploadUrl: baseURL + api.upload,
+      uploadUrl: baseURL + userApi.changeUserImg,
       uploadHeader: {
         Authorization: localStorage.getItem('token'),
       },
@@ -135,5 +135,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../style/views/UserInfo';
+@import '../../style/views/user/UserInfo';
 </style>

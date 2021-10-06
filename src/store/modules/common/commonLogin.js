@@ -1,6 +1,6 @@
-import { login } from '@/api/Common'
-
-const common = {
+import { login } from '@/api/common/Login'
+import md5 from 'js-md5'
+const commonLogin = {
   state: {},
 
   mutations: {},
@@ -24,4 +24,4 @@ const common = {
   },
 }
 
-export default common
+export default commonLogin

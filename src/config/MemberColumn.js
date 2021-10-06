@@ -1,5 +1,5 @@
 import vue from '../main.js'
-import store from '@/store'
+import store from '../store'
 import { handleConfirm } from '@/utils/confirm'
 const columns = [
   {
@@ -110,7 +110,7 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 if (store.getters.username === 'admin') {
-                  handleConfirm(removeByUsername, params.row.username)
+                  handleConfirm(removeUserByUsername, params.row.username)
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

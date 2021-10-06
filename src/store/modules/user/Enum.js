@@ -1,4 +1,11 @@
-import { getLikeMajor, getLikeName, getLikeUsername } from '@/api/Enum'
+import {
+  getLikeMajor,
+  getLikeName,
+  getLikeUsername,
+  queryLikeMajor,
+  queryLikeName,
+  queryLikeUsername,
+} from '@/api/user/Enum'
 
 const enumApi = {
   state: {},
@@ -8,7 +15,7 @@ const enumApi = {
   actions: {
     getLikeUsername({ commit }, param) {
       return new Promise((resolve, reject) => {
-        getLikeUsername(param)
+        queryLikeUsername(param)
           .then((response) => {
             const result = response.data
             resolve(result)
@@ -20,7 +27,7 @@ const enumApi = {
     },
     getLikeName({ commit }, param) {
       return new Promise((resolve, reject) => {
-        getLikeName(param)
+        queryLikeName(param)
           .then((response) => {
             const result = response.data
             resolve(result)
@@ -32,7 +39,7 @@ const enumApi = {
     },
     getLikeMajor({ commit }, param) {
       return new Promise((resolve, reject) => {
-        getLikeMajor(param)
+        queryLikeMajor(param)
           .then((response) => {
             const result = response.data
             resolve(result)

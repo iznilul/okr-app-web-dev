@@ -1,9 +1,9 @@
 import axios from '@/utils/request'
-import api from '@/api/Index'
+import { adminApi } from '@/api'
 
-export function register(data) {
+export function addUser(data) {
   return axios({
-    url: api.register,
+    url: adminApi.addUser,
     method: 'post',
     data: data,
   })
@@ -11,15 +11,15 @@ export function register(data) {
 
 export function reloadRoleResource(data) {
   return axios({
-    url: api.reloadRoleResource,
+    url: adminApi.reloadRoleResource,
     method: 'get',
     params: data,
   })
 }
 
-export function removeByUsername(data) {
+export function cancelUser(data) {
   return axios({
-    url: api.removeByUsername,
+    url: adminApi.cancelUser,
     method: 'get',
     params: data,
   })

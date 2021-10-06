@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { monitorData } from '../api/User'
-import Cpu from '../components/charts/Cpu'
-import Mem from '../components/charts/Mem'
-import Jvm from '../components/charts/Jvm'
-import SysFiles from '../components/charts/SysFiles'
-import ServerInfo from '../components/charts/ServerInfo'
-import ApiCount from '../components/charts/ApiCount'
+import { monitorData } from '../../api/user/User'
+import Cpu from '../../components/charts/Cpu'
+import Mem from '../../components/charts/Mem'
+import Jvm from '../../components/charts/Jvm'
+import SysFiles from '../../components/charts/SysFiles'
+import ServerInfo from '../../components/charts/ServerInfo'
+import ApiCount from '../../components/charts/ApiCount'
 export default {
   name: 'Home',
   data() {
@@ -67,5 +67,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../style/views/Home';
+@import '../../style/views/user/Home';
 </style>

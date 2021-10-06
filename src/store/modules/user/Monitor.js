@@ -1,4 +1,4 @@
-import { httpActuator, monitorData } from '@/api/Monitor'
+import { httpActuator, monitorData, server } from '@/api/user/Monitor'
 
 const monitor = {
   state: {},
@@ -9,7 +9,7 @@ const monitor = {
     //获取服务器监控数据
     monitorData({ commit }, {}) {
       return new Promise((resolve, reject) => {
-        monitorData({})
+        server({})
           .then((response) => {
             const result = response
             console.log(result)

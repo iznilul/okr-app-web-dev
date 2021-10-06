@@ -1,4 +1,15 @@
-import { userInfoByCond, getUserInfo, modifyUserInfo, modifyPassword, getUserInfoByUsername } from '@/api/User'
+import {
+  getUserInfoByCond,
+  getUserInfo,
+  modifyUserInfo,
+  modifyPassword,
+  getUserInfoByUsername,
+  changeUser,
+  queryUser,
+  queryUserByUsername,
+  queryUserList,
+  changePassword,
+} from '@/api/user/User'
 import md5 from 'js-md5'
 
 const user = {
@@ -58,7 +69,7 @@ const user = {
     //更新用户资料
     modifyUserInfo({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
-        modifyUserInfo(userInfo)
+        changeUser(userInfo)
           .then((response) => {
             const result = response
             console.log(result)
@@ -73,7 +84,7 @@ const user = {
 
     getUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        getUserInfo()
+        queryUser()
           .then((response) => {
             const result = response
             console.log(result)
@@ -89,7 +100,7 @@ const user = {
     //根据用户名获取用户
     getUserInfoByUsername({ commit }, param) {
       return new Promise((resolve, reject) => {
-        getUserInfoByUsername(param)
+        queryUserByUsername(param)
           .then((response) => {
             const result = response
             console.log(result)
@@ -103,9 +114,9 @@ const user = {
     },
 
     //根据条件获取用户
-    userInfoByCond({ commit }, cond) {
+    getUserInfoByCond({ commit }, cond) {
       return new Promise((resolve, reject) => {
-        userInfoByCond(cond)
+        queryUserList(cond)
           .then((response) => {
             // const result = response
             // console.log(result)
@@ -123,7 +134,7 @@ const user = {
       modifyInfo.oldPassword = md5(modifyInfo.oldPassword)
       modifyInfo.newPassword = md5(modifyInfo.newPassword)
       return new Promise((resolve, reject) => {
-        modifyPassword(modifyInfo)
+        changePassword(modifyInfo)
           .then((response) => {
             const result = response
             console.log(result)

@@ -1,14 +1,13 @@
 <template>
   <div id="member">
     <div class="query">
-      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="userInfoByCond">
+      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="getUserInfoByCond">
         <FormItem label="账号" prop="username">
-          <!--          <Input clearable v-model="form.username" type="text"></Input>-->
           <auto-complete
             clearable
             v-model="form.username"
             :data="usernameData"
-            @on-search="getLikeUsername"
+            @on-search="getLike('Username', form.username)"
             placeholder="请输入查询账号"
           >
           </auto-complete>
@@ -18,7 +17,7 @@
             clearable
             v-model="form.name"
             :data="nameData"
-            @on-search="getLikeName"
+            @on-search="getLike('Name', form.name)"
             placeholder="请输入查询姓名"
           ></auto-complete>
         </FormItem>
@@ -27,16 +26,16 @@
             clearable
             v-model="form.major"
             :data="majorData"
-            @on-search="getLikeMajor"
+            @on-search="getLike('Major', form.major)"
             placeholder="请输入查询专业"
           ></auto-complete>
         </FormItem>
       </Form>
     </div>
-    <Button id="button" @click="userInfoByCond" type="primary">查询</Button>
-    <Register @userInfoByCond="userInfoByCond" @validate="validate"></Register>
+    <Button id="button" @click="getUserInfoByCond" type="primary">查询</Button>
+    <Register @getUserInfoByCond="getUserInfoByCond" @validate="validate"></Register>
     <reload-role-resource @validate="validate"></reload-role-resource>
-    <ModifyUserInfo ref="modifyUserInfo" @userInfoByCond="userInfoByCond"></ModifyUserInfo>
+    <ModifyUserInfo ref="modifyUserInfo" @getUserInfoByCond="getUserInfoByCond"></ModifyUserInfo>
     <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <Page
       id="page"
@@ -53,13 +52,13 @@
 </template>
 
 <script>
-import { userInfoByCond } from '../api/User'
-import Query from '../components/util/Query'
-import Register from '../components/util/Register'
-import ModifyUserInfo from '../components/util/ModifyUserInfo'
-import ReloadRoleResource from '../components/util/ReloadRoleResource'
-import columns from '../config/PageColumn'
-import { queryLikeMajor, queryLikeName, queryLikeUsername } from '../utils/queryLike'
+import Query from '../../components/util/Query'
+import Register from '../../components/util/Register'
+import ModifyUserInfo from '../../components/util/ModifyUserInfo'
+import ReloadRoleResource from '../../components/util/ReloadRoleResource'
+import columns from '../../config/MemberColumn'
+import { queryLike } from '../../utils/queryLike'
+
 export default {
   name: 'member',
   components: { Register, Query, ModifyUserInfo, ReloadRoleResource },
@@ -67,6 +66,7 @@ export default {
     return {
       columns: columns,
       data: [],
+      queryData: [],
       usernameData: [],
       nameData: [],
       majorData: [],
@@ -82,45 +82,31 @@ export default {
     }
   },
   mounted() {
-    this.userInfoByCond()
+    this.getUserInfoByCond()
     window.showModifyUserInfo = this.showModifyUserInfo
     window.getUserInfo = this.getUserInfo
-    window.removeByUsername = this.removeByUsername
+    window.removeUserByUsername = this.removeUserByUsername
   },
   methods: {
-    getLikeUsername() {
-      queryLikeUsername({ username: this.form.username })
+    getLike(pattern, param) {
+      queryLike(pattern, { param: param })
         .then((res) => {
           console.log(res)
-          this.usernameData = res
+          if (pattern === 'Username') {
+            this.usernameData = res
+          } else if (pattern === 'Name') {
+            this.nameData = res
+          } else {
+            this.majorData = res
+          }
         })
         .catch((error) => {
           console.error(error)
         })
     },
-    getLikeName() {
-      queryLikeName({ name: this.form.name })
-        .then((res) => {
-          console.log(res)
-          this.nameData = res
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    },
-    getLikeMajor() {
-      queryLikeMajor({ major: this.form.major })
-        .then((res) => {
-          console.log(res)
-          this.majorData = res
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    },
-    userInfoByCond() {
+    getUserInfoByCond() {
       this.$store
-        .dispatch('userInfoByCond', this.form)
+        .dispatch('getUserInfoByCond', this.form)
         .then((res) => {
           console.log(res)
           this.pageReset(res.current)
@@ -132,11 +118,12 @@ export default {
           console.log(error)
         })
     },
-    removeByUsername(username) {
+    removeUserByUsername(username) {
       this.$store
-        .dispatch('removeByUsername', { username: username })
+        .dispatch('removeUserByUsername', { username: username })
         .then((res) => {
           // console.log(res)
+          this.dataCount--
           this.data.forEach((user) => {
             if (user.username === username) {
               console.log(user.username)
@@ -153,7 +140,7 @@ export default {
     changePage(index) {
       this.form.index = index
       this.current = index
-      this.userInfoByCond(this.form)
+      this.getUserInfoByCond(this.form)
     },
 
     changePageSize(pageSize) {
@@ -161,7 +148,7 @@ export default {
       this.current = 1
       this.form.index = 1
       this.form.pageSize = pageSize
-      this.userInfoByCond()
+      this.getUserInfoByCond()
     },
 
     pageReset(current) {
@@ -194,5 +181,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../style/views/Member';
+@import '../../style/views/user/Member';
 </style>
