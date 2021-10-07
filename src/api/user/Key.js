@@ -8,3 +8,19 @@ export function queryKey(data) {
     data: data,
   })
 }
+
+export function borrowKey(data) {
+  return axios({
+    url: userApi.borrowKey,
+    method: 'get',
+    params: data,
+  })
+}
+
+export function returnKey(data) {
+  return axios({
+    url: userApi.returnKey,
+    method: 'get',
+    params: data,
+  })
+}

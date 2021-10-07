@@ -1,7 +1,9 @@
 <template>
   <div id="key">
-    <!--    <Button id="button" @click="getUserInfoByCond" type="primary">添加钥匙</Button>-->
+    <Button id="button" @click="showAddKey" type="primary">添加钥匙</Button>
     <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <add-key ref="addKey" @getKey="getKey"></add-key>
+    <modify-key ref="modifyKey" @getKey="getKey"></modify-key>
     <Page
       id="page"
       :total="dataCount"
@@ -18,10 +20,11 @@
 
 <script>
 import columns from '../../config/KeyColumn'
-
+import ModifyKey from '../../components/util/ModifyKey'
+import AddKey from '../../components/util/AddKey'
 export default {
   name: 'member',
-  components: {},
+  components: { ModifyKey, AddKey },
   data() {
     return {
       columns: columns,
@@ -36,9 +39,11 @@ export default {
   },
   mounted() {
     this.getKey()
-    // window.showModifyUserInfo = this.showModifyUserInfo
-    // window.getUserInfo = this.getUserInfo
-    // window.removeUserByUsername = this.removeUserByUsername
+    window.showModifyKey = this.showModifyKey
+    window.getKeyById = this.getKeyById
+    window.removeKey = this.removeKey
+    window.borrowKey = this.borrowKey
+    window.returnKey = this.returnKey
   },
   methods: {
     getKey() {
@@ -54,18 +59,41 @@ export default {
           console.log(error)
         })
     },
-    removeUserByUsername(username) {
+    removeKey(keyId) {
       this.$store
-        .dispatch('removeUserByUsername', { username: username })
+        .dispatch('removeKey', { keyId: keyId })
         .then((res) => {
           // console.log(res)
-          this.data.forEach((user) => {
-            if (user.username === username) {
-              console.log(user.username)
-              let index = this.data.indexOf(user)
+          this.data.forEach((key) => {
+            if (key.keyId === keyId) {
+              console.log(key.keyId)
+              let index = this.data.indexOf(key)
               this.data.splice(index, 1)
             }
           })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    borrowKey(keyId) {
+      this.$store
+        .dispatch('borrowKey', { keyId: keyId })
+        .then((res) => {
+          console.log(res)
+          this.getKey()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+
+    returnKey(keyId) {
+      this.$store
+        .dispatch('returnKey', { keyId: keyId })
+        .then((res) => {
+          console.log(res)
+          this.getKey()
         })
         .catch((error) => {
           console.log(error)
@@ -91,26 +119,16 @@ export default {
       this.form.index = current
     },
 
-    handleModifyReset(name) {
-      this.$refs[name].resetFields()
+    showModifyKey() {
+      this.$refs.modifyKey.show()
     },
-    validate(callback) {
-      if (this.$store.getters.username === 'admin') {
-        let res = true
-        callback(res)
-      } else {
-        this.$Notice.error({
-          title: '没有操作权限',
-        })
-      }
+    showAddKey() {
+      this.$refs.addKey.show()
     },
-    // showModifyUserInfo() {
-    //   this.$refs.modifyUserInfo.show()
-    // },
-    // getUserInfo(item) {
-    //   // console.log(item)
-    //   this.$refs.modifyUserInfo.getUserInfo(item)
-    // },
+    getKeyById(item) {
+      // console.log(item)
+      this.$refs.modifyKey.getKeyById(item)
+    },
   },
 }
 </script>

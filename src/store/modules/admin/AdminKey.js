@@ -1,68 +1,60 @@
-import {
-  getLikeMajor,
-  getLikeName,
-  getLikeUsername,
-  queryLikeKey,
-  queryLikeMajor,
-  queryLikeName,
-  queryLikeUsername,
-} from '@/api/user/Enum'
+import { addKey, cancelKey, changeKey, queryKeyById } from '@/api/admin/Key'
 
-const enumApi = {
+const adminKey = {
   state: {},
 
   mutations: {},
 
   actions: {
-    getLikeUsername({ commit }, param) {
+    getKeyById({ commit }, data) {
       return new Promise((resolve, reject) => {
-        queryLikeUsername(param)
+        queryKeyById(data)
           .then((response) => {
-            const result = response.data
-            resolve(result)
+            // console.log(response)
+            resolve(response.data)
           })
           .catch((error) => {
+            // console.log("error",error)
             reject(error)
           })
       })
     },
-    getLikeName({ commit }, param) {
+    modifyKey({ commit }, data) {
       return new Promise((resolve, reject) => {
-        queryLikeName(param)
+        changeKey(data)
           .then((response) => {
-            const result = response.data
-            resolve(result)
+            resolve(response)
           })
           .catch((error) => {
+            // console.log("error",error)
             reject(error)
           })
       })
     },
-    getLikeMajor({ commit }, param) {
+    saveKey({ commit }, data) {
       return new Promise((resolve, reject) => {
-        queryLikeMajor(param)
+        addKey(data)
           .then((response) => {
-            const result = response.data
-            resolve(result)
+            resolve(response)
           })
           .catch((error) => {
+            // console.log("error",error)
             reject(error)
           })
       })
     },
-    getLikeKey({ commit }, param) {
+    removeKey({ commit }, data) {
       return new Promise((resolve, reject) => {
-        queryLikeKey(param)
+        cancelKey(data)
           .then((response) => {
-            const result = response.data
-            resolve(result)
+            resolve(response)
           })
           .catch((error) => {
+            // console.log("error",error)
             reject(error)
           })
       })
     },
   },
 }
-
-export default enumApi
+export default adminKey

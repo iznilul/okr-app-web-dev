@@ -2,6 +2,7 @@ import axios from 'axios'
 import dfaultSettings from '@/config/defaultSettings'
 import { Notice } from 'view-design'
 import router from '@/router'
+import resultEnum from '@/utils/ResultEnum'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
 
@@ -80,9 +81,10 @@ service.interceptors.response.use(
         return res
       } else {
         Notice.error({
-          title: '操作失败',
+          title: resultEnum.FAIL.desc,
           desc: res.msg,
         })
+        return Promise.reject('操作码异常')
       }
     }
   },

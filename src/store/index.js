@@ -8,7 +8,8 @@ import monitor from '@/store/modules/user/Monitor'
 import enumApi from '@/store/modules/user/Enum'
 import admin from '@/store/modules/admin/Admin'
 import commonLogin from '@/store/modules/common/commonLogin'
-import key from '@/store/modules/user/Key'
+import userKey from '@/store/modules/user/UserKey'
+import adminKey from '@/store/modules/admin/AdminKey'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -19,7 +20,8 @@ const store = new Vuex.Store({
     menu,
     aside,
     monitor,
-    key,
+    userKey,
+    adminKey,
     commonLogin,
     enumApi,
     admin,

@@ -18,6 +18,61 @@ const columns = [
     // width: '120px',
   },
   {
+    title: '借/还',
+    key: 'borrow/return',
+    // width: '200px',
+    align: 'center',
+    render: (h, params) => {
+      // console.log(params.row)
+      let status = params.row.status
+      let flag = params.row.userId === store.getters.userId
+      if (status === 0) {
+        return [
+          h(
+            'Button',
+            {
+              attrs: {
+                type: 'primary',
+              },
+              style: {
+                position: 'relative',
+                left: '10px',
+              },
+              on: {
+                click: () => {
+                  // console.log(params.row.username)
+                  handleConfirm(borrowKey, params.row.keyId)
+                },
+              },
+            },
+            '借用'
+          ),
+        ]
+      } else if (status === 1 && flag) {
+        return [
+          h(
+            'Button',
+            {
+              attrs: {
+                type: 'primary',
+              },
+              style: {
+                position: 'relative',
+                left: '10px',
+              },
+              on: {
+                click: () => {
+                  handleConfirm(returnKey, params.row.keyId)
+                },
+              },
+            },
+            '归还'
+          ),
+        ]
+      }
+    },
+  },
+  {
     title: '操作',
     key: 'operation',
     // width: '200px',
@@ -35,9 +90,9 @@ const columns = [
             on: {
               click: () => {
                 // console.log(params.row.username)
-                if (params.row.username === store.getters.username || store.getters.username === 'admin') {
-                  // getUserInfo(params.row.username)
-                  // showModifyUserInfo()
+                if (store.getters.username === 'admin') {
+                  getKeyById(params.row.keyId)
+                  showModifyKey()
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',
@@ -62,7 +117,7 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 if (store.getters.username === 'admin') {
-                  // handleConfirm(removeUserByUsername, params.row.username)
+                  handleConfirm(removeKey, params.row.keyId)
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

@@ -22,3 +22,10 @@ export function queryLikeMajor(param) {
     params: param,
   })
 }
+export function queryLikeKey(param) {
+  return axios({
+    url: userApi.queryLikeKey,
+    method: 'get',
+    params: param,
+  })
+}

@@ -13,10 +13,17 @@ export const userApi = {
   queryLikeUsername: '/api/user/enum/username',
   queryLikeName: '/api/user/enum/name',
   queryLikeMajor: '/api/user/enum/major',
+  queryLikeKey: '/api/user/enum/key',
   queryKey: '/api/user/key/query',
+  borrowKey: '/api/user/key/borrow',
+  returnKey: '/api/user/key/return',
 }
 export const adminApi = {
   addUser: '/api/admin/user/add',
   cancelUser: '/api/admin/user/cancel',
   reloadRoleResource: '/api/admin/resource/reload',
+  queryKeyById: '/api/admin/key/queryById',
+  changeKey: 'api/admin/key/change',
+  addKey: 'api/admin/key/add',
+  cancelKey: 'api/admin/key/cancel',
 }

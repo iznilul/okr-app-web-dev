@@ -14,6 +14,7 @@ import md5 from 'js-md5'
 
 const user = {
   state: {
+    userId: '',
     username: '',
     name: '',
     avatar: '',
@@ -25,6 +26,9 @@ const user = {
   },
 
   mutations: {
+    SET_USERID: (state, userId) => {
+      state.userId = userId
+    },
     SET_USERNAME: (state, username) => {
       state.username = username
     },
@@ -61,6 +65,7 @@ const user = {
     //保存到session
     saveSession({ commit }, data) {
       // console.log('data:', data)
+      commit('SET_USERID', data.userId)
       commit('SET_USERNAME', data.username)
       commit('SET_AVATAR', data.avatar)
       commit('SET_USER', data)
