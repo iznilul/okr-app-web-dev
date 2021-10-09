@@ -23,7 +23,7 @@ import columns from '../../config/KeyColumn'
 import ModifyKey from '../../components/util/ModifyKey'
 import AddKey from '../../components/util/AddKey'
 export default {
-  name: 'member',
+  name: 'key',
   components: { ModifyKey, AddKey },
   data() {
     return {

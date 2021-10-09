@@ -15,6 +15,7 @@ export const userApi = {
   queryLikeMajor: '/api/user/enum/major',
   queryLikeKey: '/api/user/enum/key',
   queryKey: '/api/user/key/query',
+  queryKeyUser: '/api/user/keyUser/query',
   borrowKey: '/api/user/key/borrow',
   returnKey: '/api/user/key/return',
 }

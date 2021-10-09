@@ -9,6 +9,14 @@ export function queryKey(data) {
   })
 }
 
+export function queryKeyUser(data) {
+  return axios({
+    url: userApi.queryKeyUser,
+    method: 'post',
+    data: data,
+  })
+}
+
 export function borrowKey(data) {
   return axios({
     url: userApi.borrowKey,

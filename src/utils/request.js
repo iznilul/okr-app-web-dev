@@ -25,6 +25,9 @@ const stopRepeatRequest = function (reqList, url, cancel, errorMessage) {
     if (reqList[i] === url) {
       console.log('重复请求,请求被中断')
       cancel(errorMsg)
+      Notice.error({
+        title: resultEnum.REQUEST_TOO_FAST.desc,
+      })
       return
     }
   }
@@ -92,7 +95,7 @@ service.interceptors.response.use(
     // console.log(error)
     setTimeout(() => {
       allowRequest(reqList, error.config.url)
-    }, 1500)
+    }, 800)
     return Promise.reject(error)
   }
 )
