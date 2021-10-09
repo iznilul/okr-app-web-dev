@@ -1,4 +1,4 @@
-import { borrowKey, queryKey, returnKey } from '@/api/user/Key'
+import { borrowKey, queryKey, queryKeyUser, returnKey } from '@/api/user/Key'
 
 const userKey = {
   state: {},
@@ -9,6 +9,18 @@ const userKey = {
     getKey({ commit }, data) {
       return new Promise((resolve, reject) => {
         queryKey(data)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((error) => {
+            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+    getKeyUser({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        queryKeyUser(data)
           .then((response) => {
             resolve(response)
           })

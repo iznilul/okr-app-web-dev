@@ -11,10 +11,17 @@ import './permission'
 import VueParticles from 'vue-particles'
 import * as echarts from 'echarts'
 
+import publicPageReset from '@/utils/public/publicPageReset'
+import publicChangePageSize from '@/utils/public/publicChangePageSize'
+import publicChangePage from '@/utils/public/publicChangePage'
+
 Vue.config.productionTip = false
 Vue.use(ViewUI)
 Vue.use(animated)
 Vue.use(VueParticles)
+Vue.use(publicPageReset)
+Vue.use(publicChangePageSize)
+Vue.use(publicChangePage)
 
 Vue.prototype.$echarts = echarts
 Vue.prototype.$axios = axios
