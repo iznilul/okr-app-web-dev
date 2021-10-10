@@ -1,4 +1,4 @@
-import { reloadRoleResource } from '@/api/admin/User'
+import { reloadRoleResource } from '@/api/admin/resource'
 
 const resource = {
   state: {},

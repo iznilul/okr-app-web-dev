@@ -123,5 +123,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../style/layout/ATag';
+@import '../../style/layout/aTag';
 </style>

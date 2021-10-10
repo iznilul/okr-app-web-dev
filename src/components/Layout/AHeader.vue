@@ -47,7 +47,7 @@ export default {
     }
   },
   mounted() {
-    this.getUserInfo()
+    this.getUser()
   },
   computed: {
     crumbs() {
@@ -61,9 +61,9 @@ export default {
     },
   },
   methods: {
-    getUserInfo() {
+    getUser() {
       this.$store
-        .dispatch('getUserInfo')
+        .dispatch('getUser')
         .then((res) => {
           console.log(res)
           const data = res
@@ -158,5 +158,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../style/layout/AHeader';
+@import '../../style/layout/aHeader';
 </style>

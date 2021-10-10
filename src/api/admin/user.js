@@ -9,14 +9,6 @@ export function addUser(data) {
   })
 }
 
-export function reloadRoleResource(data) {
-  return axios({
-    url: adminApi.reloadRoleResource,
-    method: 'get',
-    params: data,
-  })
-}
-
 export function cancelUser(data) {
   return axios({
     url: adminApi.cancelUser,

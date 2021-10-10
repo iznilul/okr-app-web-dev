@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import Verification from '../../components/util/Verification'
+import Verification from '../../components/Util/Verification'
 import particles from '../../../node_modules/particles.js/particles'
 import config from '../../config/particlesConfig'
 
@@ -176,6 +176,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../style/views/common/Login';
-@import '../../style/animation/Fade';
+@import '../../style/views/common/login';
+@import '../../style/animation/fade';
 </style>

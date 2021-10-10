@@ -1,4 +1,4 @@
-import { login } from '@/api/common/Login'
+import { login } from '@/api/common/login'
 import md5 from 'js-md5'
 const commonLogin = {
   state: {},

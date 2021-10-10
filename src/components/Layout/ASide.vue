@@ -132,5 +132,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../style/layout/ASide';
+@import '../../style/layout/aSide';
 </style>

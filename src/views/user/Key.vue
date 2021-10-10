@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import columns from '../../config/KeyColumn'
-import ModifyKey from '../../components/util/ModifyKey'
-import AddKey from '../../components/util/AddKey'
+import columns from '../../config/keyColumn'
+import ModifyKey from '../../components/Util/ModifyKey'
+import AddKey from '../../components/Util/AddKey'
 export default {
   name: 'key',
   components: { ModifyKey, AddKey },
@@ -134,5 +134,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/Key';
+@import '../../style/views/user/key';
 </style>
