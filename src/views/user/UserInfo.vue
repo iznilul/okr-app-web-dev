@@ -42,7 +42,7 @@
       <FormItem label="学习/研究方向">
         <Input :rows="rows" type="textarea" v-model="form.research" size="large"></Input>
       </FormItem>
-      <Button @click="modifyUserInfo" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
+      <Button @click="modifyUser" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
     </Form>
   </div>
 </template>
@@ -115,9 +115,9 @@ export default {
           console.log(error)
         })
     },
-    modifyUserInfo() {
+    modifyUser() {
       this.$store
-        .dispatch('modifyUserInfo', this.form)
+        .dispatch('modifyUser', this.form)
         .then((res) => {
           console.log(res)
           this.$store.commit('SET_USER', this.form)
@@ -135,5 +135,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/UserInfo';
+@import '../../style/views/user/userInfo';
 </style>

@@ -1,4 +1,4 @@
-import { httpActuator, monitorData, server } from '@/api/user/Monitor'
+import { httpActuator, server } from '@/api/user/monitor'
 
 const monitor = {
   state: {},

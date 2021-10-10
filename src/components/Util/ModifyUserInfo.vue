@@ -46,13 +46,13 @@ export default {
   methods: {
     handleSubmit() {
       this.$store
-        .dispatch('modifyUserInfo', this.form)
+        .dispatch('modifyUser', this.form)
         .then((res) => {
           // console.log(res)
           this.$Notice.success({
             desc: '更新成功',
           })
-          this.$emit('getUserInfoByCond', {})
+          this.$emit('getUserList', {})
         })
         .catch((error) => {
           console.log(error)
@@ -67,10 +67,10 @@ export default {
     show() {
       this.visible = true
     },
-    getUserInfo(username) {
+    getUser(username) {
       console.log(username)
       this.$store
-        .dispatch('getUserInfoByUsername', { username: username })
+        .dispatch('getUserByUsername', { username: username })
         .then((res) => {
           console.log(res)
           this.form.username = res.username
@@ -93,5 +93,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/util/ModifyModal';
+@import '../../style/util/modifyModal';
 </style>

@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/animation/Move';
-@import '../../style/theme/Theme';
-@import '../../style/layout/AContent';
+@import '../../style/animation/move';
+@import '../../style/theme/theme';
+@import '../../style/layout/aContent';
 </style>

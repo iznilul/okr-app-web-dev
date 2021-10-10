@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../style/layout/AFooter';
+@import '../../style/layout/aFooter';
 </style>

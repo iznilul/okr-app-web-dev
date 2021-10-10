@@ -1,15 +1,15 @@
 import {
-  getUserInfoByCond,
-  getUserInfo,
-  modifyUserInfo,
+  getUserList,
+  getUser,
+  modifyUser,
   modifyPassword,
-  getUserInfoByUsername,
+  getUserByUsername,
   changeUser,
   queryUser,
   queryUserByUsername,
   queryUserList,
   changePassword,
-} from '@/api/user/User'
+} from '@/api/user/user'
 import md5 from 'js-md5'
 
 const user = {
@@ -72,7 +72,7 @@ const user = {
     },
 
     //更新用户资料
-    modifyUserInfo({ commit }, userInfo) {
+    modifyUser({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         changeUser(userInfo)
           .then((response) => {
@@ -87,7 +87,7 @@ const user = {
       })
     },
 
-    getUserInfo({ commit }) {
+    getUser({ commit }) {
       return new Promise((resolve, reject) => {
         queryUser()
           .then((response) => {
@@ -103,7 +103,7 @@ const user = {
     },
 
     //根据用户名获取用户
-    getUserInfoByUsername({ commit }, param) {
+    getUserByUsername({ commit }, param) {
       return new Promise((resolve, reject) => {
         queryUserByUsername(param)
           .then((response) => {
@@ -119,7 +119,7 @@ const user = {
     },
 
     //根据条件获取用户
-    getUserInfoByCond({ commit }, cond) {
+    getUserList({ commit }, cond) {
       return new Promise((resolve, reject) => {
         queryUserList(cond)
           .then((response) => {

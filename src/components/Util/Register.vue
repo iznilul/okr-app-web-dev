@@ -1,6 +1,6 @@
 <template>
   <div id="register">
-    <Button @click="validate" :type="type">注册新用户</Button>
+    <Button @click="handleSubmit" :type="type">注册新用户</Button>
     <Modal id="registerModal" v-model="visible" title="注册新用户" @on-ok="handleSubmit('form')" @on-cancel="change">
       <Form ref="form" :lable-width="50" :model="form" :rules="rules">
         <form-item label="账号" prop="username">
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import resultEnum from '../../utils/enum/ResultEnum'
+
 export default {
   name: 'Register',
 
@@ -63,33 +65,11 @@ export default {
     },
   },
   methods: {
-    validate() {
-      this.$emit('validate', (val) => {
-        this.visible = val
-      })
-    },
-    handleSubmit(name) {
-      this.$refs[name].validate((valid) => {
-        if (valid) {
-          this.$store
-            .dispatch('register', this.form)
-            .then((res) => {
-              console.log(res)
-              this.$Notice.info({
-                title: '注册成功',
-              })
-              this.$emit('getUserInfoByCond', {})
-            })
-            .catch((error) => {
-              console.log(error)
-              this.$Notice.error({
-                desc: '注册失败',
-              })
-            })
-        } else {
-          this.$Message.error('注册失败,请按照正确的格式注册!')
-        }
-      })
+    handleSubmit() {
+      let valid = this.publicValidate()
+      if (valid) {
+        this.publicSendData('register', this.form, this.publicGetData('getUserList'))
+      }
     },
     change() {
       this.visible = false
@@ -99,5 +79,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/util/Register';
+@import '../../style/util/register';
 </style>

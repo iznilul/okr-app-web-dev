@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import resultEnum from '../../utils/ResultEnum'
+import resultEnum from '../../utils/enum/ResultEnum'
 import { queryLike } from '../../utils/queryLike'
 
 export default {
@@ -92,5 +92,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/util/ModifyModal';
+@import '../../style/util/modifyModal';
 </style>

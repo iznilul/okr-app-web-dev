@@ -7,7 +7,7 @@ export default function createRoutes(data) {
   //将主页组件加到路由表中
   result.push({
     path: '/',
-    component: () => import('../components/layout/Layout.vue'),
+    component: () => import('../components/Layout/Layout.vue'),
     children,
   })
   //路由优先级问题，输入一个url路径时，路由表会优先匹配commonroutes路由表，然后是刚刚加入的主页组件路由，最后是404页面

@@ -48,5 +48,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/util/ModifyModal';
+@import '../../style/util/modifyModal';
 </style>

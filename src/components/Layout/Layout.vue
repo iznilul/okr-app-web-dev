@@ -187,5 +187,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/layout/Layout';
+@import '../../style/layout/layout';
 </style>

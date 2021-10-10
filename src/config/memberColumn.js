@@ -84,7 +84,7 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 if (params.row.username === store.getters.username || store.getters.username === 'admin') {
-                  getUserInfo(params.row.username)
+                  getUser(params.row.username)
                   showModifyUserInfo()
                 } else {
                   vue.$Notice.error({

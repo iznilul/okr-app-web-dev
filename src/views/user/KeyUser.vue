@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import columns from '../../config/KeyUserColumn'
+import columns from '../../config/keyUserColumn'
 export default {
   name: 'keyUser',
   data() {
@@ -36,17 +36,7 @@ export default {
   },
   methods: {
     getKeyUser() {
-      this.$store
-        .dispatch('getKeyUser', this.form)
-        .then((res) => {
-          console.log(res)
-          this.publicPageReset(res.current)
-          this.dataCount = res.total
-          this.data = res.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      this.publicGetData('getKeyUser')
     },
     changePage(index) {
       this.publicChangePage(index, this.getKeyUser)
@@ -59,5 +49,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/KeyUser';
+@import '../../style/views/user/keyUser';
 </style>

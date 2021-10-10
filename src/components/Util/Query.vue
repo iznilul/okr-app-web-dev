@@ -42,7 +42,7 @@ export default {
   methods: {
     search() {
       this.$store
-        .dispatch('getUserInfoByCond', this.form)
+        .dispatch('getUserList', this.form)
         .then((res) => {
           console.log(res)
           // console.log(this.dataCount)

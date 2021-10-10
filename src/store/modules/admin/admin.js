@@ -1,4 +1,4 @@
-import { addUser, cancelUser } from '@/api/admin/User'
+import { addUser, cancelUser } from '@/api/admin/user'
 
 const user = {
   state: {},

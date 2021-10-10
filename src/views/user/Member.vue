@@ -1,7 +1,7 @@
 <template>
   <div id="member">
     <div class="query">
-      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="getUserInfoByCond">
+      <Form id="form" ref="form" :model="form" :label-width="50" @keyup.enter.native="getUserList">
         <FormItem label="账号" prop="username">
           <auto-complete
             clearable
@@ -32,10 +32,10 @@
         </FormItem>
       </Form>
     </div>
-    <Button id="button" @click="getUserInfoByCond" type="primary">查询</Button>
-    <Register @getUserInfoByCond="getUserInfoByCond" @validate="validate"></Register>
-    <reload-role-resource @validate="validate"></reload-role-resource>
-    <ModifyUserInfo ref="modifyUserInfo" @getUserInfoByCond="getUserInfoByCond"></ModifyUserInfo>
+    <Button id="button" @click="getUserList" type="primary">查询</Button>
+    <Register @getUserList="getUserList"></Register>
+    <reload-role-resource></reload-role-resource>
+    <ModifyUserInfo ref="modifyUser" @getUserList="getUserList"></ModifyUserInfo>
     <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <Page
       id="page"
@@ -52,11 +52,11 @@
 </template>
 
 <script>
-import Query from '../../components/util/Query'
-import Register from '../../components/util/Register'
-import ModifyUserInfo from '../../components/util/ModifyUserInfo'
-import ReloadRoleResource from '../../components/util/ReloadRoleResource'
-import columns from '../../config/MemberColumn'
+import Query from '../../components/Util/Query'
+import Register from '../../components/Util/Register'
+import ModifyUserInfo from '../../components/Util/ModifyUserInfo'
+import ReloadRoleResource from '../../components/Util/ReloadRoleResource'
+import columns from '../../config/memberColumn'
 import { queryLike } from '../../utils/queryLike'
 
 export default {
@@ -82,9 +82,9 @@ export default {
     }
   },
   mounted() {
-    this.getUserInfoByCond()
+    this.getUserList()
     window.showModifyUserInfo = this.showModifyUserInfo
-    window.getUserInfo = this.getUserInfo
+    window.getUser = this.getUser
     window.removeUserByUsername = this.removeUserByUsername
   },
   methods: {
@@ -104,43 +104,28 @@ export default {
           console.error(error)
         })
     },
-    getUserInfoByCond() {
+    getUserList() {
       this.$store
-        .dispatch('getUserInfoByCond', this.form)
+        .dispatch('getUserList', this.form)
         .then((res) => {
           console.log(res)
           this.pageReset(res.current)
           this.dataCount = res.total
           this.data = res.data
-          this.handleModifyReset('form')
+          this.publicResetForm('form')
         })
         .catch((error) => {
           console.log(error)
         })
     },
     removeUserByUsername(username) {
-      this.$store
-        .dispatch('removeUserByUsername', { username: username })
-        .then((res) => {
-          // console.log(res)
-          this.dataCount--
-          this.data.forEach((user) => {
-            if (user.username === username) {
-              console.log(user.username)
-              let index = this.data.indexOf(user)
-              this.data.splice(index, 1)
-            }
-          })
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      this.publicRemoveData('removeUserByUsername', { username: username }, 'username')
     },
 
     changePage(index) {
       this.form.index = index
       this.current = index
-      this.getUserInfoByCond(this.form)
+      this.getUserList(this.form)
     },
 
     changePageSize(pageSize) {
@@ -148,7 +133,7 @@ export default {
       this.current = 1
       this.form.index = 1
       this.form.pageSize = pageSize
-      this.getUserInfoByCond()
+      this.getUserList()
     },
 
     pageReset(current) {
@@ -156,30 +141,17 @@ export default {
       this.form.index = current
     },
 
-    handleModifyReset(name) {
-      this.$refs[name].resetFields()
-    },
-    validate(callback) {
-      if (this.$store.getters.username === 'admin') {
-        let res = true
-        callback(res)
-      } else {
-        this.$Notice.error({
-          title: '没有操作权限',
-        })
-      }
-    },
     showModifyUserInfo() {
-      this.$refs.modifyUserInfo.show()
+      this.$refs.modifyUser.show()
     },
-    getUserInfo(item) {
+    getUser(item) {
       // console.log(item)
-      this.$refs.modifyUserInfo.getUserInfo(item)
+      this.$refs.modifyUser.getUser(item)
     },
   },
 }
 </script>
 
 <style lang="less">
-@import '../../style/views/user/Member';
+@import '../../style/views/user/member';
 </style>

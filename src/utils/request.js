@@ -2,7 +2,7 @@ import axios from 'axios'
 import dfaultSettings from '@/config/defaultSettings'
 import { Notice } from 'view-design'
 import router from '@/router'
-import resultEnum from '@/utils/ResultEnum'
+import resultEnum from '@/utils/enum/ResultEnum'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
 

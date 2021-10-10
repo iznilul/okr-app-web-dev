@@ -1,4 +1,4 @@
-import { addKey, cancelKey, changeKey, queryKeyById } from '@/api/admin/Key'
+import { addKey, cancelKey, changeKey, queryKeyById } from '@/api/admin/key'
 
 const adminKey = {
   state: {},
