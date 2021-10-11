@@ -67,6 +67,9 @@ export default {
     show() {
       this.visible = true
     },
+    change() {
+      this.publicChangeVisible()
+    },
     getUser(username) {
       console.log(username)
       this.$store

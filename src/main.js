@@ -19,7 +19,8 @@ import publicRemoveData from '@/utils/public/publicRemoveData'
 import publicResetForm from '@/utils/public/publicResetForm'
 import publicValidate from '@/utils/public/publicValidate'
 import publicClickButton from '@/utils/public/publicClickButton'
-import publicSendData from '@/utils/public/publicSendData'
+import publicSendFrom from '@/utils/public/publicSendForm'
+import publicChangeVisible from '@/utils/public/publicChangeVisible'
 
 Vue.config.productionTip = false
 Vue.use(ViewUI)
@@ -33,7 +34,8 @@ Vue.use(publicRemoveData)
 Vue.use(publicResetForm)
 Vue.use(publicValidate)
 Vue.use(publicClickButton)
-Vue.use(publicSendData)
+Vue.use(publicSendFrom)
+Vue.use(publicChangeVisible)
 
 Vue.prototype.$echarts = echarts
 Vue.prototype.$axios = axios

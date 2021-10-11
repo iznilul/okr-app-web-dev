@@ -83,8 +83,7 @@ export default {
   },
   mounted() {
     this.getUserList()
-    window.showModifyUserInfo = this.showModifyUserInfo
-    window.getUser = this.getUser
+    window.showModal = this.showModal
     window.removeUserByUsername = this.removeUserByUsername
   },
   methods: {
@@ -105,44 +104,22 @@ export default {
         })
     },
     getUserList() {
-      this.$store
-        .dispatch('getUserList', this.form)
-        .then((res) => {
-          console.log(res)
-          this.pageReset(res.current)
-          this.dataCount = res.total
-          this.data = res.data
-          this.publicResetForm('form')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      this.publicGetData('getUserList')
     },
     removeUserByUsername(username) {
       this.publicRemoveData('removeUserByUsername', { username: username }, 'username')
     },
 
     changePage(index) {
-      this.form.index = index
-      this.current = index
-      this.getUserList(this.form)
+      this.publicChangePage(index, this.getUserList)
     },
 
     changePageSize(pageSize) {
-      // console.log(pageSize)
-      this.current = 1
-      this.form.index = 1
-      this.form.pageSize = pageSize
-      this.getUserList()
+      this.publicChangePageSize(pageSize, this.getUserList)
     },
 
-    pageReset(current) {
-      this.current = current
-      this.form.index = current
-    },
-
-    showModifyUserInfo() {
-      this.$refs.modifyUser.show()
+    showModal(ref) {
+      this.$refs[ref].change()
     },
     getUser(item) {
       // console.log(item)
