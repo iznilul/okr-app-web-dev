@@ -84,8 +84,8 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 if (params.row.username === store.getters.username || store.getters.username === 'admin') {
+                  showModal('modifyUser')
                   getUser(params.row.username)
-                  showModifyUserInfo()
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

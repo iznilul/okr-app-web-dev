@@ -1,7 +1,13 @@
 <template>
   <div id="register">
-    <Button @click="handleSubmit" :type="type">注册新用户</Button>
-    <Modal id="registerModal" v-model="visible" title="注册新用户" @on-ok="handleSubmit('form')" @on-cancel="change">
+    <Button @click="() => (this.visible = true)" :type="type">注册新用户</Button>
+    <Modal
+      id="registerModal"
+      v-model="visible"
+      title="注册新用户"
+      @on-ok="handleSubmit"
+      @on-cancel="() => (this.visible = false)"
+    >
       <Form ref="form" :lable-width="50" :model="form" :rules="rules">
         <form-item label="账号" prop="username">
           <Input v-model="form.username" placeholder="新用户的初始密码为账号"></Input>
@@ -17,8 +23,6 @@
 </template>
 
 <script>
-import resultEnum from '../../utils/enum/ResultEnum'
-
 export default {
   name: 'Register',
 
@@ -65,14 +69,21 @@ export default {
     },
   },
   methods: {
+    getUserList() {
+      this.$emit('getUserList', {})
+    },
     handleSubmit() {
       let valid = this.publicValidate()
       if (valid) {
-        this.publicSendData('register', this.form, this.publicGetData('getUserList'))
+        this.publicSendForm('register', this.form, 'getUserList')
+          .then((res) => {
+            console.log(res)
+            this.getUserList()
+          })
+          .catch((error) => {
+            console.log(error)
+          })
       }
-    },
-    change() {
-      this.visible = false
     },
   },
 }

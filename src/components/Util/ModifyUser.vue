@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: 'ModifyUserInfo',
+  name: 'ModifyUser',
   data() {
     return {
       visible: false,
@@ -43,50 +43,30 @@ export default {
       },
     }
   },
+  mounted() {
+    window.getUser = this.getUser
+  },
   methods: {
+    getUser(username) {
+      this.publicGetData('getUserByUsername', { username: username })
+    },
+
     handleSubmit() {
-      this.$store
-        .dispatch('modifyUser', this.form)
+      this.publicSendForm('modifyUser', this.form)
         .then((res) => {
-          // console.log(res)
-          this.$Notice.success({
-            desc: '更新成功',
-          })
           this.$emit('getUserList', {})
         })
         .catch((error) => {
           console.log(error)
-          this.$Notice.error({
-            desc: '注册失败',
-          })
         })
     },
+
     hidden() {
       this.visible = false
     },
+
     show() {
       this.visible = true
-    },
-    getUser(username) {
-      console.log(username)
-      this.$store
-        .dispatch('getUserByUsername', { username: username })
-        .then((res) => {
-          console.log(res)
-          this.form.username = res.username
-          this.form.name = res.name
-          this.form.major = res.major
-          this.form.qq = res.qq
-          this.form.phone = res.phone
-          this.form.weixin = res.weixin
-          this.form.research = res.research
-        })
-        .catch((error) => {
-          console.error(error)
-          this.$Notice.error({
-            desc: '获取用户数据失败',
-          })
-        })
     },
   },
 }

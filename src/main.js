@@ -14,12 +14,15 @@ import * as echarts from 'echarts'
 import publicPageReset from '@/utils/public/publicPageReset'
 import publicChangePageSize from '@/utils/public/publicChangePageSize'
 import publicChangePage from '@/utils/public/publicChangePage'
-import publicGetData from '@/utils/public/publicGetData'
+import publicGetForm from '@/utils/public/publicGetForm'
 import publicRemoveData from '@/utils/public/publicRemoveData'
 import publicResetForm from '@/utils/public/publicResetForm'
 import publicValidate from '@/utils/public/publicValidate'
 import publicClickButton from '@/utils/public/publicClickButton'
-import publicSendData from '@/utils/public/publicSendData'
+import publicSendFrom from '@/utils/public/publicSendForm'
+import publicChangeVisible from '@/utils/public/publicChangeVisible'
+import publicGetData from '@/utils/public/publicGetData'
+import publicGetLike from '@/utils/public/publicGetLike'
 
 Vue.config.productionTip = false
 Vue.use(ViewUI)
@@ -28,12 +31,15 @@ Vue.use(VueParticles)
 Vue.use(publicPageReset)
 Vue.use(publicChangePageSize)
 Vue.use(publicChangePage)
+Vue.use(publicGetForm)
 Vue.use(publicGetData)
+Vue.use(publicGetLike)
 Vue.use(publicRemoveData)
 Vue.use(publicResetForm)
 Vue.use(publicValidate)
 Vue.use(publicClickButton)
-Vue.use(publicSendData)
+Vue.use(publicSendFrom)
+Vue.use(publicChangeVisible)
 
 Vue.prototype.$echarts = echarts
 Vue.prototype.$axios = axios

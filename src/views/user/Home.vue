@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { monitorData } from '../../api/user/user'
 import Cpu from '../../components/Charts/Cpu'
 import Mem from '../../components/Charts/Mem'
 import Jvm from '../../components/Charts/Jvm'
 import SysFiles from '../../components/Charts/SysFiles'
 import ServerInfo from '../../components/Charts/ServerInfo'
 import ApiCount from '../../components/Charts/ApiCount'
+
 export default {
   name: 'Home',
   data() {

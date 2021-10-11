@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getKeyUser() {
-      this.publicGetData('getKeyUser')
+      this.publicGetForm('getKeyUser')
     },
     changePage(index) {
       this.publicChangePage(index, this.getKeyUser)
