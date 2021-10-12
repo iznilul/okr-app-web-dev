@@ -5,35 +5,38 @@
         <FormItem label="账号" prop="username">
           <auto-input
             :param="form.username"
-            :placeholder="usernameHolder"
-            :dispatch="usernameDispatch"
-            @changeParam="changeParam('username')"
+            item="username"
+            placeholder="请输入查询账号"
+            dispatch="getLikeUsername"
+            @recvParam="recvParam"
           >
           </auto-input>
         </FormItem>
         <FormItem label="姓名" prop="name">
           <auto-input
             :param="form.name"
-            :placeholder="nameHolder"
-            :dispatch="nameDispatch"
-            @changeParam="changeParam('name')"
+            item="name"
+            placeholder="请输入查询姓名"
+            dispatch="getLikeName"
+            @recvParam="recvParam"
           >
           </auto-input>
         </FormItem>
         <FormItem label="专业班级" prop="major" :label-width="80">
           <auto-input
             :param="form.major"
-            :placeholder="majorHolder"
-            :dispatch="majorDispatch"
-            @changeParam="changeParam('major')"
+            item="major"
+            placeholder="请输入查询专业"
+            dispatch="getLikeMajor"
+            @recvParam="recvParam"
           >
           </auto-input>
         </FormItem>
       </Form>
     </div>
     <Button id="button" @click="getUserList" type="primary">查询</Button>
+    <Reset @reset="reset"></Reset>
     <Register @getUserList="getUserList"></Register>
-    <reload-role-resource></reload-role-resource>
     <ModifyUser ref="modifyUser" @getUserList="getUserList"></ModifyUser>
     <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <Page
@@ -55,23 +58,17 @@ import Query from '../../components/Util/Query'
 import Register from '../../components/Util/Register'
 import ModifyUser from '../../components/Util/ModifyUser'
 import AutoInput from '../../components/Util/AutoInput'
-import ReloadRoleResource from '../../components/Util/ReloadRoleResource'
+import Reset from '../../components/Util/Reset'
 import columns from '../../config/memberColumn'
 
 export default {
   name: 'member',
-  components: { Register, Query, ModifyUser, ReloadRoleResource, AutoInput },
+  components: { Register, Query, ModifyUser, AutoInput, Reset },
   props: {},
   data() {
     return {
       columns: columns,
       data: [],
-      usernameHolder: '请输入查询账号',
-      usernameDispatch: 'getLikeUsername',
-      nameHolder: '请输入查询姓名',
-      nameDispatch: 'getLikeName',
-      majorHolder: '请输入查询专业',
-      majorDispatch: 'getLikeMajor',
       dataCount: 0,
       current: 1,
       form: {
@@ -89,10 +86,15 @@ export default {
     window.removeUserByUsername = this.removeUserByUsername
   },
   methods: {
-    changeParam(param) {
-      console.log(param)
-      this.form[param] = param
-      console.log(this.form)
+    recvParam(item, val) {
+      this.form[item] = val
+    },
+
+    reset() {
+      this.form.username = ''
+      this.form.name = ''
+      this.form.major = ''
+      this.getUserList()
     },
 
     getUserList() {

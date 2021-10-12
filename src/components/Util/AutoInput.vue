@@ -1,9 +1,10 @@
 <template>
   <auto-complete
     clearable
-    v-model="queryParam"
+    v-model="value"
     :data="data"
-    @on-search="getData(dispatch, { param: queryParam })"
+    @on-search="getData(dispatch, { param: value })"
+    @on-change="sendParam"
     :placeholder="placeholder"
   ></auto-complete>
 </template>
@@ -14,12 +15,24 @@ export default {
   data() {
     return {
       data: [],
-      queryParam: this.param,
+      value: this.param,
     }
+  },
+  watch: {
+    param() {
+      this.value = this.param
+    },
   },
   props: {
     param: {
-      require: false,
+      require: true,
+      type: String,
+      default() {
+        return ''
+      },
+    },
+    item: {
+      require: true,
       type: String,
       default() {
         return ''
@@ -40,13 +53,13 @@ export default {
       },
     },
   },
-  model: {
-    prop: 'param',
-    event: 'changeParam',
-  },
   methods: {
     getData(method, param) {
       this.publicGetData(method, param)
+    },
+    sendParam(val) {
+      // console.log(val)
+      this.$emit('recvParam', this.item, val)
     },
   },
 }
