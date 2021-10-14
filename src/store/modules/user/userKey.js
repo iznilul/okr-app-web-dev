@@ -6,7 +6,7 @@ const userKey = {
   mutations: {},
 
   actions: {
-    getKey({ commit }, data) {
+    getKeyList({ commit }, data) {
       return new Promise((resolve, reject) => {
         queryKey(data)
           .then((response) => {

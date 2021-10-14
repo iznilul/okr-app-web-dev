@@ -75,7 +75,7 @@ export default {
     handleSubmit() {
       let valid = this.publicValidate()
       if (valid) {
-        this.publicSendForm('register', this.form, 'getUserList')
+        this.publicSend('register', this.form, 'getUserList')
           .then((res) => {
             console.log(res)
             this.getUserList()

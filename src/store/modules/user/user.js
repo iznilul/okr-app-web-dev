@@ -1,15 +1,4 @@
-import {
-  getUserList,
-  getUser,
-  modifyUser,
-  modifyPassword,
-  getUserByUsername,
-  changeUser,
-  queryUser,
-  queryUserByUsername,
-  queryUserList,
-  changePassword,
-} from '@/api/user/user'
+import { changePassword, changeUser, queryUser, queryUserByUsername, queryUserList } from '@/api/user/user'
 import md5 from 'js-md5'
 
 const user = {

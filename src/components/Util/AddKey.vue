@@ -28,7 +28,7 @@ export default {
           this.$Notice.success({
             desc: '添加成功',
           })
-          this.$emit('getKey', {})
+          this.$emit('getKeyList', {})
         })
         .catch((error) => {
           console.log(error)

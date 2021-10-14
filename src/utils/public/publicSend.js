@@ -2,7 +2,7 @@ import resultEnum from '@/utils/enum/ResultEnum'
 
 export default {
   install(Vue) {
-    Vue.prototype.publicSendForm = function (method, param) {
+    Vue.prototype.publicSend = function (method, param) {
       return new Promise((resolve, reject) => {
         this.$store
           .dispatch(method, param)

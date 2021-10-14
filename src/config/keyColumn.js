@@ -110,8 +110,8 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 if (store.getters.username === 'admin') {
+                  showModal('modifyKey')
                   getKeyById(params.row.keyId)
-                  showModifyKey()
                 } else {
                   vue.$Notice.error({
                     title: '没有操作权限',

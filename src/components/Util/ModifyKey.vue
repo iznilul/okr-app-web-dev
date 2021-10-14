@@ -8,28 +8,27 @@
         <Input v-model="form.keyName"></Input>
       </form-item>
       <form-item label="状态" prop="statusName">
-        <auto-complete
-          clearable
-          v-model="form.statusName"
-          :data="statusNameData"
-          @on-search="getLike('Key')"
-          placeholder="请输入钥匙状态"
-        ></auto-complete>
+        <auto-input
+          :param="form.statusName"
+          item="statusName"
+          placeholder="请输入查询状态名"
+          dispatch="getLikeKey"
+          @recvParam="recvParam"
+        ></auto-input>
       </form-item>
     </Form>
   </Modal>
 </template>
 
 <script>
-import resultEnum from '../../utils/enum/ResultEnum'
-import { queryLike } from '../../utils/queryLike'
+import AutoInput from './AutoInput'
 
 export default {
   name: 'ModifyKey',
+  components: { AutoInput },
   data() {
     return {
       visible: false,
-      statusNameData: [],
       form: {
         keyId: '',
         keyName: '',
@@ -37,32 +36,20 @@ export default {
       },
     }
   },
+  mounted() {
+    window.getKeyById = this.getKeyById
+  },
   methods: {
+    recvParam(item, val) {
+      this.form[item] = val
+    },
     handleSubmit() {
-      this.$store
-        .dispatch('modifyKey', this.form)
+      this.publicSend('modifyKey', this.form)
         .then((res) => {
-          // console.log(res)
-          this.$Notice.success({
-            desc: resultEnum.SUCCESS.desc,
-          })
-          this.$emit('getKey', {})
+          this.$emit('getKeyList')
         })
         .catch((error) => {
           console.log(error)
-          this.$Notice.error({
-            desc: resultEnum.FAIL.desc,
-          })
-        })
-    },
-    getLike(pattern) {
-      queryLike(pattern)
-        .then((res) => {
-          console.log(res)
-          this.statusNameData = res
-        })
-        .catch((error) => {
-          console.error(error)
         })
     },
     hidden() {
@@ -72,19 +59,12 @@ export default {
       this.visible = true
     },
     getKeyById(keyId) {
-      this.$store
-        .dispatch('getKeyById', { keyId: keyId })
+      this.publicGetData('getKeyById', { keyId: keyId })
         .then((res) => {
-          console.log(res)
-          this.form.keyId = res.keyId
-          this.form.keyName = res.keyName
-          this.form.statusName = res.statusName
+          this.form = res
         })
         .catch((error) => {
-          console.error(error)
-          this.$Notice.error({
-            desc: '获取钥匙信息失败',
-          })
+          console.log(error)
         })
     },
   },

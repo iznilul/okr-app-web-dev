@@ -1,7 +1,7 @@
 export default {
   install(Vue) {
-    Vue.prototype.publicChangeVisible = function (ref) {
-      this.$refs.modifyUser.show()
+    Vue.prototype.publicShowModal = function (ref) {
+      this.$refs[ref].show()
     }
   },
 }

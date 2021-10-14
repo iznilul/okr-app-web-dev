@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     getData(method, param) {
-      this.publicGetData(method, param)
+      this.publicGetData(method, param, this.data)
     },
     sendParam(val) {
       // console.log(val)

@@ -1,9 +1,9 @@
 <template>
   <div id="key">
-    <Button id="button" @click="showAddKey" type="primary">添加钥匙</Button>
+    <Button id="button" @click="showModal('addKey')" type="primary">添加钥匙</Button>
     <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
-    <add-key ref="addKey" @getKey="getKey"></add-key>
-    <modify-key ref="modifyKey" @getKey="getKey"></modify-key>
+    <add-key ref="addKey" @getKeyList="getKeyList"></add-key>
+    <modify-key ref="modifyKey" @getKeyList="getKeyList"></modify-key>
     <Page
       id="page"
       :total="dataCount"
@@ -38,50 +38,26 @@ export default {
     }
   },
   mounted() {
-    this.getKey()
-    window.showModifyKey = this.showModifyKey
-    window.getKeyById = this.getKeyById
+    this.getKeyList()
+    window.showModal = this.showModal
     window.removeKey = this.removeKey
     window.borrowKey = this.borrowKey
     window.returnKey = this.returnKey
   },
   methods: {
-    getKey() {
-      this.$store
-        .dispatch('getKey', this.form)
-        .then((res) => {
-          console.log(res)
-          this.pageReset(res.current)
-          this.dataCount = res.total
-          this.data = res.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+    getKeyList() {
+      this.publicGetForm('getKeyList')
     },
+
     removeKey(keyId) {
-      this.$store
-        .dispatch('removeKey', { keyId: keyId })
-        .then((res) => {
-          // console.log(res)
-          this.data.forEach((key) => {
-            if (key.keyId === keyId) {
-              console.log(key.keyId)
-              let index = this.data.indexOf(key)
-              this.data.splice(index, 1)
-            }
-          })
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      this.publicRemoveData('removeKey', { keyId: keyId }, this.getKeyList)
     },
+
     borrowKey(keyId) {
-      this.$store
-        .dispatch('borrowKey', { keyId: keyId })
+      this.publicSend('borrowKey', { keyId: keyId })
         .then((res) => {
-          console.log(res)
-          this.getKey()
+          console.log(keyId)
+          this.getKeyList()
         })
         .catch((error) => {
           console.log(error)
@@ -89,11 +65,9 @@ export default {
     },
 
     returnKey(keyId) {
-      this.$store
-        .dispatch('returnKey', { keyId: keyId })
+      this.publicSend('returnKey', { keyId: keyId })
         .then((res) => {
-          console.log(res)
-          this.getKey()
+          this.getKeyList()
         })
         .catch((error) => {
           console.log(error)
@@ -101,33 +75,14 @@ export default {
     },
 
     changePage(index) {
-      this.form.index = index
-      this.current = index
-      this.getKey(this.form)
+      this.publicChangePage(index, this.getKeyUser)
     },
-
     changePageSize(pageSize) {
-      // console.log(pageSize)
-      this.current = 1
-      this.form.index = 1
-      this.form.pageSize = pageSize
-      this.getKey()
+      this.publicChangePageSize(pageSize, this.getKeyUser)
     },
 
-    pageReset(current) {
-      this.current = current
-      this.form.index = current
-    },
-
-    showModifyKey() {
-      this.$refs.modifyKey.show()
-    },
-    showAddKey() {
-      this.$refs.addKey.show()
-    },
-    getKeyById(item) {
-      // console.log(item)
-      this.$refs.modifyKey.getKeyById(item)
+    showModal(ref) {
+      this.publicShowModal(ref)
     },
   },
 }

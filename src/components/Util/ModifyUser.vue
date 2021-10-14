@@ -49,10 +49,16 @@ export default {
   methods: {
     getUser(username) {
       this.publicGetData('getUserByUsername', { username: username })
+        .then((res) => {
+          this.form = res
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     },
 
     handleSubmit() {
-      this.publicSendForm('modifyUser', this.form)
+      this.publicSend('modifyUser', this.form)
         .then((res) => {
           this.$emit('getUserList', {})
         })

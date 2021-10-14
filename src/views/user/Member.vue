@@ -114,7 +114,7 @@ export default {
     },
 
     showModal(ref) {
-      this.$refs[ref].show()
+      this.publicShowModal(ref)
     },
   },
 }
