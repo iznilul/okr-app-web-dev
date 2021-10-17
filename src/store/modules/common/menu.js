@@ -76,10 +76,10 @@ const menu = {
         type: 'ios-lock',
         children: [
           {
-            name: 'loginlog',
+            name: 'sysrecord',
             size: 18,
             type: 'ios-time',
-            text: '成员操作记录',
+            text: '操作记录',
             // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
             // hidden: true,
           },

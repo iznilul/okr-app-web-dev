@@ -22,7 +22,7 @@ const columns = [
         h(
           'Tag',
           {
-            attrs: {
+            props: {
               color: color,
               size: 'large',
             },
@@ -50,7 +50,7 @@ const columns = [
           h(
             'Button',
             {
-              attrs: {
+              props: {
                 type: 'primary',
               },
               style: {
@@ -72,7 +72,7 @@ const columns = [
           h(
             'Button',
             {
-              attrs: {
+              props: {
                 type: 'primary',
               },
               style: {
@@ -98,25 +98,23 @@ const columns = [
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)
-      let type = store.getters.type
+      let disabled = store.getters.disabled
       return [
         h(
           'Button',
           {
-            attrs: {
-              type: type,
+            props: {
+              disabled: disabled,
+              type: 'primary',
+            },
+            style: {
+              'background-color': disabled ? store.getters.buttonColor : '',
             },
             on: {
               click: () => {
                 // console.log(params.row.username)
-                if (store.getters.username === 'admin') {
-                  showModal('modifyKey')
-                  getKeyById(params.row.keyId)
-                } else {
-                  vue.$Notice.error({
-                    title: '没有操作权限',
-                  })
-                }
+                showModal('modifyKey')
+                getKeyById(params.row.keyId)
               },
             },
           },
@@ -125,23 +123,19 @@ const columns = [
         h(
           'Button',
           {
-            attrs: {
-              type: type,
+            props: {
+              disabled: disabled,
+              type: 'warning',
             },
             style: {
               position: 'relative',
               left: '10px',
+              'background-color': disabled ? store.getters.buttonColor : '',
             },
             on: {
               click: () => {
                 // console.log(params.row.username)
-                if (store.getters.username === 'admin') {
-                  handleConfirm(removeKey, params.row.keyId)
-                } else {
-                  vue.$Notice.error({
-                    title: '没有操作权限',
-                  })
-                }
+                handleConfirm(removeKey, params.row.keyId)
               },
             },
           },

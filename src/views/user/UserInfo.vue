@@ -3,9 +3,9 @@
     <Avatar id="avatar" :src="avatar" shape="square" icon="ios-person" size="150" />
     <Upload
       :headers="uploadHeader"
-      :on-success="handleSuccess"
       :format="['jpg', 'jpeg', 'png']"
       :max-size="1024"
+      :on-success="handleSuccess"
       :on-format-error="handleFormatError"
       :on-exceeded-size="handleMaxSize"
       :action="uploadUrl"
@@ -91,44 +91,38 @@ export default {
       this.$store.commit('SET_AVATAR', res.data)
     },
     handleFormatError(file) {
-      this.$Notice.warning({
-        title: '文件格式不对',
+      this.$Notice.error({
         desc: file.name + ' 文件格式不符合要求，请选择jpg或png格式文件',
       })
     },
     handleMaxSize(file) {
-      this.$Notice.warning({
-        title: '文件太大',
+      this.$Notice.error({
         desc: file.name + '太大了， 请上传1M以内的文件.',
       })
     },
     modifyPassword() {
-      this.$store
-        .dispatch('modifyPassword', this.modify)
+      // console.log('modify', modify)
+      this.publicSend('modifyPassword', this.modify)
         .then((res) => {
           console.log(res)
-          this.$Message.success('密码修改完成')
-          this.handleModifyReset('modify')
         })
         .catch((error) => {
-          this.handleModifyReset('modify')
           console.log(error)
         })
+      this.handleModifyReset('modify')
     },
     modifyUser() {
-      this.$store
-        .dispatch('modifyUser', this.form)
+      this.publicSend('modifyUser', this.form)
         .then((res) => {
           console.log(res)
           this.$store.commit('SET_USER', this.form)
-          this.$Message.success(res.msg)
         })
         .catch((error) => {
           console.log(error)
         })
     },
-    handleModifyReset(name) {
-      this.$refs[name].resetFields()
+    handleModifyReset(ref) {
+      this.publicResetForm(ref)
     },
   },
 }

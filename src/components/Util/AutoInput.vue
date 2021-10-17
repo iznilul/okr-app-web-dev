@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import debounce from '../../utils/debounce'
 export default {
   name: 'AutoInput',
   data() {
@@ -55,7 +56,15 @@ export default {
   },
   methods: {
     getData(method, param) {
-      this.publicGetData(method, param, this.data)
+      debounce(() => {
+        this.publicGetData(method, param)
+          .then((res) => {
+            this.data = res
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }, 800)
     },
     sendParam(val) {
       // console.log(val)

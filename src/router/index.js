@@ -78,11 +78,11 @@ export const asyncRoutes = {
     meta: { title: '报名管理' },
     component: () => import('../views/admin/SignUp.vue'),
   },
-  loginlog: {
-    path: 'loginlog',
-    name: 'loginlog',
-    meta: { title: '成员操作记录' },
-    component: () => import('../views/admin/LoginLog.vue'),
+  sysrecord: {
+    path: 'sysrecord',
+    name: 'sysrecord',
+    meta: { title: '操作记录' },
+    component: () => import('../views/admin/SysRecord.vue'),
   },
   syslog: {
     path: 'syslog',

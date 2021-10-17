@@ -125,6 +125,7 @@ const user = {
 
     //修改密码
     modifyPassword({ commit }, modifyInfo) {
+      // console.log('modifyInfo:', modifyInfo)
       modifyInfo.oldPassword = md5(modifyInfo.oldPassword)
       modifyInfo.newPassword = md5(modifyInfo.newPassword)
       return new Promise((resolve, reject) => {

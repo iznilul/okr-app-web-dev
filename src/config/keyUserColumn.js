@@ -26,7 +26,7 @@ const columns = [
         h(
           'Tag',
           {
-            attrs: {
+            props: {
               color: color,
               size: 'large',
             },

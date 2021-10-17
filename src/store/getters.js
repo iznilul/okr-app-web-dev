@@ -18,7 +18,9 @@ const getters = {
   phone: (state) => state.user.phone,
   weixin: (state) => state.user.weixin,
   research: (state) => state.user.research,
-  type: (state) => (state.user.username === 'admin' ? 'primary' : 'warning'),
+  // type: (state) => (state.user.username === 'admin' ? 'primary' : 'warning'),
+  disabled: (state) => state.user.username !== 'admin',
+  buttonColor: () => 'rgba(65,60,67,0.61)',
 }
 
 export default getters

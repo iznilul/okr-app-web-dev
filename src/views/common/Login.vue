@@ -2,7 +2,7 @@
   <div id="login">
     <div id="title">
       <transition appear name="fade">
-        <span>SDUT SOFTLAB/ITLAB管理系统</span>
+        <span>SDUT SOFTLAB管理系统</span>
       </transition>
     </div>
 

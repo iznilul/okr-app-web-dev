@@ -22,7 +22,6 @@ import publicClickButton from '@/utils/public/publicClickButton'
 import publicSend from '@/utils/public/publicSend'
 import publicChangeVisible from '@/utils/public/publicChangeVisible'
 import publicGetData from '@/utils/public/publicGetData'
-import publicGetLike from '@/utils/public/publicGetLike'
 import publicShowModal from '@/utils/public/publicShowModal'
 
 Vue.config.productionTip = false
@@ -34,7 +33,6 @@ Vue.use(publicChangePageSize)
 Vue.use(publicChangePage)
 Vue.use(publicGetForm)
 Vue.use(publicGetData)
-Vue.use(publicGetLike)
 Vue.use(publicRemoveData)
 Vue.use(publicResetForm)
 Vue.use(publicValidate)
