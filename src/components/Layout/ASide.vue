@@ -20,17 +20,16 @@
     >
       <!-- 动态菜单 -->
       <div v-for="(item, index) in menuItems" :key="index">
-        <!--                    判断item是不是子菜单，是的话遍历展示-->
         <Submenu :class="isShowAsideTitle ? '' : 'shrink'" v-if="item.children" :name="index">
           <template slot="title">
-            <Icon :size="item.size" :type="item.type" />
-            <span v-show="isShowAsideTitle">{{ item.text }}</span>
+            <Icon :size="item.meta.size" :type="item.meta.type" />
+            <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
           </template>
           <div v-for="(subItem, i) in item.children" :key="index + i">
             <template>
               <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.name">
-                <Icon :size="subItem.size" :type="subItem.type" />
-                <span v-show="isShowAsideTitle">{{ subItem.text }}</span>
+                <Icon :size="subItem.meta.size" :type="subItem.meta.type" />
+                <span v-show="isShowAsideTitle">{{ subItem.meta.text }}</span>
               </MenuItem>
             </template>
           </div>
@@ -39,13 +38,13 @@
           <!--                        判断是不是外部链接-->
           <a :href="item.url" v-if="item.isExternal" target="_blank" class="external">
             <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="'external-link-' + index">
-              <Icon :size="item.size" :type="item.type" />
-              <span v-show="isShowAsideTitle">{{ item.text }}</span>
+              <Icon :size="item.meta.size" :type="item.meta.type" />
+              <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
             </MenuItem>
           </a>
           <MenuItem v-else :class="isShowAsideTitle ? '' : 'shrink'" :name="item.name">
-            <Icon :size="item.size" :type="item.type" />
-            <span v-show="isShowAsideTitle">{{ item.text }}</span>
+            <Icon :size="item.meta.size" :type="item.meta.type" />
+            <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
           </MenuItem>
         </template>
       </div>
@@ -84,7 +83,7 @@ export default {
   methods: {
     // 选择菜单回调函数
     selectMenuCallback(name) {
-      // console.log(name)
+      console.log(name)
 
       if (name.includes('external-link')) return
       this.$emit('gotoPage', name)
