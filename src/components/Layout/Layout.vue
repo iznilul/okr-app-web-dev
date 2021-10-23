@@ -110,12 +110,12 @@ export default {
     },
     processNameToTitle(obj, data, text) {
       if (data.name) {
-        obj[data.name] = data.text
-        this.paths[data.name] = text ? `${text} / ${data.text}` : data.text
+        obj[data.name] = data.meta.text
+        this.paths[data.name] = text ? `${text} / ${data.meta.text}` : data.meta.text
       }
       if (data.children) {
         data.children.forEach((e) => {
-          this.processNameToTitle(obj, e, text ? `${text} / ${data.text}` : data.text)
+          this.processNameToTitle(obj, e, text ? `${text} / ${data.meta.text}` : data.meta.text)
         })
       }
     },

@@ -23,86 +23,172 @@ const commonRoutes = [
 ]
 
 // 本地所有的页面 需要配合后台返回的数据生成页面
-export const asyncRoutes = {
-  home: {
+export const asyncRoutes = [
+  {
+    name: 'home', // 要跳转的路由名称 不是路径
     path: 'home',
-    name: 'home',
-    meta: { title: '主页' },
-    component: () => import('../views/user/Home.vue'),
+    meta: {
+      text: '主页',
+      type: 'md-home',
+      size: 18, // icon大小
+    },
+    component: () => import('@/views/user/Home.vue'),
   },
-  member: {
-    path: 'member',
-    name: 'member',
-    meta: { title: '成员管理' },
-    component: () => import('../views/user/Member.vue'),
-  },
-  okr: {
-    path: 'okr', // 点击侧边栏跳到一个单独的路由页面，需要定义，层级和其他顶级路由一样
-    name: 'okr',
-    meta: { title: 'okr系统' },
-    component: () => import('../views/user/Okr.vue'),
-  },
-  key: {
-    path: 'key',
-    name: 'key',
-    meta: { title: '钥匙管理' },
-    component: () => import('../views/user/Key.vue'),
-  },
-  keyuser: {
-    path: 'keyuser',
-    name: 'keyuser',
-    meta: { title: '钥匙管理' },
-    component: () => import('../views/user/KeyUser.vue'),
-  },
-  book: {
-    path: 'book',
-    name: 'book',
-    meta: { title: '书籍列表' },
-    component: () => import('../views/user/Book.vue'),
-  },
-  bookuser: {
-    path: 'bookuser',
-    name: 'bookuser',
-    meta: { title: '书籍借阅记录' },
-    component: () => import('../views/user/BookUser.vue'),
-  },
-  userinfo: {
+  {
     path: 'userinfo',
     name: 'userinfo',
-    meta: { title: '用户信息' },
-    component: () => import('../views/user/UserInfo.vue'),
+    size: 18,
+    meta: {
+      type: 'ios-time',
+      text: '用户信息',
+    },
+    component: () => import('@/views/user/UserInfo.vue'),
   },
-  signup: {
-    path: 'signup',
-    name: 'signup',
-    meta: { title: '报名管理' },
-    component: () => import('../views/admin/SignUp.vue'),
+  {
+    name: 'member', // 要跳转的路由名称 不是路径
+    path: 'member',
+    size: 18, // icon大小
+    meta: {
+      type: 'md-person', // icon类型
+      text: '成员管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+    },
+    component: () => import('@/views/user/Member.vue'),
   },
-  sysrecord: {
-    path: 'sysrecord',
-    name: 'sysrecord',
-    meta: { title: '操作记录' },
-    component: () => import('../views/admin/SysRecord.vue'),
+  {
+    meta: {
+      text: '书籍管理',
+      type: 'ios-book-outline',
+    },
+    children: [
+      {
+        size: 18, // icon大小
+        path: 'book',
+        name: 'book',
+        meta: {
+          type: 'ios-book',
+          text: '书籍列表',
+        },
+        component: () => import('@/views/user/Book.vue'),
+      },
+      {
+        path: 'bookuser',
+        name: 'bookuser',
+        meta: {
+          type: 'md-book',
+          text: '书籍借阅记录',
+        },
+        component: () => import('@/views/user/BookUser.vue'),
+        size: 18, // icon大小
+      },
+    ],
   },
-  syslog: {
-    path: 'syslog',
-    name: 'syslog',
-    meta: { title: '系统日志' },
-    component: () => import('../views/admin/Syslog.vue'),
+  {
+    meta: {
+      text: '钥匙管理',
+      type: 'ios-key-outline',
+    },
+    children: [
+      {
+        name: 'key', // 要跳转的路由名称 不是路径
+        path: 'key',
+        size: 18, // icon大小
+        meta: {
+          type: 'ios-key', // icon类型
+          text: '钥匙列表', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/user/Key.vue'),
+      },
+      {
+        name: 'keyuser', // 要跳转的路由名称 不是路径
+        path: 'keyuser',
+        size: 18, // icon大小
+        meta: {
+          type: 'md-key', // icon类型
+          text: '钥匙流动记录', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/user/KeyUser.vue'),
+      },
+    ],
   },
-  resource: {
-    path: 'resource',
-    name: 'resource',
-    meta: { title: '资源接口管理' },
-    component: () => import('../views/admin/Resource.vue'),
+  {
+    meta: {
+      text: 'okr管理',
+      type: 'ios-egg-outline',
+    },
+    children: [
+      {
+        name: 'okr', // 要跳转的路由名称 不是路径
+        path: 'okr',
+        size: 18, // icon大小
+        meta: {
+          type: 'ios-egg-outline', // icon类型
+          text: 'okr管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/user/Okr.vue'),
+      },
+    ],
   },
-  tag: {
-    path: 'tag',
-    name: 'tag',
-    meta: { title: '标签管理' },
-    component: () => import('../views/admin/Tag.vue'),
+  {
+    meta: {
+      text: '管理员菜单',
+      type: 'ios-lock',
+    },
+    children: [
+      {
+        name: 'sysrecord',
+        path: 'sysrecord',
+        size: 18,
+        meta: {
+          type: 'ios-time',
+          text: '操作记录',
+        },
+        component: () => import('@/views/admin/SysRecord.vue'),
+        // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
+        // hidden: true,
+      },
+      {
+        name: 'syslog', // 要跳转的路由名称 不是路径
+        path: 'syslog',
+        size: 18, // icon大小
+        meta: {
+          type: 'md-list-box', // icon类型
+          text: '系统日志', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/admin/Syslog.vue'),
+      },
+      {
+        name: 'signup', // 要跳转的路由名称 不是路径
+        path: 'signup',
+        size: 18, // icon大小
+        meta: {
+          type: 'md-bookmark', // icon类型
+          text: '报名信息管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/admin/SignUp.vue'),
+      },
+      {
+        name: 'resource', // 要跳转的路由名称 不是路径
+        path: 'resource',
+        size: 18, // icon大小
+        meta: {
+          type: 'logo-buffer', // icon类型
+          text: '资源接口管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/admin/Resource.vue'),
+      },
+      {
+        name: 'tag', // 要跳转的路由名称 不是路径
+        path: 'tag',
+        size: 18, // icon大小
+        meta: {
+          type: 'md-card', // icon类型
+          text: '标签管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
+        },
+        component: () => import('@/views/admin/Tag.vue'),
+      },
+    ],
   },
-}
+]
 
 const createRouter = () =>
   new Router({
@@ -118,3 +204,84 @@ export function resetRouter() {
 }
 
 export default router
+
+// export const asyncRoutes = {
+//     home: {
+//         path: 'home',
+//         name: 'home',
+//         meta: { title: '主页' },
+//         component: () => import('../views/user/Home.vue'),
+//     },
+//     member: {
+//         path: 'member',
+//         name: 'member',
+//         meta: { title: '成员管理' },
+//         component: () => import('../views/user/Member.vue'),
+//     },
+//     okr: {
+//         path: 'okr', // 点击侧边栏跳到一个单独的路由页面，需要定义，层级和其他顶级路由一样
+//         name: 'okr',
+//         meta: { title: 'okr系统' },
+//         component: () => import('../views/user/Okr.vue'),
+//     },
+//     key: {
+//         path: 'key',
+//         name: 'key',
+//         meta: { title: '钥匙管理' },
+//         component: () => import('../views/user/Key.vue'),
+//     },
+//     keyuser: {
+//         path: 'keyuser',
+//         name: 'keyuser',
+//         meta: { title: '钥匙管理' },
+//         component: () => import('../views/user/KeyUser.vue'),
+//     },
+//     book: {
+//         path: 'book',
+//         name: 'book',
+//         meta: { title: '书籍列表' },
+//         component: () => import('../views/user/Book.vue'),
+//     },
+//     bookuser: {
+//         path: 'bookuser',
+//         name: 'bookuser',
+//         meta: { title: '书籍借阅记录' },
+//         component: () => import('../views/user/BookUser.vue'),
+//     },
+//     userinfo: {
+//         path: 'userinfo',
+//         name: 'userinfo',
+//         meta: { title: '用户信息' },
+//         component: () => import('../views/user/UserInfo.vue'),
+//     },
+//     signup: {
+//         path: 'signup',
+//         name: 'signup',
+//         meta: { title: '报名管理' },
+//         component: () => import('../views/admin/SignUp.vue'),
+//     },
+//     sysrecord: {
+//         path: 'sysrecord',
+//         name: 'sysrecord',
+//         meta: { title: '操作记录' },
+//         component: () => import('../views/admin/SysRecord.vue'),
+//     },
+//     syslog: {
+//         path: 'syslog',
+//         name: 'syslog',
+//         meta: { title: '系统日志' },
+//         component: () => import('../views/admin/Syslog.vue'),
+//     },
+//     resource: {
+//         path: 'resource',
+//         name: 'resource',
+//         meta: { title: '资源接口管理' },
+//         component: () => import('../views/admin/Resource.vue'),
+//     },
+//     tag: {
+//         path: 'tag',
+//         name: 'tag',
+//         meta: { title: '标签管理' },
+//         component: () => import('../views/admin/Tag.vue'),
+//     },
+// }
