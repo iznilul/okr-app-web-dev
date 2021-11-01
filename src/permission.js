@@ -1,7 +1,7 @@
 import { LoadingBar } from 'view-design'
-import router from './router'
+import router, { asyncRoutes } from './router'
 import store from './store'
-import createRoutes from '@/utils/createRoutes'
+import createRoutes, { recur } from '@/utils/createRoutes'
 import { getDocumentTitle, resetTokenAndClearUser } from './utils'
 
 // 是否有菜单数据，有的话代表进入管理系统主界面
@@ -21,14 +21,20 @@ router.beforeEach(async (to, from, next) => {
     } else {
       // console.log("permission notHasMenus")
       try {
-        // 这里可以用 await 配合请求后台数据来生成路由
-        const routes = createRoutes(store.getters.menuItems)
-        // console.log(routes)
-        // 动态添加路由
-        router.addRoutes(routes)
-        // console.log(router)
-        hasMenus = true
-        next({ path: to.path || '/' })
+        this.$store
+          .dispatch('getRoute')
+          .then((res) => {
+            const result = []
+            recur(result, res)
+            const routes = createRoutes(result)
+            console.log('route:', routes)
+            router.addRoutes(routes)
+            hasMenus = true
+            next({ path: to.path || '/' })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
       } catch (error) {
         resetTokenAndClearUser()
         next(`/login?redirect=${to.path}`)

@@ -20,14 +20,14 @@
     >
       <!-- 动态菜单 -->
       <div v-for="(item, index) in menuItems" :key="index">
-        <Submenu :class="isShowAsideTitle ? '' : 'shrink'" v-if="item.children" :name="index">
+        <Submenu :class="isShowAsideTitle ? '' : 'shrink'" v-if="item.children.length > 0" :name="index">
           <template slot="title">
             <Icon :size="item.meta.size" :type="item.meta.type" />
             <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
           </template>
           <div v-for="(subItem, i) in item.children" :key="index + i">
             <template>
-              <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.name">
+              <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.path">
                 <Icon :size="subItem.meta.size" :type="subItem.meta.type" />
                 <span v-show="isShowAsideTitle">{{ subItem.meta.text }}</span>
               </MenuItem>
@@ -42,7 +42,7 @@
               <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
             </MenuItem>
           </a>
-          <MenuItem v-else :class="isShowAsideTitle ? '' : 'shrink'" :name="item.name">
+          <MenuItem v-else :class="isShowAsideTitle ? '' : 'shrink'" :name="item.path">
             <Icon :size="item.meta.size" :type="item.meta.type" />
             <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
           </MenuItem>
@@ -84,13 +84,13 @@ export default {
     // 选择菜单回调函数
     selectMenuCallback(name) {
       console.log(name)
-
+      //
       if (name.includes('external-link')) return
       this.$emit('gotoPage', name)
-      this.expandAside()
-      setTimeout(() => {
-        this.$store.commit('setIsShowAsideTitles', true)
-      }, 200)
+      // this.expandAside()
+      // setTimeout(() => {
+      //   this.$store.commit('setIsShowAsideTitles', true)
+      // }, 200)
     },
     // 菜单栏改变事件
     menuChange(data) {

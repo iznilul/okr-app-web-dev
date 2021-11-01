@@ -81,7 +81,7 @@ export default {
         }
       } else if (name !== 'home') {
         // 如果没有标签则跳往首页
-        this.$emit('gotoPage', 'home')
+        this.$emit('gotoPage', '/home')
       } else {
         this.reloadPage()
       }
@@ -99,7 +99,7 @@ export default {
       } else {
         // 关闭所有标签
         this.$store.commit('setTagsArray', [])
-        this.$emit('gotoPage', 'home')
+        this.$emit('gotoPage', '/home')
         this.reloadPage()
       }
     },

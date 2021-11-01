@@ -26,35 +26,42 @@ const commonRoutes = [
 export const asyncRoutes = [
   {
     name: 'home', // 要跳转的路由名称 不是路径
-    path: 'home',
+    path: '/home',
     meta: {
       text: '主页',
       type: 'md-home',
       size: 18, // icon大小
     },
-    component: () => import('@/views/user/Home.vue'),
+    // component: () => import('@/views/user/Home.vue'),
+    component: '/user/Home',
+    children: [],
   },
   {
-    path: 'userinfo',
     name: 'userinfo',
+    path: '/userinfo',
     size: 18,
     meta: {
       type: 'ios-time',
       text: '用户信息',
     },
-    component: () => import('@/views/user/UserInfo.vue'),
+    // component: () => import('@/views/user/UserInfo.vue'),
+    component: '/user/UserInfo',
+    children: [],
   },
   {
     name: 'member', // 要跳转的路由名称 不是路径
-    path: 'member',
+    path: '/member',
     size: 18, // icon大小
     meta: {
       type: 'md-person', // icon类型
       text: '成员管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
     },
-    component: () => import('@/views/user/Member.vue'),
+    // component: () => import('@/views/user/Member.vue'),
+    component: '/user/Member',
+    children: [],
   },
   {
+    path: 'book',
     meta: {
       text: '书籍管理',
       type: 'ios-book-outline',
@@ -62,55 +69,64 @@ export const asyncRoutes = [
     children: [
       {
         size: 18, // icon大小
-        path: 'book',
-        name: 'book',
+        path: '/book/booklist',
+        name: 'booklist',
         meta: {
           type: 'ios-book',
           text: '书籍列表',
         },
-        component: () => import('@/views/user/Book.vue'),
+        // component: () => import('@/views/user/Book.vue'),
+        component: '/user/Book',
+        children: [],
       },
       {
-        path: 'bookuser',
+        path: '/book/bookuser',
         name: 'bookuser',
         meta: {
           type: 'md-book',
           text: '书籍借阅记录',
         },
-        component: () => import('@/views/user/BookUser.vue'),
-        size: 18, // icon大小
+        // component: () => import('@/views/user/BookUser.vue'),
+        component: '/user/BookUser',
+        children: [],
       },
     ],
   },
   {
+    path: '/key',
     meta: {
       text: '钥匙管理',
       type: 'ios-key-outline',
     },
     children: [
       {
-        name: 'key', // 要跳转的路由名称 不是路径
-        path: 'key',
+        name: 'keylist', // 要跳转的路由名称 不是路径
+        path: '/key/keylist',
         size: 18, // icon大小
         meta: {
           type: 'ios-key', // icon类型
           text: '钥匙列表', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/user/Key.vue'),
+        // component: () => import('@/views/user/Key.vue'),
+        component: '/user/Key',
+        children: [],
       },
       {
         name: 'keyuser', // 要跳转的路由名称 不是路径
-        path: 'keyuser',
+        path: '/key/keyuser',
         size: 18, // icon大小
         meta: {
           type: 'md-key', // icon类型
           text: '钥匙流动记录', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/user/KeyUser.vue'),
+        // component: () => import('@/views/user/KeyUser.vue'),
+        component: '/user/KeyUser',
+        children: [],
       },
     ],
   },
   {
+    path: '/okr',
     meta: {
       text: 'okr管理',
       type: 'ios-egg-outline',
@@ -118,17 +134,20 @@ export const asyncRoutes = [
     children: [
       {
         name: 'okr', // 要跳转的路由名称 不是路径
-        path: 'okr',
+        path: '/okr/okrlist',
         size: 18, // icon大小
         meta: {
           type: 'ios-egg-outline', // icon类型
           text: 'okr管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/user/Okr.vue'),
+        // component: () => import('@/views/user/Okr.vue'),
+        component: '/user/Okr',
+        children: [],
       },
     ],
   },
   {
+    path: '/admin',
     meta: {
       text: '管理员菜单',
       type: 'ios-lock',
@@ -136,55 +155,63 @@ export const asyncRoutes = [
     children: [
       {
         name: 'sysrecord',
-        path: 'sysrecord',
+        path: '/admin/sysrecord',
         size: 18,
         meta: {
           type: 'ios-time',
           text: '操作记录',
         },
-        component: () => import('@/views/admin/SysRecord.vue'),
-        // hidden 属性 隐藏此菜单 可以通过在地址栏上输入对应的 URL 来显示页面
-        // hidden: true,
+        // component: () => import('@/views/admin/SysRecord.vue'),
+        component: '/admin/SysRecord',
+        children: [],
       },
       {
         name: 'syslog', // 要跳转的路由名称 不是路径
-        path: 'syslog',
+        path: '/admin/syslog',
         size: 18, // icon大小
         meta: {
           type: 'md-list-box', // icon类型
           text: '系统日志', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/admin/Syslog.vue'),
+        // component: () => import('@/views/admin/Syslog.vue'),
+        component: '/admin/Syslog',
+        children: [],
       },
       {
         name: 'signup', // 要跳转的路由名称 不是路径
-        path: 'signup',
+        path: '/admin/signup',
         size: 18, // icon大小
         meta: {
           type: 'md-bookmark', // icon类型
           text: '报名信息管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/admin/SignUp.vue'),
+        // component: () => import('@/views/admin/SignUp.vue'),
+        component: '/admin/SignUp',
+        children: [],
       },
       {
         name: 'resource', // 要跳转的路由名称 不是路径
-        path: 'resource',
+        path: '/admin/resource',
         size: 18, // icon大小
         meta: {
           type: 'logo-buffer', // icon类型
           text: '资源接口管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/admin/Resource.vue'),
+        // component: () => import('@/views/admin/Resource.vue'),
+        component: '/admin/Resource',
+        children: [],
       },
       {
         name: 'tag', // 要跳转的路由名称 不是路径
-        path: 'tag',
+        path: '/admin/tag',
         size: 18, // icon大小
         meta: {
           type: 'md-card', // icon类型
           text: '标签管理', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
         },
-        component: () => import('@/views/admin/Tag.vue'),
+        // component: () => import('@/views/admin/Tag.vue'),
+        component: '/admin/Tag',
+        children: [],
       },
     ],
   },
@@ -204,261 +231,3 @@ export function resetRouter() {
 }
 
 export default router
-
-export const shit = {
-  routeId: 1000,
-  name: '',
-  path: '/',
-  component: '@/components/Layout/Layout',
-  meta: {
-    size: null,
-    text: '根目录',
-    type: null,
-  },
-  hidden: null,
-  external: null,
-  children: [
-    {
-      routeId: 1001,
-      name: 'home',
-      path: 'home',
-      component: '@/views/user/Home',
-      meta: {
-        size: 18,
-        text: '主页',
-        type: 'md-home',
-      },
-      hidden: null,
-      external: null,
-      children: [],
-    },
-    {
-      routeId: 1002,
-      name: 'userinfo',
-      path: 'userinfo',
-      component: '@/views/user/UserInfo',
-      meta: {
-        size: 18,
-        text: '用户信息',
-        type: 'ios-time',
-      },
-      hidden: null,
-      external: null,
-      children: [],
-    },
-    {
-      routeId: 1003,
-      name: 'member',
-      path: 'member',
-      component: '@/views/user/member',
-      meta: {
-        size: 18,
-        text: '成员管理',
-        type: 'md-person',
-      },
-      hidden: null,
-      external: null,
-      children: [],
-    },
-    {
-      routeId: 2000,
-      name: 'book',
-      path: 'book',
-      component: '',
-      meta: {
-        size: 18,
-        text: '书籍管理',
-        type: 'ios-book-outline',
-      },
-      hidden: null,
-      external: null,
-      children: [
-        {
-          routeId: 2001,
-          name: 'booklist',
-          path: 'booklist',
-          component: '@/views/user/Book',
-          meta: {
-            size: 18,
-            text: '书籍列表',
-            type: 'ios-book',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-        {
-          routeId: 2002,
-          name: 'bookuser',
-          path: 'bookuser',
-          component: '@/views/user/BookUser',
-          meta: {
-            size: 18,
-            text: '借阅记录',
-            type: 'md-book',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-      ],
-    },
-    {
-      routeId: 3000,
-      name: 'key',
-      path: 'key',
-      component: '',
-      meta: {
-        size: 18,
-        text: '钥匙管理',
-        type: 'ios-key-outline',
-      },
-      hidden: null,
-      external: null,
-      children: [
-        {
-          routeId: 3001,
-          name: 'keylist',
-          path: 'keylist',
-          component: '@/views/user/Key',
-          meta: {
-            size: 18,
-            text: '钥匙列表',
-            type: 'ios-key',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-        {
-          routeId: 3002,
-          name: 'keyuser',
-          path: 'keyuser',
-          component: '@/views/user/KeyUser',
-          meta: {
-            size: 18,
-            text: '借阅记录',
-            type: 'md-key',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-      ],
-    },
-    {
-      routeId: 4000,
-      name: 'okr',
-      path: 'okr',
-      component: null,
-      meta: {
-        size: 18,
-        text: 'okr管理',
-        type: 'ios-egg-outline',
-      },
-      hidden: null,
-      external: null,
-      children: [
-        {
-          routeId: 4001,
-          name: 'okrlist',
-          path: 'okrlist',
-          component: '@/views/user/Okr',
-          meta: {
-            size: 18,
-            text: 'okr列表',
-            type: 'ios-egg',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-      ],
-    },
-    {
-      routeId: 5000,
-      name: 'admin',
-      path: 'admin',
-      component: '',
-      meta: {
-        size: 18,
-        text: '管理员菜单',
-        type: 'ios-lock',
-      },
-      hidden: null,
-      external: null,
-      children: [
-        {
-          routeId: 5001,
-          name: 'sysrecord',
-          path: 'sysrecord',
-          component: '@/views/admin/SysRecord',
-          meta: {
-            size: 18,
-            text: '操作记录',
-            type: 'ios-time',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-        {
-          routeId: 5002,
-          name: 'syslog',
-          path: 'syslog',
-          component: '@/views/admin/Syslog',
-          meta: {
-            size: 18,
-            text: '系统日志',
-            type: 'md-list-box',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-        {
-          routeId: 5003,
-          name: 'signup',
-          path: 'signup',
-          component: '@/views/admin/Signup',
-          meta: {
-            size: 18,
-            text: '报名管理',
-            type: 'md-bookmark',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-        {
-          routeId: 5004,
-          name: 'resource',
-          path: 'resource',
-          component: '@/views/admin/Resource',
-          meta: {
-            size: 18,
-            text: '接口管理',
-            type: 'logo-buffer',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-        {
-          routeId: 5005,
-          name: 'tag',
-          path: 'tag',
-          component: '@/views/admin/Tag',
-          meta: {
-            size: 18,
-            text: '标签管理',
-            type: 'md-card',
-          },
-          hidden: null,
-          external: null,
-          children: [],
-        },
-      ],
-    },
-  ],
-}

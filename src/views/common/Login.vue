@@ -152,7 +152,8 @@ export default {
 
     loginSuccess() {
       // console.log()
-      this.$router.push({ path: this.redirect || '/' })
+      // this.$router.push({ path: this.redirect || '/' })
+      this.$router.push('/')
       // 延迟 1 秒显示欢迎信息
       setTimeout(() => {
         this.$Notice.success({

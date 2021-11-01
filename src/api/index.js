@@ -1,5 +1,6 @@
 export const commonApi = {
   login: '/api/common/login',
+  route: '/api/common/route/fetch',
 }
 export const userApi = {
   changeUser: '/api/user/user/change',

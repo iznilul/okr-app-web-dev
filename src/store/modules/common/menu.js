@@ -1,4 +1,5 @@
 import { asyncRoutes } from '@/router'
+
 const menu = {
   state: {
     isShowLoading: false, // 全局 loading
