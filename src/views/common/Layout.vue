@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import ASide from './ASide'
-import AHeader from './AHeader'
-import ATag from './ATag'
-import AContent from './AContent'
-import AFooter from './AFooter'
+import ASide from '../../components/Layout/ASide'
+import AHeader from '../../components/Layout/AHeader'
+import ATag from '../../components/Layout/ATag'
+import AContent from '../../components/Layout/AContent'
+import AFooter from '../../components/Layout/AFooter'
 export default {
   name: 'Layout',
   components: {
@@ -105,7 +105,7 @@ export default {
       this.main.style.marginLeft = item
     },
     gotoPage(path) {
-      // console.log(path)
+      console.log('to path', path)
       this.$router.push(path)
     },
     processNameToTitle(obj, data, text) {

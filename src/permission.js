@@ -23,7 +23,7 @@ router.beforeEach(async (to, from, next) => {
       try {
         // 这里可以用 await 配合请求后台数据来生成路由
         const routes = createRoutes(store.getters.menuItems)
-        // console.log(routes)
+        console.log('route:', routes)
         // 动态添加路由
         router.addRoutes(routes)
         // console.log(router)

@@ -190,26 +190,11 @@ export const asyncRoutes = [
   },
 ]
 
-const createRouter = () =>
-  new Router({
-    routes: commonRoutes,
-    // mode: 'history',
-  })
-
-const router = createRouter()
-
-export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher
-}
-
-export default router
-
 export const shit = {
   routeId: 1000,
   name: '',
   path: '/',
-  component: '@/components/Layout/Layout',
+  component: 'common/Layout',
   meta: {
     size: null,
     text: '根目录',
@@ -222,7 +207,7 @@ export const shit = {
       routeId: 1001,
       name: 'home',
       path: 'home',
-      component: '@/views/user/Home',
+      component: 'user/Home',
       meta: {
         size: 18,
         text: '主页',
@@ -236,7 +221,7 @@ export const shit = {
       routeId: 1002,
       name: 'userinfo',
       path: 'userinfo',
-      component: '@/views/user/UserInfo',
+      component: 'user/UserInfo',
       meta: {
         size: 18,
         text: '用户信息',
@@ -250,7 +235,7 @@ export const shit = {
       routeId: 1003,
       name: 'member',
       path: 'member',
-      component: '@/views/user/member',
+      component: 'user/Member',
       meta: {
         size: 18,
         text: '成员管理',
@@ -277,7 +262,7 @@ export const shit = {
           routeId: 2001,
           name: 'booklist',
           path: 'booklist',
-          component: '@/views/user/Book',
+          component: 'user/Book',
           meta: {
             size: 18,
             text: '书籍列表',
@@ -291,7 +276,7 @@ export const shit = {
           routeId: 2002,
           name: 'bookuser',
           path: 'bookuser',
-          component: '@/views/user/BookUser',
+          component: 'user/BookUser',
           meta: {
             size: 18,
             text: '借阅记录',
@@ -320,7 +305,7 @@ export const shit = {
           routeId: 3001,
           name: 'keylist',
           path: 'keylist',
-          component: '@/views/user/Key',
+          component: 'user/Key',
           meta: {
             size: 18,
             text: '钥匙列表',
@@ -334,7 +319,7 @@ export const shit = {
           routeId: 3002,
           name: 'keyuser',
           path: 'keyuser',
-          component: '@/views/user/KeyUser',
+          component: 'user/KeyUser',
           meta: {
             size: 18,
             text: '借阅记录',
@@ -363,7 +348,7 @@ export const shit = {
           routeId: 4001,
           name: 'okrlist',
           path: 'okrlist',
-          component: '@/views/user/Okr',
+          component: 'user/Okr',
           meta: {
             size: 18,
             text: 'okr列表',
@@ -392,7 +377,7 @@ export const shit = {
           routeId: 5001,
           name: 'sysrecord',
           path: 'sysrecord',
-          component: '@/views/admin/SysRecord',
+          component: 'admin/SysRecord',
           meta: {
             size: 18,
             text: '操作记录',
@@ -406,7 +391,7 @@ export const shit = {
           routeId: 5002,
           name: 'syslog',
           path: 'syslog',
-          component: '@/views/admin/Syslog',
+          component: 'admin/Syslog',
           meta: {
             size: 18,
             text: '系统日志',
@@ -420,7 +405,7 @@ export const shit = {
           routeId: 5003,
           name: 'signup',
           path: 'signup',
-          component: '@/views/admin/Signup',
+          component: 'admin/Signup',
           meta: {
             size: 18,
             text: '报名管理',
@@ -434,7 +419,7 @@ export const shit = {
           routeId: 5004,
           name: 'resource',
           path: 'resource',
-          component: '@/views/admin/Resource',
+          component: 'admin/Resource',
           meta: {
             size: 18,
             text: '接口管理',
@@ -448,7 +433,7 @@ export const shit = {
           routeId: 5005,
           name: 'tag',
           path: 'tag',
-          component: '@/views/admin/Tag',
+          component: 'admin/Tag',
           meta: {
             size: 18,
             text: '标签管理',
@@ -462,3 +447,18 @@ export const shit = {
     },
   ],
 }
+
+const createRouter = () =>
+  new Router({
+    routes: commonRoutes,
+    // mode: 'history',
+  })
+
+const router = createRouter()
+
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
+}
+
+export default router

@@ -27,7 +27,7 @@
           </template>
           <div v-for="(subItem, i) in item.children" :key="index + i">
             <template>
-              <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.name">
+              <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.path">
                 <Icon :size="subItem.meta.size" :type="subItem.meta.type" />
                 <span v-show="isShowAsideTitle">{{ subItem.meta.text }}</span>
               </MenuItem>
@@ -42,7 +42,7 @@
               <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
             </MenuItem>
           </a>
-          <MenuItem v-else :class="isShowAsideTitle ? '' : 'shrink'" :name="item.name">
+          <MenuItem v-else :class="isShowAsideTitle ? '' : 'shrink'" :name="item.path">
             <Icon :size="item.meta.size" :type="item.meta.type" />
             <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
           </MenuItem>
