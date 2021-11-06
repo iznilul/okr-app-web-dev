@@ -19,7 +19,7 @@
       @on-open-change="menuChange"
     >
       <!-- 动态菜单 -->
-      <div v-for="(item, index) in menuItems" :key="index">
+      <div v-for="(item, index) in menus" :key="index">
         <Submenu :class="isShowAsideTitle ? '' : 'shrink'" v-if="item.children.length > 0" :name="index">
           <template slot="title">
             <Icon :size="item.meta.size" :type="item.meta.type" />
@@ -67,8 +67,8 @@ export default {
     isShowAsideTitle() {
       return this.$store.getters.isShowAsideTitle
     },
-    menuItems() {
-      return this.$store.getters.menuItems
+    menus() {
+      return JSON.parse(localStorage.getItem('menu'))
     },
     openMenus() {
       return this.$store.getters.openMenus

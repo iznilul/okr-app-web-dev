@@ -13,7 +13,7 @@ const commonLogin = {
         console.log('userInfo', userInfo)
         login(userInfo)
           .then((response) => {
-            const result = response
+            const result = response.data
             resolve(result)
           })
           .catch((error) => {

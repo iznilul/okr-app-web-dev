@@ -9,9 +9,9 @@ export function login(data) {
   })
 }
 
-export function fetchRoute(data) {
+export function fetchMenu(data) {
   return axios({
-    url: commonApi.route,
+    url: commonApi.menu,
     method: 'get',
     params: data,
   })

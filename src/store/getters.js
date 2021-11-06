@@ -1,5 +1,4 @@
 const getters = {
-  menuItems: (state) => state.menu.menuItems,
   isShowAsideTitle: (state) => state.aside.isShowAsideTitle,
   isShowRouter: (state) => state.aside.isShowRouter,
   tagsArray: (state) => state.aside.tagsArray,
