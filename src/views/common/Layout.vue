@@ -81,8 +81,8 @@ export default {
     this.monitorWindowSize()
   },
   computed: {
-    menuItems() {
-      return this.$store.getters.menuItems
+    menus() {
+      return JSON.parse(localStorage.getItem('menu'))
     },
     // 需要缓存的路由
     keepAliveData() {
@@ -93,7 +93,7 @@ export default {
     nameToTitle() {
       const obj = {}
       // console.log('this path', this.paths)
-      this.menuItems.forEach((e) => {
+      this.menus.forEach((e) => {
         this.processNameToTitle(obj, e)
       })
       console.log('obj', obj)
@@ -134,8 +134,8 @@ export default {
     getMenus(name) {
       let menus = []
       const tagTitle = this.nameToTitle[name]
-      for (let i = 0, l = this.menuItems.length; i < l; i++) {
-        const item = this.menuItems[i]
+      for (let i = 0, l = this.menus.length; i < l; i++) {
+        const item = this.menus[i]
         menus[0] = i
         if (item.text === tagTitle) {
           return menus

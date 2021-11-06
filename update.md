@@ -99,7 +99,7 @@
 
 ```js
 // 左侧菜单栏数据
-menuItems: [
+menus: [
   {
     name: 'Home', // 要跳转的路由名称 不是路径
     size: 18, // icon大小 非必填

@@ -58,6 +58,7 @@
 import Verification from '../../components/Util/Verification'
 import particles from '../../../node_modules/particles.js/particles'
 import config from '../../config/particlesConfig'
+import { createRoutes } from '../../utils/createRoutes'
 
 export default {
   name: 'login',
@@ -138,9 +139,8 @@ export default {
       this.$store
         .dispatch('Login', this.form) // 表单会在序列化时转换成json格式
         .then((res) => {
-          // console.log(res.data)
-          const data = res.data
-          localStorage.setItem('token', data.token)
+          console.log(res)
+          localStorage.setItem('token', res.token)
           this.loginSuccess()
         })
         .catch((error) => {
@@ -151,15 +151,23 @@ export default {
     },
 
     loginSuccess() {
-      // console.log()
       // this.$router.push({ path: this.redirect || '/' })
-      this.$router.push('/')
-      // 延迟 1 秒显示欢迎信息
-      setTimeout(() => {
-        this.$Notice.success({
-          title: '登录成功，欢迎回来',
+      this.$store
+        .dispatch('getMenus', {})
+        .then((res) => {
+          this.$router.push('/')
+          setTimeout(() => {
+            this.$Notice.success({
+              title: '登录成功，欢迎回来',
+            })
+          }, 1000)
         })
-      }, 1000)
+        .catch((error) => {
+          this.$Notice.error({
+            desc: '获取动态菜单失败',
+          })
+          console.log(error)
+        })
     },
 
     requestFailed() {

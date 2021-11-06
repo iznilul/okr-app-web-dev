@@ -8,11 +8,3 @@ export function login(data) {
     data: data,
   })
 }
-
-export function fetchRoute(data) {
-  return axios({
-    url: commonApi.route,
-    method: 'get',
-    params: data,
-  })
-}

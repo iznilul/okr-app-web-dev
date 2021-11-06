@@ -11,6 +11,7 @@ import commonLogin from '@/store/modules/common/commonLogin'
 import userKey from '@/store/modules/user/userKey'
 import adminKey from '@/store/modules/admin/adminKey'
 import resource from '@/store/modules/admin/resource'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({

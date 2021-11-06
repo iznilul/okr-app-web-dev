@@ -1,6 +1,5 @@
 export const commonApi = {
   login: '/api/common/login',
-  route: '/api/common/route/fetch',
 }
 export const userApi = {
   changeUser: '/api/user/user/change',
@@ -19,6 +18,7 @@ export const userApi = {
   queryKeyUser: '/api/user/keyUser/query',
   borrowKey: '/api/user/key/borrow',
   returnKey: '/api/user/key/return',
+  menu: '/api/user/menu/fetch',
 }
 export const adminApi = {
   addUser: '/api/admin/user/add',
