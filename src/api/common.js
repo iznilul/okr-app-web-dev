@@ -1,5 +1,5 @@
 import axios from '@/utils/request'
-import { commonApi } from '@/api'
+import { commonApi } from '@/api/index'
 
 export function login(data) {
   return axios({

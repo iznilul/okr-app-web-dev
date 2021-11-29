@@ -78,7 +78,7 @@ service.interceptors.response.use(
         title: '登录过期，请重新登录',
       })
       localStorage.clear()
-      router.push('/login')
+      router.push('/common')
     } else {
       if (res.code === 200) {
         return res

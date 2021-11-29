@@ -1,9 +1,9 @@
 import axios from '@/utils/request'
-import { userApi } from '@/api'
+import { menuApi } from '@/api/index'
 
 export function fetchMenu(data) {
   return axios({
-    url: userApi.menu,
+    url: menuApi.fetchMenu,
     method: 'get',
     params: data,
   })

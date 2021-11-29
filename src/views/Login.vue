@@ -55,10 +55,10 @@
 </template>
 
 <script>
-import Verification from '../../components/Util/Verification'
-import particles from '../../../node_modules/particles.js/particles'
-import config from '../../config/particlesConfig'
-import { createRoutes } from '../../utils/createRoutes'
+import Verification from '../components/Util/Verification'
+import particles from 'particles.js'
+import config from '../config/particlesConfig'
+import { createRoutes } from '../utils/createRoutes'
 
 export default {
   name: 'login',
@@ -185,6 +185,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../style/views/common/login';
-@import '../../style/animation/fade';
+@import '../style/views/login';
+@import '../style/animation/fade';
 </style>

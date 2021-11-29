@@ -1,4 +1,4 @@
-import { httpActuator, server } from '@/api/user/monitor'
+import { httpActuator, server } from '@/api/monitor'
 
 const monitor = {
   state: {},
@@ -11,12 +11,9 @@ const monitor = {
       return new Promise((resolve, reject) => {
         server({})
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
@@ -26,12 +23,9 @@ const monitor = {
       return new Promise((resolve, reject) => {
         httpActuator({})
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })

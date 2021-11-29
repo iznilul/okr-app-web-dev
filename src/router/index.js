@@ -5,10 +5,10 @@ Vue.use(Router)
 
 const commonRoutes = [
   {
-    path: '/login',
+    path: '/common',
     name: 'login',
     meta: { title: '登录' },
-    component: () => import('../views/common/Login.vue'),
+    component: () => import('../views/Login.vue'),
   },
   {
     path: '/404',

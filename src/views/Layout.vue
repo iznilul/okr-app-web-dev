@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import ASide from '../../components/Layout/ASide'
-import AHeader from '../../components/Layout/AHeader'
-import ATag from '../../components/Layout/ATag'
-import AContent from '../../components/Layout/AContent'
-import AFooter from '../../components/Layout/AFooter'
+import ASide from '../components/Layout/ASide'
+import AHeader from '../components/Layout/AHeader'
+import ATag from '../components/Layout/ATag'
+import AContent from '../components/Layout/AContent'
+import AFooter from '../components/Layout/AFooter'
 export default {
   name: 'Layout',
   components: {
@@ -188,5 +188,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/layout/layout';
+@import '../style/layout/layout';
 </style>

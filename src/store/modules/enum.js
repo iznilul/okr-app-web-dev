@@ -1,59 +1,57 @@
-import { borrowKey, queryKey, queryKeyUser, returnKey } from '@/api/user/key'
+import { enumKey, enumMajor, enumName, enumUsername } from '@/api/enum'
 
-const userKey = {
+const enumApi = {
   state: {},
 
   mutations: {},
 
   actions: {
-    getKeyList({ commit }, data) {
+    getLikeUsername({ commit }, param) {
       return new Promise((resolve, reject) => {
-        queryKey(data)
+        enumUsername(param)
           .then((response) => {
-            resolve(response)
+            const result = response.data
+            resolve(result)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
     },
-    getKeyUser({ commit }, data) {
+    getLikeName({ commit }, param) {
       return new Promise((resolve, reject) => {
-        queryKeyUser(data)
+        enumName(param)
           .then((response) => {
-            resolve(response)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
     },
-    borrowKey({ commit }, data) {
+    getLikeMajor({ commit }, param) {
       return new Promise((resolve, reject) => {
-        borrowKey(data)
+        enumMajor(param)
           .then((response) => {
-            resolve(response)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
     },
-    returnKey({ commit }, data) {
+    getLikeKey({ commit }, param) {
       return new Promise((resolve, reject) => {
-        returnKey(data)
+        enumKey(param)
           .then((response) => {
-            resolve(response)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
     },
   },
 }
-export default userKey
+
+export default enumApi

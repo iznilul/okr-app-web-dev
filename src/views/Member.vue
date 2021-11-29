@@ -34,7 +34,7 @@
         </FormItem>
       </Form>
     </div>
-    <Button id="button" @click="getUserList" type="primary">查询</Button>
+    <Button id="button" @click="query" type="primary">查询</Button>
     <Reset @reset="reset"></Reset>
     <Register @getUserList="getUserList"></Register>
     <ModifyUser ref="modifyUser" @getUserList="getUserList"></ModifyUser>
@@ -54,16 +54,20 @@
 </template>
 
 <script>
-import Query from '../../components/Util/Query'
-import Register from '../../components/Util/Register'
-import ModifyUser from '../../components/Util/ModifyUser'
-import AutoInput from '../../components/Util/AutoInput'
-import Reset from '../../components/Util/Reset'
-import columns from '../../config/memberColumn'
+import Register from '../components/Util/Register'
+import ModifyUser from '../components/Util/ModifyUser'
+import AutoInput from '../components/Util/AutoInput'
+import Reset from '../components/Util/Reset'
+import columns from '../config/memberColumn'
 
 export default {
   name: 'member',
-  components: { Register, Query, ModifyUser, AutoInput, Reset },
+  components: {
+    Register,
+    ModifyUser,
+    AutoInput,
+    Reset,
+  },
   props: {},
   data() {
     return {
@@ -97,6 +101,11 @@ export default {
       this.getUserList()
     },
 
+    query() {
+      this.form.index = 1
+      this.publicGetForm('getUserList')
+    },
+
     getUserList() {
       this.publicGetForm('getUserList')
     },
@@ -121,5 +130,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/member';
+@import '../style/views/member';
 </style>

@@ -1,5 +1,6 @@
-import { changePassword, changeUser, queryUser, queryUserByUsername, queryUserList } from '@/api/user/user'
+import { changePassword, changeUser, queryUser, queryUserByUsername, queryUserList } from '@/api/user'
 import md5 from 'js-md5'
+import { addUser, cancelUser } from '@/api/user'
 
 const user = {
   state: {
@@ -60,17 +61,13 @@ const user = {
       commit('SET_USER', data)
     },
 
-    //更新用户资料
     modifyUser({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         changeUser(userInfo)
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result)
+            resolve(response)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
@@ -80,12 +77,9 @@ const user = {
       return new Promise((resolve, reject) => {
         queryUser()
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
@@ -96,12 +90,9 @@ const user = {
       return new Promise((resolve, reject) => {
         queryUserByUsername(param)
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
@@ -112,12 +103,9 @@ const user = {
       return new Promise((resolve, reject) => {
         queryUserList(cond)
           .then((response) => {
-            // const result = response
-            // console.log(result)
             resolve(response)
           })
           .catch((error) => {
-            // console.log("error",error)
             reject(error)
           })
       })
@@ -125,18 +113,38 @@ const user = {
 
     //修改密码
     modifyPassword({ commit }, modifyInfo) {
-      // console.log('modifyInfo:', modifyInfo)
       modifyInfo.oldPassword = md5(modifyInfo.oldPassword)
       modifyInfo.newPassword = md5(modifyInfo.newPassword)
       return new Promise((resolve, reject) => {
         changePassword(modifyInfo)
           .then((response) => {
-            const result = response
-            console.log(result)
-            resolve(result.data)
+            resolve(response.data)
           })
           .catch((error) => {
-            // console.log("error",error)
+            reject(error)
+          })
+      })
+    },
+
+    register({ commit }, userInfo) {
+      return new Promise((resolve, reject) => {
+        addUser(userInfo)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    //根据用户名删除用户
+    removeUserByUsername({ commit }, username) {
+      return new Promise((resolve, reject) => {
+        cancelUser(username)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((error) => {
             reject(error)
           })
       })

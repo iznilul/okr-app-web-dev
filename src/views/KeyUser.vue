@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import columns from '../../config/keyUserColumn'
+import columns from '../config/keyUserColumn'
 export default {
   name: 'keyUser',
   data() {
@@ -49,5 +49,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/keyUser';
+@import '../style/views/keyUser';
 </style>

@@ -1,9 +1,9 @@
 import axios from '@/utils/request'
-import { userApi } from '@/api'
+import { monitorApi } from '@/api/index'
 
 export function server(data) {
   return axios({
-    url: userApi.server,
+    url: monitorApi.server,
     method: 'get',
     params: data,
   })
@@ -11,7 +11,7 @@ export function server(data) {
 
 export function httpActuator(data) {
   return axios({
-    url: userApi.httpActuator,
+    url: monitorApi.httpActuator,
     method: 'get',
     params: data,
   })

@@ -1,6 +1,7 @@
-import { login } from '@/api/common/login'
 import md5 from 'js-md5'
-const commonLogin = {
+import { login } from '@/api/common'
+
+const common = {
   state: {},
 
   mutations: {},
@@ -10,11 +11,9 @@ const commonLogin = {
     Login({ commit }, userInfo) {
       userInfo.password = md5(userInfo.password)
       return new Promise((resolve, reject) => {
-        console.log('userInfo', userInfo)
         login(userInfo)
           .then((response) => {
-            const result = response.data
-            resolve(result)
+            resolve(response.data)
           })
           .catch((error) => {
             reject(error)
@@ -24,4 +23,4 @@ const commonLogin = {
   },
 }
 
-export default commonLogin
+export default common

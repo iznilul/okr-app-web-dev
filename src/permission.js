@@ -10,7 +10,7 @@ router.beforeEach(async (to, from, next) => {
   LoadingBar.start()
   if (localStorage.getItem('token')) {
     // console.log(to.path)
-    if (to.path === '/login') {
+    if (to.path === '/common') {
       next({ path: '/' })
     } else if (hasMenu) {
       next()
@@ -29,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
     }
   } else {
     hasMenu = false
-    if (to.path === '/login') {
+    if (to.path === '/common') {
       next()
     } else {
       next(`/login?redirect=${to.path}`)

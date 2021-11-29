@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import Cpu from '../../components/Charts/Cpu'
-import Mem from '../../components/Charts/Mem'
-import Jvm from '../../components/Charts/Jvm'
-import SysFiles from '../../components/Charts/SysFiles'
-import ServerInfo from '../../components/Charts/ServerInfo'
-import ApiCount from '../../components/Charts/ApiCount'
+import Cpu from '../components/Charts/Cpu'
+import Mem from '../components/Charts/Mem'
+import Jvm from '../components/Charts/Jvm'
+import SysFiles from '../components/Charts/SysFiles'
+import ServerInfo from '../components/Charts/ServerInfo'
+import ApiCount from '../components/Charts/ApiCount'
 
 export default {
   name: 'Home',
@@ -67,5 +67,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/home';
+@import '../style/views/home';
 </style>

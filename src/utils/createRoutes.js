@@ -3,7 +3,7 @@ export function createRoutes(data) {
   const children = []
   result.push({
     path: '/',
-    component: () => import('../views/common/Layout.vue'),
+    component: () => import('../views/Layout.vue'),
     children,
   })
   data.forEach((item) => {

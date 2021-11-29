@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import { userApi } from '../../api'
-import { baseURL } from '../../utils/request'
+import { userApi } from '../api'
+import { baseURL } from '../utils/request'
 
 export default {
   name: 'UserInfo',
@@ -129,5 +129,5 @@ export default {
 </script>
 
 <style lang="less">
-@import '../../style/views/user/userInfo';
+@import '../style/views/userInfo';
 </style>

@@ -1,4 +1,4 @@
-import { fetchMenu } from '@/store/modules/user/menu'
+import { fetchMenu } from '@/api/menu'
 
 const menu = {
   state: {
@@ -18,7 +18,6 @@ const menu = {
         fetchMenu()
           .then((response) => {
             const result = response.data
-            // commit('SET_MENUS', result)
             localStorage.setItem('menu', JSON.stringify(result))
             resolve(result)
           })

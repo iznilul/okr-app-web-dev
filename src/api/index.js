@@ -1,31 +1,46 @@
 export const commonApi = {
-  login: '/api/common/login',
+  login: '/api/okr/common/common',
 }
 export const userApi = {
-  changeUser: '/api/user/user/change',
-  queryUser: '/api/user/user/query',
-  queryUserByUsername: '/api/user/user/queryByUsername',
-  queryUserList: '/api/user/user/queryList',
-  server: '/api/user/monitor/server',
-  httpActuator: '/api/user/monitor/metrics/http.server.requests',
-  changeUserImg: '/api/user/user/changeImg',
-  changePassword: '/api/user/user/changePassword',
-  queryLikeUsername: '/api/user/enum/username',
-  queryLikeName: '/api/user/enum/name',
-  queryLikeMajor: '/api/user/enum/major',
-  queryLikeKey: '/api/user/enum/key',
-  queryKey: '/api/user/key/query',
-  queryKeyUser: '/api/user/keyUser/query',
-  borrowKey: '/api/user/key/borrow',
-  returnKey: '/api/user/key/return',
-  menu: '/api/user/menu/fetch',
+  changeUser: '/api/okr/user/change',
+  queryUser: '/api/okr/user/query',
+  queryUserByUsername: '/api/okr/user/queryByUsername',
+  queryUserList: '/api/okr/user/queryList',
+  changeUserImg: '/api/okr/user/changeImg',
+  changePassword: '/api/okr/user/changePassword',
+  addUser: '/api/okr/user/add',
+  cancelUser: '/api/okr/user/cancel',
 }
-export const adminApi = {
-  addUser: '/api/admin/user/add',
-  cancelUser: '/api/admin/user/cancel',
-  reloadRoleResource: '/api/admin/resource/reload',
-  queryKeyById: '/api/admin/key/queryById',
-  changeKey: 'api/admin/key/change',
-  addKey: 'api/admin/key/add',
-  cancelKey: 'api/admin/key/cancel',
+
+export const bookApi = {}
+
+export const enumApi = {
+  enumUsername: '/api/okr/enum/username',
+  enumName: '/api/okr/enum/name',
+  enumMajor: '/api/okr/enum/major',
+  enumKey: '/api/okr/enum/key',
 }
+
+export const keyApi = {
+  queryKey: '/api/okr/key/query',
+  queryKeyUser: '/api/okr/keyUser/query',
+  borrowKey: '/api/okr/key/borrow',
+  returnKey: '/api/okr/key/return',
+  queryKeyById: '/api/okr/key/queryById',
+  changeKey: '/api/okr/key/change',
+  addKey: '/api/okr/key/add',
+  cancelKey: '/api/okr/key/cancel',
+}
+
+export const menuApi = {
+  fetchMenu: '/api/okr/menu/fetch',
+}
+
+export const monitorApi = {
+  server: '/api/okr/monitor/server',
+  httpActuator: '/api/okr/monitor/metrics/http.server.requests',
+}
+
+export const rankApi = {}
+
+export const resourceApi = {}

@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import user from '@/store/modules/user/user'
-import menu from '@/store/modules/common/menu'
+import user from '@/store/modules/user'
+import menu from '@/store/modules/menu'
 import getters from '@/store/getters'
-import aside from '@/store/modules/common/aside'
-import monitor from '@/store/modules/user/monitor'
-import enumApi from '@/store/modules/user/enum'
-import admin from '@/store/modules/admin/admin'
-import commonLogin from '@/store/modules/common/commonLogin'
-import userKey from '@/store/modules/user/userKey'
-import adminKey from '@/store/modules/admin/adminKey'
-import resource from '@/store/modules/admin/resource'
+import aside from '@/store/modules/aside'
+import monitor from '@/store/modules/monitor'
+import enumApi from '@/store/modules/enum'
+import common from '@/store/modules/common'
+import key from '@/store/modules/key'
+import resource from '@/store/modules/resource'
 
 Vue.use(Vuex)
 
@@ -22,11 +20,9 @@ const store = new Vuex.Store({
     menu,
     aside,
     monitor,
-    adminKey,
-    userKey,
-    commonLogin,
+    key,
+    common,
     enumApi,
-    admin,
     resource,
   },
   getters,
