@@ -3,12 +3,13 @@ import dfaultSettings from '@/config/defaultSettings'
 import { Notice } from 'view-design'
 import router from '@/router'
 import resultEnum from '@/utils/enum/ResultEnum'
+import { resetTokenAndClearUser } from '@/utils/index'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
 
 const service = axios.create({
   baseURL: baseURL,
-  timeout: 6000,
+  timeout: 50000,
 })
 // 正在进行中的请求列表
 let reqList = []
@@ -73,12 +74,12 @@ service.interceptors.response.use(
     const res = response.data
     console.log(res)
     // 如果token已经过期，则进行重定向
-    if (res.code === 2004) {
+    if (res.code === 418 || res.code === 419) {
       Notice.error({
-        title: '登录过期，请重新登录',
+        title: '权限过期，请重新登录',
       })
-      localStorage.clear()
-      router.push('/common')
+      resetTokenAndClearUser()
+      router.push('/')
     } else {
       if (res.code === 200) {
         return res

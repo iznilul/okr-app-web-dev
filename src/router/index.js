@@ -5,7 +5,7 @@ Vue.use(Router)
 
 const commonRoutes = [
   {
-    path: '/common',
+    path: '/login',
     name: 'login',
     meta: { title: '登录' },
     component: () => import('../views/Login.vue'),
@@ -163,18 +163,6 @@ const commonRoutes = [
 //         },
 //         // component: () => import('@/views/admin/SysRecord.vue'),
 //         component: '/admin/SysRecord',
-//         children: [],
-//       },
-//       {
-//         name: 'syslog', // 要跳转的路由名称 不是路径
-//         path: '/admin/syslog',
-//         size: 18, // icon大小
-//         meta: {
-//           type: 'md-list-box', // icon类型
-//           text: '系统日志', // 点击侧边栏跳到一个单独的路由页面，需要提前在 router.js 定义
-//         },
-//         // component: () => import('@/views/admin/Syslog.vue'),
-//         component: '/admin/Syslog',
 //         children: [],
 //       },
 //       {

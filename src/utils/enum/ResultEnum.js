@@ -13,8 +13,8 @@ class ResultEnum extends Enum {
   /**
    * 枚举对象
    */
-  static FAIL = [0, '操作很失败']
-  static SUCCESS = [1, '操作很成功']
+  static FAIL = [0, '操作失败']
+  static SUCCESS = [1, '操作成功']
   static REQUEST_TOO_FAST = [2, '请求失败，操作频率过快']
 }
 

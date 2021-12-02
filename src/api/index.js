@@ -1,5 +1,5 @@
 export const commonApi = {
-  login: '/api/okr/common/common',
+  login: '/api/okr/common/login',
 }
 export const userApi = {
   changeUser: '/api/okr/user/change',
