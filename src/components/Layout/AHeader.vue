@@ -66,8 +66,7 @@ export default {
         .dispatch('getUser')
         .then((res) => {
           console.log(res)
-          const data = res
-          this.$store.dispatch('saveSession', data)
+          this.$store.dispatch('saveSession', res)
           this.getUserInfoSuccess()
         })
         .catch((error) => {

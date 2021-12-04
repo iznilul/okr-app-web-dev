@@ -3,8 +3,8 @@
   <aside :class="asideClassName">
     <!-- logo -->
     <div class="logo-c">
-      <img src="../../assets/imgs/logo.png" alt="logo" class="logo" />
-      <span v-show="isShowAsideTitle">softlab后台管理</span>
+      <img src="../../assets/imgs/itlab.png" alt="logo" class="logo" />
+      <span v-show="isShowAsideTitle">itlab后台管理</span>
     </div>
     <!-- 菜单栏 -->
     <Menu

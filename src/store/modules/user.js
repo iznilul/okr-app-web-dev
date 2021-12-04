@@ -7,6 +7,7 @@ const user = {
     userId: '',
     username: '',
     name: '',
+    role: '',
     avatar: '',
     major: '',
     qq: '',
@@ -24,6 +25,9 @@ const user = {
     },
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
+    },
+    SET_ROLE: (state, role) => {
+      state.role = role
     },
     SET_MAJOR: (state, major) => {
       state.major = major
@@ -58,6 +62,7 @@ const user = {
       commit('SET_USERID', data.userId)
       commit('SET_USERNAME', data.username)
       commit('SET_AVATAR', data.avatar)
+      commit('SET_ROLE', data.role)
       commit('SET_USER', data)
     },
 

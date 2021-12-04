@@ -39,7 +39,7 @@
       <FormItem label="微信号">
         <Input clearable v-model="form.weixin"></Input>
       </FormItem>
-      <FormItem label="学习/研究方向">
+      <FormItem label="自我简介">
         <Input :rows="rows" type="textarea" v-model="form.research" size="large"></Input>
       </FormItem>
       <Button @click="modifyUser" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>

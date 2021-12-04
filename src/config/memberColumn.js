@@ -28,7 +28,17 @@ const columns = [
   {
     title: '账号',
     key: 'username',
-    width: '130px',
+    width: '80px',
+  },
+  {
+    title: '角色权限',
+    key: 'role',
+    width: '110px',
+  },
+  {
+    title: '角色到期时间',
+    key: 'expireTime',
+    width: '120px',
   },
   {
     title: '姓名',
@@ -38,7 +48,7 @@ const columns = [
   {
     title: '专业班级',
     key: 'major',
-    width: '120px',
+    width: '100px',
   },
   {
     title: 'qq号',
@@ -48,17 +58,17 @@ const columns = [
   {
     title: '手机号',
     key: 'phone',
-    width: '130px',
+    width: '100px',
   },
   {
     title: '微信号',
     key: 'weixin',
-    width: '130px',
+    width: '100px',
   },
   {
-    title: '学习/研究方向',
+    title: '简介',
     key: 'research',
-    width: '270px',
+    width: '180px',
   },
   {
     title: '操作',

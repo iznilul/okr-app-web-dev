@@ -2,7 +2,7 @@
   <div id="login">
     <div id="title">
       <transition appear name="fade">
-        <span>SDUT SOFTLAB管理系统</span>
+        <span>SDUT ITLAB管理系统</span>
       </transition>
     </div>
 
@@ -24,7 +24,7 @@
     </div>
     <div class="login-con">
       <transition appear name="fade">
-        <Card icon="log-in" title="暂时不欢迎登录 (OvO)开发中">
+        <Card icon="log-in" title="(OvO)开发中">
           <div class="form-con">
             <Form ref="form" :model="form" :rules="rules">
               <FormItem prop="username">
@@ -151,7 +151,6 @@ export default {
     },
 
     loginSuccess() {
-      // this.$router.push({ path: this.redirect || '/' })
       this.$store
         .dispatch('getMenus', {})
         .then((res) => {
