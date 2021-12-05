@@ -3,6 +3,7 @@
     clearable
     v-model="value"
     :data="data"
+    @on-focus="getData(dispatch, { param: value })"
     @on-search="getData(dispatch, { param: value })"
     @on-change="sendParam"
     :placeholder="placeholder"

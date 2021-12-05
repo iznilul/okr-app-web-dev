@@ -25,6 +25,14 @@ export function changeUser(data) {
   })
 }
 
+export function changeUserRole(data) {
+  return axios({
+    url: userApi.changeUserRole,
+    method: 'post',
+    data: data,
+  })
+}
+
 export function queryUser(param) {
   return axios({
     url: userApi.queryUser,

@@ -1,4 +1,4 @@
-import { enumKey, enumMajor, enumName, enumUsername } from '@/api/enum'
+import { enumKey, enumMajor, enumName, enumRole, enumUsername, enumUserStatus } from '@/api/enum'
 
 const enumApi = {
   state: {},
@@ -43,6 +43,28 @@ const enumApi = {
     getLikeKey({ commit }, param) {
       return new Promise((resolve, reject) => {
         enumKey(param)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    getLikeRole({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        enumRole(param)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    getLikeUserStatus({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        enumUserStatus(param)
           .then((response) => {
             resolve(response.data)
           })

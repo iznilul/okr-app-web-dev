@@ -1,6 +1,13 @@
 <template>
   <div id="register">
-    <Button @click="() => (this.visible = true)" :type="type">注册新用户</Button>
+    <Button
+      @click="() => (this.visible = true)"
+      type="primary"
+      :disabled="disabled"
+      style="color: rgba(65, 60, 67, 0.77)"
+    >
+      注册新用户
+    </Button>
     <Modal
       id="registerModal"
       v-model="visible"
@@ -66,6 +73,9 @@ export default {
   computed: {
     type() {
       return this.$store.getters.type
+    },
+    disabled() {
+      return this.$store.getters.disabled
     },
   },
   methods: {

@@ -38,6 +38,7 @@
     <Reset @reset="reset"></Reset>
     <Register @getUserList="getUserList"></Register>
     <ModifyUser ref="modifyUser" @getUserList="getUserList"></ModifyUser>
+    <ModifyUserRole ref="modifyUserRole" @getUserList="getUserList"></ModifyUserRole>
     <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <Page
       id="page"
@@ -56,6 +57,7 @@
 <script>
 import Register from '../components/Util/Register'
 import ModifyUser from '../components/Util/ModifyUser'
+import ModifyUserRole from '../components/Util/ModifyUserRole'
 import AutoInput from '../components/Util/AutoInput'
 import Reset from '../components/Util/Reset'
 import columns from '../config/memberColumn'
@@ -65,6 +67,7 @@ export default {
   components: {
     Register,
     ModifyUser,
+    ModifyUserRole,
     AutoInput,
     Reset,
   },

@@ -29,3 +29,17 @@ export function enumKey(param) {
     params: param,
   })
 }
+export function enumRole(param) {
+  return axios({
+    url: enumApi.enumRole,
+    method: 'get',
+    params: param,
+  })
+}
+export function enumUserStatus(param) {
+  return axios({
+    url: enumApi.enumUserStatus,
+    method: 'get',
+    params: param,
+  })
+}

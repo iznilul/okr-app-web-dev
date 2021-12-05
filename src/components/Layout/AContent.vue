@@ -12,7 +12,7 @@
         :lineLinked="true"
         :lineOpacity="0.4"
         :linesDistance="200"
-        :moveSpeed="2"
+        :moveSpeed="3"
         :hoverEffect="true"
         hoverMode="grab"
         :clickEffect="true"

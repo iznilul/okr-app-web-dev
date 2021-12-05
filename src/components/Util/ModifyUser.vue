@@ -19,8 +19,8 @@
       <form-item label="微信号" prop="weixin">
         <Input v-model="form.weixin"></Input>
       </form-item>
-      <FormItem label="学习/研究方向" prop="research">
-        <Input :rows="3" type="textarea" v-model="form.research" size="large"></Input>
+      <FormItem label="学习/研究方向" prop="profile">
+        <Input :rows="3" type="textarea" v-model="form.profile" size="large"></Input>
       </FormItem>
     </Form>
   </Modal>
@@ -39,7 +39,7 @@ export default {
         qq: '',
         phone: '',
         weixin: '',
-        research: '',
+        profile: '',
       },
     }
   },

@@ -3,6 +3,7 @@ export const commonApi = {
 }
 export const userApi = {
   changeUser: '/api/okr/user/change',
+  changeUserRole: '/api/okr/user/changeRole',
   queryUser: '/api/okr/user/query',
   queryUserByUsername: '/api/okr/user/queryByUsername',
   queryUserList: '/api/okr/user/queryList',
@@ -19,6 +20,8 @@ export const enumApi = {
   enumName: '/api/okr/enum/name',
   enumMajor: '/api/okr/enum/major',
   enumKey: '/api/okr/enum/key',
+  enumRole: '/api/okr/enum/role',
+  enumUserStatus: '/api/okr/enum/userStatus',
 }
 
 export const keyApi = {

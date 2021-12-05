@@ -1,7 +1,8 @@
+import snow from '../assets/imgs/snow.png'
 const config = {
   particles: {
     number: {
-      value: 400,
+      value: 200,
       density: {
         enable: true,
         value_area: 800,
@@ -20,13 +21,13 @@ const config = {
         nb_sides: 5,
       },
       image: {
-        src: 'http://www.dynamicdigital.us/wp-content/uploads/2013/02/starburst_white_300_drop_2.png',
+        src: snow,
         width: 100,
         height: 100,
       },
     },
     opacity: {
-      value: 0.7,
+      value: 0.5,
       random: false,
       anim: {
         enable: false,

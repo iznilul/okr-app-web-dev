@@ -18,8 +18,8 @@ const getters = {
   phone: (state) => state.user.phone,
   weixin: (state) => state.user.weixin,
   research: (state) => state.user.research,
-  type: (state) => (state.user.role === 'admin' || 'superAdmin' ? 'primary' : 'warning'),
-  disabled: (state) => !(state.user.role === 'admin' || 'superAdmin'),
+  type: (state) => (state.user.role === 'admin' || state.user.role === 'superAdmin' ? 'primary' : 'warning'),
+  disabled: (state) => !(state.user.role === 'admin' || state.user.role === 'superAdmin'),
   buttonColor: () => 'rgba(65,60,67,0.61)',
 }
 
