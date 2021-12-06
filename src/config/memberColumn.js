@@ -103,7 +103,7 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 showModal('modifyUserRole')
-                getUser(params.row.username)
+                getUserRole(params.row.username)
               },
             },
           },

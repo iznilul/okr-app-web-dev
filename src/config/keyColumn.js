@@ -1,4 +1,3 @@
-import vue from '../main.js'
 import store from '../store'
 import { handleConfirm } from '@/utils/confirm'
 const map = { 0: 'primary', 1: 'warning', 2: 'error' }
@@ -51,7 +50,7 @@ const columns = [
             'Button',
             {
               props: {
-                type: 'primary',
+                type: 'warning',
               },
               style: {
                 position: 'relative',
@@ -73,7 +72,7 @@ const columns = [
             'Button',
             {
               props: {
-                type: 'primary',
+                type: 'warning',
               },
               style: {
                 position: 'relative',

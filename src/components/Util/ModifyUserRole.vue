@@ -50,13 +50,13 @@ export default {
     }
   },
   mounted() {
-    window.getUser = this.getUser
+    window.getUserRole = this.getUserRole
   },
   methods: {
     recvParam(item, val) {
       this.form[item] = val
     },
-    getUser(username) {
+    getUserRole(username) {
       this.publicGetData('getUserByUsername', { username: username })
         .then((res) => {
           this.form = res

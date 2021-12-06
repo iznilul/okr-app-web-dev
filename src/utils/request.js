@@ -88,7 +88,7 @@ service.interceptors.response.use(
           title: resultEnum.FAIL.desc,
           desc: res.msg,
         })
-        return Promise.reject('操作码异常')
+        return Promise.reject('请求异常')
       }
     }
   },

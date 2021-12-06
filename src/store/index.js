@@ -9,7 +9,7 @@ import enumApi from '@/store/modules/enum'
 import common from '@/store/modules/common'
 import key from '@/store/modules/key'
 import resource from '@/store/modules/resource'
-
+import sysRecord from '@/store/modules/sysRecord'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -24,6 +24,7 @@ const store = new Vuex.Store({
     common,
     enumApi,
     resource,
+    sysRecord,
   },
   getters,
 })

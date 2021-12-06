@@ -17,7 +17,7 @@ const getters = {
   qq: (state) => state.user.qq,
   phone: (state) => state.user.phone,
   weixin: (state) => state.user.weixin,
-  research: (state) => state.user.research,
+  profile: (state) => state.user.profile,
   type: (state) => (state.user.role === 'admin' || state.user.role === 'superAdmin' ? 'primary' : 'warning'),
   disabled: (state) => !(state.user.role === 'admin' || state.user.role === 'superAdmin'),
   buttonColor: () => 'rgba(65,60,67,0.61)',

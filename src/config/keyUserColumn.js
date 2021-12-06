@@ -1,6 +1,3 @@
-import vue from '../main.js'
-import store from '../store'
-import { handleConfirm } from '@/utils/confirm'
 const map = { 0: 'warning', 1: 'success' }
 const columns = [
   {
@@ -39,10 +36,6 @@ const columns = [
         ),
       ]
     },
-  },
-  {
-    title: '操作时间',
-    key: 'createTime',
   },
   {
     title: '最后更新时间',
