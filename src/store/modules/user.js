@@ -13,7 +13,7 @@ const user = {
     qq: '',
     phone: '',
     weixin: '',
-    research: '',
+    profile: '',
   },
 
   mutations: {
@@ -41,8 +41,8 @@ const user = {
     SET_WEIXIN: (state, weixin) => {
       state.weixin = weixin
     },
-    SET_RESEARCH: (state, research) => {
-      state.research = research
+    SET_PROFILE: (state, profile) => {
+      state.profile = profile
     },
     SET_USER: (state, param) => {
       // console.log(param)
@@ -51,7 +51,7 @@ const user = {
       state.qq = param.qq
       state.phone = param.phone
       state.weixin = param.weixin
-      state.research = param.research
+      state.profile = param.profile
     },
   },
 

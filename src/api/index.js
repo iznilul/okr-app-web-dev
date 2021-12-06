@@ -35,6 +35,10 @@ export const keyApi = {
   cancelKey: '/api/okr/key/cancel',
 }
 
+export const sysRecordApi = {
+  querySysRecord: '/api/okr/sysRecord/query',
+}
+
 export const menuApi = {
   fetchMenu: '/api/okr/menu/fetch',
 }

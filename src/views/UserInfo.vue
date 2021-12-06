@@ -40,7 +40,7 @@
         <Input clearable v-model="form.weixin"></Input>
       </FormItem>
       <FormItem label="自我简介">
-        <Input :rows="rows" type="textarea" v-model="form.research" size="large"></Input>
+        <Input :rows="rows" type="textarea" v-model="form.profile" size="large"></Input>
       </FormItem>
       <Button @click="modifyUser" type="primary" style="position: absolute; left: 100px"> 修改资料 </Button>
     </Form>
@@ -78,7 +78,7 @@ export default {
         qq: this.$store.getters.qq,
         phone: this.$store.getters.phone,
         weixin: this.$store.getters.weixin,
-        research: this.$store.getters.research,
+        profile: this.$store.getters.profile,
       }
     },
   },

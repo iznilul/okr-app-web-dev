@@ -1,21 +1,53 @@
 <template>
-  <div>
-    书籍管理，还没有开发( ╯□╰ )
-    <div>
-      <Button @click="reback" type="primary" style="margin-left: 100px">返回</Button>
-    </div>
+  <div id="sysRecord">
+    <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <Page
+      id="page"
+      :total="dataCount"
+      :page-size="form.pageSize"
+      :current="current"
+      show-total
+      class="paging"
+      show-sizer
+      @on-change="changePage"
+      @on-page-size-change="changePageSize"
+    ></Page>
   </div>
 </template>
 
 <script>
+import columns from '../config/keyUserColumn'
 export default {
-  name: 'book',
+  name: 'sysRecord',
+  data() {
+    return {
+      columns: columns,
+      data: [],
+      dataCount: 0,
+      current: 1,
+      form: {
+        index: 1,
+        pageSize: 10,
+      },
+    }
+  },
+  mounted() {
+    this.getRecord()
+  },
   methods: {
-    reback() {
-      this.$router.back()
+    getRecord() {
+      this.publicGetForm('getSysRecord')
+    },
+    changePage(index) {
+      this.publicChangePage(index, this.getRecord)
+    },
+    changePageSize(pageSize) {
+      this.publicChangePageSize(pageSize, this.getRecord)
     },
   },
 }
 </script>
 
-<style></style>
+<style lang="less">
+@import '../style/views/sysRecord';
+</style>
