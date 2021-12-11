@@ -9,7 +9,7 @@ export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.b
 
 const service = axios.create({
   baseURL: baseURL,
-  timeout: 50000,
+  timeout: 600000,
 })
 // 正在进行中的请求列表
 let reqList = []
@@ -27,7 +27,7 @@ const stopRepeatRequest = function (reqList, url, cancel, errorMessage) {
       console.log('重复请求,请求被中断')
       cancel(errorMsg)
       Notice.error({
-        title: resultEnum.REQUEST_TOO_FAST.desc,
+        title: '请求失败，操作频率过快',
       })
       return
     }
@@ -62,7 +62,9 @@ service.interceptors.request.use(
     }
     return config
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    return error
+  }
 )
 
 service.interceptors.response.use(
@@ -70,7 +72,7 @@ service.interceptors.response.use(
     // console.log(response)
     setTimeout(() => {
       allowRequest(reqList, response.config.url)
-    }, 1000)
+    }, 500)
     const res = response.data
     console.log(res)
     // 如果token已经过期，则进行重定向
@@ -82,6 +84,9 @@ service.interceptors.response.use(
       router.push('/')
     } else {
       if (res.code === 200) {
+        // Notice.info({
+        //   desc: resultEnum.SUCCESS.desc,
+        // })
         return res
       } else {
         Notice.error({
@@ -96,8 +101,8 @@ service.interceptors.response.use(
     // console.log(error)
     setTimeout(() => {
       allowRequest(reqList, error.config.url)
-    }, 800)
-    return Promise.reject(error)
+    }, 500)
+    return error
   }
 )
 

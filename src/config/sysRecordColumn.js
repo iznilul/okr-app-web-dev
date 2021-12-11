@@ -1,6 +1,6 @@
 const columns = [
   {
-    title: '资源名称',
+    title: '操作',
     key: 'name',
   },
   {

@@ -25,16 +25,10 @@ export default {
         .dispatch('saveKey', this.form)
         .then((res) => {
           // console.log(res)
-          this.$Notice.success({
-            desc: '添加成功',
-          })
           this.$emit('getKeyList', {})
         })
         .catch((error) => {
           console.log(error)
-          this.$Notice.error({
-            desc: '添加失败',
-          })
         })
     },
     hidden() {

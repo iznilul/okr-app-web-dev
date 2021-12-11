@@ -41,6 +41,14 @@ export function queryUser(param) {
   })
 }
 
+export function queryUserRole(param) {
+  return axios({
+    url: userApi.queryUserRole,
+    method: 'get',
+    params: param,
+  })
+}
+
 export function queryUserByUsername(param) {
   return axios({
     url: userApi.queryUserByUsername,

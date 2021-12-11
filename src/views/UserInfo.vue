@@ -85,9 +85,6 @@ export default {
   methods: {
     handleSuccess(res) {
       // console.log(res)
-      this.$Notice.success({
-        title: '头像上传成功',
-      })
       this.$store.commit('SET_AVATAR', res.data)
     },
     handleFormatError(file) {

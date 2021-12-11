@@ -1,4 +1,12 @@
-import { changePassword, changeUser, changeUserRole, queryUser, queryUserByUsername, queryUserList } from '@/api/user'
+import {
+  changePassword,
+  changeUser,
+  changeUserRole,
+  queryUser,
+  queryUserByUsername,
+  queryUserList,
+  queryUserRole,
+} from '@/api/user'
 import md5 from 'js-md5'
 import { addUser, cancelUser } from '@/api/user'
 
@@ -93,6 +101,18 @@ const user = {
     getUser({ commit }) {
       return new Promise((resolve, reject) => {
         queryUser()
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    getUserRole({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        queryUserRole(param)
           .then((response) => {
             resolve(response.data)
           })

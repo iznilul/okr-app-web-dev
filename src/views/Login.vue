@@ -144,7 +144,6 @@ export default {
           this.loginSuccess()
         })
         .catch((error) => {
-          this.requestFailed()
           console.error(error)
         })
       this.handleModifyReset('form')
@@ -162,18 +161,8 @@ export default {
           }, 1000)
         })
         .catch((error) => {
-          this.$Notice.error({
-            desc: '获取动态菜单失败',
-          })
           console.log(error)
         })
-    },
-
-    requestFailed() {
-      this.$Notice.error({
-        title: '登录失败',
-        desc: '请检查用户名密码或者网络连接',
-      })
     },
 
     handleModifyReset(name) {

@@ -7,7 +7,7 @@
       <form-item label="状态" prop="statusName">
         <auto-input
           :param="form.statusName"
-          item="status"
+          item="statusName"
           placeholder="请输入查询状态"
           dispatch="getLikeUserStatus"
           @recvParam="recvParam"
@@ -57,7 +57,7 @@ export default {
       this.form[item] = val
     },
     getUserRole(username) {
-      this.publicGetData('getUserByUsername', { username: username })
+      this.publicGetData('getUserRole', { username: username })
         .then((res) => {
           this.form = res
         })

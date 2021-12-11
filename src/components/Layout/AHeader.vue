@@ -67,25 +67,10 @@ export default {
         .then((res) => {
           console.log(res)
           this.$store.dispatch('saveSession', res)
-          this.getUserInfoSuccess()
         })
         .catch((error) => {
-          this.getUserInfoFailed()
           console.error(error)
         })
-    },
-
-    getUserInfoSuccess() {
-      this.$Notice.success({
-        title: '获取用户信息成功',
-      })
-    },
-
-    getUserInfoFailed() {
-      this.$Notice.error({
-        title: '获取用户信息失败',
-        desc: '请检查用户名密码或者网络连接',
-      })
     },
 
     // 用户操作

@@ -57,6 +57,7 @@ export default {
   },
   methods: {
     getData(method, param) {
+      // console.log(param)
       debounce(() => {
         this.publicGetData(method, param)
           .then((res) => {

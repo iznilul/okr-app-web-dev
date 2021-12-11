@@ -5,6 +5,7 @@ export const userApi = {
   changeUser: '/api/okr/user/change',
   changeUserRole: '/api/okr/user/changeRole',
   queryUser: '/api/okr/user/query',
+  queryUserRole: '/api/okr/user/queryRole',
   queryUserByUsername: '/api/okr/user/queryByUsername',
   queryUserList: '/api/okr/user/queryList',
   changeUserImg: '/api/okr/user/changeImg',
@@ -50,4 +51,8 @@ export const monitorApi = {
 
 export const rankApi = {}
 
-export const resourceApi = {}
+export const resourceApi = {
+  changeResource: '/api/okr/resource/change',
+  queryResource: '/api/okr/resource/query',
+  queryResourceName: '/api/okr/resource/queryName',
+}
