@@ -112,7 +112,7 @@ const columns = [
             on: {
               click: () => {
                 // console.log(params.row.username)
-                showModal('modifyKey')
+                showKeyModal('modifyKey')
                 getKeyById(params.row.keyId)
               },
             },

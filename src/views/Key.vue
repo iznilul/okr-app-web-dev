@@ -39,7 +39,7 @@ export default {
   },
   mounted() {
     this.getKeyList()
-    window.showModal = this.showModal
+    window.showKeyModal = this.showKeyModal
     window.removeKey = this.removeKey
     window.borrowKey = this.borrowKey
     window.returnKey = this.returnKey
@@ -81,7 +81,7 @@ export default {
       this.publicChangePageSize(pageSize, this.getKeyUser)
     },
 
-    showModal(ref) {
+    showKeyModal(ref) {
       this.publicShowModal(ref)
     },
   },

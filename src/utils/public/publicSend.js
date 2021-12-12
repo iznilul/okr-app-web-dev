@@ -1,5 +1,3 @@
-import resultEnum from '@/utils/enum/ResultEnum'
-
 export default {
   install(Vue) {
     Vue.prototype.publicSend = function (method, param) {

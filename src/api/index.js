@@ -23,6 +23,7 @@ export const enumApi = {
   enumKey: '/api/okr/enum/key',
   enumRole: '/api/okr/enum/role',
   enumUserStatus: '/api/okr/enum/userStatus',
+  enumSignUpStatus: '/api/okr/enum/signUpStatus',
 }
 
 export const keyApi = {
@@ -55,4 +56,11 @@ export const resourceApi = {
   changeResource: '/api/okr/resource/change',
   queryResource: '/api/okr/resource/query',
   queryResourceName: '/api/okr/resource/queryName',
+}
+
+export const signupApi = {
+  changeSignUp: '/api/okr/signup/change',
+  querySignUpList: '/api/okr/signup/queryList',
+  querySignUp: '/api/okr/signup/query',
+  exportSignUp: '/api/okr/signup/export',
 }

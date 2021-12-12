@@ -83,10 +83,7 @@ service.interceptors.response.use(
       resetTokenAndClearUser()
       router.push('/')
     } else {
-      if (res.code === 200) {
-        // Notice.info({
-        //   desc: resultEnum.SUCCESS.desc,
-        // })
+      if (res.code === 200 || response.status === 200) {
         return res
       } else {
         Notice.error({

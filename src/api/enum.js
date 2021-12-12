@@ -43,3 +43,11 @@ export function enumUserStatus(param) {
     params: param,
   })
 }
+
+export function enumSignUpStatus(param) {
+  return axios({
+    url: enumApi.enumSignUpStatus,
+    method: 'get',
+    params: param,
+  })
+}
