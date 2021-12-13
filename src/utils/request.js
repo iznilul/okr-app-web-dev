@@ -83,7 +83,7 @@ service.interceptors.response.use(
       resetTokenAndClearUser()
       router.push('/')
     } else {
-      if (res.code === 200 || response.status === 200) {
+      if (res.code === 200 || res.size > 0) {
         return res
       } else {
         Notice.error({

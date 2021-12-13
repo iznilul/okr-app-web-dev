@@ -64,3 +64,11 @@ export const signupApi = {
   querySignUp: '/api/okr/signup/query',
   exportSignUp: '/api/okr/signup/export',
 }
+
+export const tagApi = {
+  changeTag: '/api/okr/tag/change',
+  queryTagList: '/api/okr/tag/queryList',
+  queryTag: '/api/okr/tag/query',
+  addTag: '/api/okr/tag/add',
+  cancelTag: '/api/okr/tag/cancel',
+}
