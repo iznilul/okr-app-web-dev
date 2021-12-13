@@ -51,3 +51,18 @@ export function enumSignUpStatus(param) {
     params: param,
   })
 }
+export function enumBook(param) {
+  return axios({
+    url: enumApi.enumBook,
+    method: 'get',
+    params: param,
+  })
+}
+
+export function enumTag(param) {
+  return axios({
+    url: enumApi.enumTag,
+    method: 'get',
+    params: param,
+  })
+}

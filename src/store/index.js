@@ -4,6 +4,7 @@ import user from '@/store/modules/user'
 import menu from '@/store/modules/menu'
 import getters from '@/store/getters'
 import aside from '@/store/modules/aside'
+import book from '@/store/modules/book'
 import monitor from '@/store/modules/monitor'
 import enumApi from '@/store/modules/enum'
 import common from '@/store/modules/common'
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
     user,
     menu,
     aside,
+    book,
     monitor,
     key,
     common,

@@ -14,7 +14,17 @@ export const userApi = {
   cancelUser: '/api/okr/user/cancel',
 }
 
-export const bookApi = {}
+export const bookApi = {
+  queryList: '/api/okr/book/queryList',
+  borrowBook: '/api/okr/book/borrow',
+  returnBook: '/api/okr/book/return',
+  queryBook: '/api/okr/book/query',
+  changeBook: '/api/okr/book/change',
+  changeBookImg: '/api/okr/book/changeImg',
+  addBook: '/api/okr/book/add',
+  cancelBook: '/api/okr/book/cancel',
+  queryBookUser: '/api/okr/bookUser/query',
+}
 
 export const enumApi = {
   enumUsername: '/api/okr/enum/username',
@@ -24,6 +34,8 @@ export const enumApi = {
   enumRole: '/api/okr/enum/role',
   enumUserStatus: '/api/okr/enum/userStatus',
   enumSignUpStatus: '/api/okr/enum/signUpStatus',
+  enumBook: '/api/okr/enum/book',
+  enumTag: '/api/okr/enum/tag',
 }
 
 export const keyApi = {

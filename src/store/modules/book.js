@@ -1,36 +1,22 @@
 import {
-  enumBook,
-  enumKey,
-  enumMajor,
-  enumName,
-  enumRole,
-  enumSignUpStatus,
-  enumTag,
-  enumUsername,
-  enumUserStatus,
-} from '@/api/enum'
-
-const enumApi = {
+  queryBook,
+  queryBookList,
+  cancelBook,
+  addBook,
+  changeBook,
+  borrowBook,
+  returnBook,
+  queryBookUser,
+} from '@/api/book'
+const book = {
   state: {},
 
   mutations: {},
 
   actions: {
-    getLikeUsername({ commit }, param) {
+    getBook({ commit }, data) {
       return new Promise((resolve, reject) => {
-        enumUsername(param)
-          .then((response) => {
-            const result = response.data
-            resolve(result)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
-    },
-    getLikeName({ commit }, param) {
-      return new Promise((resolve, reject) => {
-        enumName(param)
+        queryBook(data)
           .then((response) => {
             resolve(response.data)
           })
@@ -39,55 +25,33 @@ const enumApi = {
           })
       })
     },
-    getLikeMajor({ commit }, param) {
+    modifyBook({ commit }, data) {
       return new Promise((resolve, reject) => {
-        enumMajor(param)
+        changeBook(data)
           .then((response) => {
-            resolve(response.data)
+            resolve(response)
           })
           .catch((error) => {
             reject(error)
           })
       })
     },
-    getLikeKey({ commit }, param) {
+    saveBook({ commit }, data) {
       return new Promise((resolve, reject) => {
-        enumKey(param)
+        addBook(data)
           .then((response) => {
-            resolve(response.data)
+            resolve(response)
           })
           .catch((error) => {
             reject(error)
           })
       })
     },
-    getLikeRole({ commit }, param) {
+    removeBook({ commit }, data) {
       return new Promise((resolve, reject) => {
-        enumRole(param)
+        cancelBook(data)
           .then((response) => {
-            resolve(response.data)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
-    },
-    getLikeUserStatus({ commit }, param) {
-      return new Promise((resolve, reject) => {
-        enumUserStatus(param)
-          .then((response) => {
-            resolve(response.data)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
-    },
-    getLikeSignUpStatus({ commit }, param) {
-      return new Promise((resolve, reject) => {
-        enumSignUpStatus(param)
-          .then((response) => {
-            resolve(response.data)
+            resolve(response)
           })
           .catch((error) => {
             reject(error)
@@ -95,11 +59,33 @@ const enumApi = {
       })
     },
 
-    getLikeBook({ commit }, param) {
+    getBookList({ commit }, data) {
       return new Promise((resolve, reject) => {
-        enumBook(param)
+        queryBookList(data)
           .then((response) => {
-            resolve(response.data)
+            resolve(response)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    getBookUser({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        queryBookUser(data)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    borrowBook({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        borrowBook(data)
+          .then((response) => {
+            resolve(response)
           })
           .catch((error) => {
             reject(error)
@@ -107,11 +93,11 @@ const enumApi = {
       })
     },
 
-    getLikeTag({ commit }, param) {
+    returnBook({ commit }, data) {
       return new Promise((resolve, reject) => {
-        enumTag(param)
+        returnBook(data)
           .then((response) => {
-            resolve(response.data)
+            resolve(response)
           })
           .catch((error) => {
             reject(error)
@@ -120,5 +106,4 @@ const enumApi = {
     },
   },
 }
-
-export default enumApi
+export default book
