@@ -8,7 +8,8 @@ import { resetTokenAndClearUser } from '@/utils/index'
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
 
 const service = axios.create({
-  baseURL: baseURL,
+  //   baseURL: baseURL,
+  baseURL: 'http://82.156.131.172:9101',
   timeout: 600000,
 })
 // 正在进行中的请求列表

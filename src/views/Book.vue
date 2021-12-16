@@ -1,7 +1,7 @@
 <template>
   <div id="book">
     <Button id="button" @click="showBookModal('addBook')" type="primary">添加书籍</Button>
-    <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <Table border stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <add-book ref="addBook" @getBookList="getBookList"></add-book>
     <modify-book ref="modifyBook" @getBookList="getBookList"></modify-book>
     <Page

@@ -25,11 +25,6 @@ const columns = [
           {
             props: {
               color: color,
-              size: 'large',
-            },
-            style: {
-              position: 'relative',
-              left: '10px',
             },
           },
           statusName

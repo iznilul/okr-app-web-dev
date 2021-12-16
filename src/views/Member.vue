@@ -39,7 +39,7 @@
     <Register @getUserList="getUserList"></Register>
     <ModifyUser ref="modifyUser" @getUserList="getUserList"></ModifyUser>
     <ModifyUserRole ref="modifyUserRole" @getUserList="getUserList"></ModifyUserRole>
-    <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <Table border stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
     <Page
       id="page"
       :total="dataCount"
