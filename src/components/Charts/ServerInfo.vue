@@ -1,5 +1,5 @@
 <template>
-  <Table stripe id="table" :columns="column" :data="serverInfo"></Table>
+  <Table border stripe id="table" :columns="column" :data="serverInfo"></Table>
 </template>
 
 <script>

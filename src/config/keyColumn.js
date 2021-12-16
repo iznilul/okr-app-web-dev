@@ -5,6 +5,8 @@ const columns = [
   {
     title: '钥匙id',
     key: 'keyId',
+    width: '100px',
+    align: 'center',
   },
   {
     title: '钥匙名',
@@ -13,6 +15,8 @@ const columns = [
   {
     title: '钥匙状态',
     key: 'statusName',
+    width: '100px',
+    align: 'center',
     render: (h, params) => {
       let color = map[params.row.status]
       let statusName = params.row.statusName
@@ -23,11 +27,6 @@ const columns = [
           {
             props: {
               color: color,
-              size: 'large',
-            },
-            style: {
-              position: 'relative',
-              left: '10px',
             },
           },
           statusName
@@ -38,7 +37,7 @@ const columns = [
   {
     title: '借/还',
     key: 'borrow/return',
-    // width: '200px',
+    width: '150px',
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)
@@ -51,10 +50,6 @@ const columns = [
             {
               props: {
                 type: 'warning',
-              },
-              style: {
-                position: 'relative',
-                left: '10px',
               },
               on: {
                 click: () => {
@@ -93,7 +88,8 @@ const columns = [
   {
     title: '操作',
     key: 'operation',
-    // width: '200px',
+    width: '200px',
+    fixed: 'right',
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)

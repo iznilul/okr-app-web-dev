@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 <template>
   <div id="login">
     <div id="title">
@@ -56,9 +57,7 @@
 
 <script>
 import Verification from '../components/Util/Verification'
-import particles from 'particles.js'
 import config from '../config/particlesConfig'
-import { createRoutes } from '../utils/createRoutes'
 
 export default {
   name: 'login',
@@ -78,7 +77,7 @@ export default {
       mouse: false,
       timer: '',
       rules: {
-        //判空规则
+        // 判空规则
         username: [
           {
             required: true,
@@ -109,11 +108,11 @@ export default {
   mounted() {
     this.timer = setInterval(() => {
       if (this.mouse === false) {
-        this.currentTab = 'tab' + (this.tabNum++ % 8)
+        this.currentTab = `tab${this.tabNum++ % 8}`
       }
       // console.log(this.currentTab)
     }, 3000)
-    particlesJS('login', config)
+    // particlesJS('login', config)
   },
 
   beforeDestroy() {
@@ -139,7 +138,7 @@ export default {
       this.$store
         .dispatch('Login', this.form) // 表单会在序列化时转换成json格式
         .then((res) => {
-          console.log(res)
+          //   console.log(res)
           localStorage.setItem('token', res.token)
           this.loginSuccess()
         })

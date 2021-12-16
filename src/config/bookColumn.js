@@ -4,8 +4,9 @@ const map = { 0: 'primary', 1: 'warning', 2: 'error' }
 const columns = [
   {
     title: '封面',
-    width: '100px',
+    width: '120px',
     height: '120px',
+    align: 'center',
     render: (h, params) => {
       return h('Avatar', {
         props: {
@@ -31,7 +32,7 @@ const columns = [
   },
   {
     title: '关联标签',
-    width: '300px',
+    width: '400px',
     render: (h, params) => {
       let tagList = params.row.tagList
       return h(
@@ -65,7 +66,7 @@ const columns = [
           {
             props: {
               color: color,
-              size: 'large',
+              //   size: 'large',
             },
             style: {
               position: 'relative',
@@ -80,6 +81,7 @@ const columns = [
   {
     title: '借/还',
     key: 'borrow/return',
+    width: '100px',
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)
@@ -95,7 +97,6 @@ const columns = [
               },
               style: {
                 position: 'relative',
-                left: '10px',
               },
               on: {
                 click: () => {
@@ -117,7 +118,6 @@ const columns = [
               },
               style: {
                 position: 'relative',
-                left: '10px',
               },
               on: {
                 click: () => {
@@ -134,6 +134,8 @@ const columns = [
   {
     title: '操作',
     key: 'operation',
+    fixed: 'right',
+    width: '190px',
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)

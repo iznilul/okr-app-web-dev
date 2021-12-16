@@ -7,7 +7,7 @@ const columns = [
     width: '70px',
     height: '70px',
     className: 'avatar',
-
+    align: 'center',
     render: (h, params) => {
       // console.log(params.row.avatar)
       return h('Avatar', {
@@ -27,7 +27,7 @@ const columns = [
   {
     title: '账号',
     key: 'username',
-    width: '80px',
+    width: '130px',
   },
   {
     title: '权限',
@@ -77,7 +77,8 @@ const columns = [
   {
     title: '操作',
     key: 'operation',
-    width: '280px',
+    fixed: 'right',
+    width: '230px',
     // align: 'center',
     render: (h, params) => {
       // console.log(params.row)
