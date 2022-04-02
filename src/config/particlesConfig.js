@@ -2,7 +2,7 @@ import snow from '../assets/imgs/snow.png'
 const config = {
   particles: {
     number: {
-      value: 200,
+      value: 100,
       density: {
         enable: true,
         value_area: 800,
@@ -55,7 +55,7 @@ const config = {
     },
     move: {
       enable: true,
-      speed: 5,
+      speed: 7,
       direction: 'bottom',
       random: true,
       straight: false,

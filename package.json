@@ -43,13 +43,13 @@
     "js-md5": "^0.7.3",
     "less": "^4.1.1",
     "less-loader": "^5.0.0",
-    "node-sass": "^6.0.1",
     "postcss-loader": "^6.1.1",
     "prettier": "2.3.2",
     "sass-loader": "^7.3.1",
     "style-loader": "^3.2.1",
     "vue-eslint-parser": "^7.0.0",
     "vue-particles": "^1.0.9",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "node-sass": "^4.14.1"
   }
 }
