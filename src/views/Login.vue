@@ -60,7 +60,6 @@
 import Verification from '../components/Util/Verification'
 import config from '../config/particlesConfig'
 import particle from 'particles.js'
-import { setScale } from '@/utils/resize'
 
 export default {
   name: 'login',
@@ -116,7 +115,6 @@ export default {
       // console.log(this.currentTab)
     }, 3000)
     particlesJS('login', config)
-    window.addEventListener('resize', setScale)
   },
 
   beforeDestroy() {

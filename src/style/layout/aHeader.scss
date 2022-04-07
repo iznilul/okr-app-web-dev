@@ -1,0 +1,64 @@
+/* 主体页面头部 */
+header {
+  height: px2rem(48);
+  background: #20222a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: px2rem(36);
+  padding-left: px2rem(12);
+  font-size: px2rem(12);
+}
+.h-right {
+  display: flex;
+  align-items: center;
+  width: px2rem(240);
+}
+.h-left {
+  display: flex;
+  align-items: center;
+  width: px2rem(250);
+  height: px2rem(36);
+  p {
+    color: #fff;
+  }
+}
+#switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: px2rem(12);
+  padding-left: px2rem(12);
+  width: px2rem(180);
+  height: px2rem(36);
+  .ivu-switch {
+    margin-left: 10px;
+  }
+}
+.pointer {
+  cursor: pointer;
+  width: px2rem(30);
+  height: px2rem(30);
+}
+.name {
+  width: px2rem(66);
+  height: px2rem(30);
+  font-size: px2rem(18);
+}
+.crumbs {
+  margin-left: px2rem(36);
+  color: #97a8be;
+  cursor: default;
+  font-size: px2rem(12);
+}
+.user-img-c img {
+  width: 100%;
+}
+.user-img-c {
+  width: px2rem(36);
+  height: px2rem(36);
+  background: #ddd;
+  border-radius: 50%;
+  margin: 0 px2rem(30);
+  overflow: hidden;
+}

@@ -10,10 +10,14 @@
 
 <script>
 import { mapState } from 'vuex'
+import { setScale } from '@/utils/resize'
 
 export default {
   name: 'App',
-  data() {
+    mounted() {
+      window.addEventListener("resize",setScale)
+    },
+    data() {
     return {
       keepAliveData: ['manage'],
     }

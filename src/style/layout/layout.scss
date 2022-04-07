@@ -1,0 +1,11 @@
+.layout {
+  height: 100%;
+  color: #f3f7fd;
+}
+.sec-right {
+  height: 100%;
+  margin-left: px2rem(240);
+  transition: margin-left 0.3s;
+  overflow: hidden;
+  background: #f3f7fd;
+}
