@@ -1,0 +1,54 @@
+#home {
+  #title {
+    position: absolute;
+    left: 1%;
+    top: 1%;
+    display: block;
+    font-family: 'SFUDINEngschrift', serif;
+    font-size: px2rem(18);
+  }
+
+  #pie {
+    position: absolute;
+    top: 8%;
+    left: 2%;
+    height: px2rem(180);
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    #cpu {
+      height: 100%;
+      width: px2rem(300);
+    }
+
+    #mem {
+      height: 100%;
+      width: px2rem(300);
+    }
+
+    #jvm {
+      height: 100%;
+      width: px2rem(300);
+    }
+
+    #sysFiles {
+      height: 100%;
+      width: px2rem(300);
+    }
+  }
+
+  #serverInfo {
+    position: absolute;
+    top: 50%;
+    left: 2%;
+    height: px2rem(150);
+    width: 100%;
+
+    #table {
+      position: absolute;
+      overflow-x: scroll;
+    }
+  }
+}
