@@ -30,10 +30,13 @@
 </template>
 
 <script>
+import { px2rem } from '@/utils/resize'
+
 export default {
   name: 'AContent',
   data() {
-    return {}
+    return {
+    }
   },
   computed: {
     isShowRouter() {

@@ -4,7 +4,7 @@
     <!-- logo -->
     <div class="logo-c">
       <img src="../../assets/imgs/itlab.png" alt="logo" class="logo" />
-      <span v-show="isShowAsideTitle">itlab后台管理</span>
+      <span v-show="isShowAsideTitle">itlab后台</span>
     </div>
     <!-- 菜单栏 -->
     <Menu
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { px2rem } from '@/utils/resize'
+
 export default {
   name: 'ASide',
   data() {
@@ -124,12 +126,12 @@ export default {
         }
       }, 200)
       this.$store.commit('setAsideClassName', 'aside-big')
-      this.$emit('changeMain', '200px')
+      this.$emit('changeMain', px2rem(120))
     },
   },
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 @import '../../style/layout/aSide';
 </style>

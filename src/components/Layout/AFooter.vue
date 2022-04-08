@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <a>SDUT OKR 实验室管理系统 有问题请联系QQ:1773950094</a>
+    <span>SDUT OKR 实验室管理系统 有问题请联系QQ:1773950094</span>
   </div>
 </template>
 
@@ -10,6 +10,6 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 @import '../../style/layout/aFooter';
 </style>

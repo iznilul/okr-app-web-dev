@@ -1,6 +1,7 @@
+let designWidth = 1366 //设计稿的宽度，根据实际项目调整
+let designHeight = 768 //设计稿的高度，根据实际项目调整
+
 export function setScale() {
-    let designWidth = 1366 //设计稿的宽度，根据实际项目调整
-    let designHeight = 768 //设计稿的高度，根据实际项目调整
     // var fontSize =
     //     document.documentElement.clientWidth / document.documentElement.clientHeight < designWidth / designHeight
     //         ? (document.documentElement.clientWidth / designWidth) * 12
@@ -11,4 +12,9 @@ export function setScale() {
     // console.log(document.documentElement.clientHeight)
     console.log(fontSize)
     document.querySelector('html').style.fontSize = fontSize + 'px'
+}
+
+export function px2rem(px) {
+    let designFontSize = 12
+    return (px / designFontSize) + 'rem'
 }

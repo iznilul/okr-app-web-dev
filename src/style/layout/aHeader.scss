@@ -8,57 +8,72 @@ header {
   padding-right: px2rem(36);
   padding-left: px2rem(12);
   font-size: px2rem(12);
-}
-.h-right {
-  display: flex;
-  align-items: center;
-  width: px2rem(240);
-}
-.h-left {
-  display: flex;
-  align-items: center;
-  width: px2rem(250);
-  height: px2rem(36);
-  p {
-    color: #fff;
+  .h-right {
+    display: flex;
+    align-items: center;
+    width: px2rem(240);
   }
-}
-#switch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: px2rem(12);
-  padding-left: px2rem(12);
-  width: px2rem(180);
-  height: px2rem(36);
-  .ivu-switch {
-    margin-left: 10px;
+  .h-left {
+    display: flex;
+    align-items: center;
+    width: px2rem(250);
+    height: px2rem(36);
+    p {
+      color: #fff;
+    }
   }
-}
-.pointer {
-  cursor: pointer;
-  width: px2rem(30);
-  height: px2rem(30);
-}
-.name {
-  width: px2rem(66);
-  height: px2rem(30);
-  font-size: px2rem(18);
-}
-.crumbs {
-  margin-left: px2rem(36);
-  color: #97a8be;
-  cursor: default;
-  font-size: px2rem(12);
-}
-.user-img-c img {
-  width: 100%;
-}
-.user-img-c {
-  width: px2rem(36);
-  height: px2rem(36);
-  background: #ddd;
-  border-radius: 50%;
-  margin: 0 px2rem(30);
-  overflow: hidden;
+  #switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: px2rem(12);
+    padding-left: px2rem(12);
+    width: px2rem(180);
+    height: px2rem(36);
+    .ivu-switch{
+      margin-left: px2rem(10);
+      width: px2rem(42);
+      height: px2rem(18);
+      .ivu-switch-inner{
+        font-size: px2rem(12) !important;
+        span{
+          text-align: center;
+          line-height: px2rem(18);
+        }
+      }
+    }
+
+  }
+  .pointer {
+    cursor: pointer;
+    width: px2rem(30);
+    height: px2rem(30);
+    .ivu-icon{
+      font-size: px2rem(24);
+    }
+  }
+  .crumbs {
+    margin-left: px2rem(36);
+    color: #97a8be;
+    cursor: default;
+    font-size: px2rem(12);
+  }
+  .name {
+    text-align: center;
+    line-height: px2rem(64);
+    width: px2rem(66);
+    font-size: px2rem(12);
+  }
+  .user-img-c img {
+    width: 100%;
+  }
+  .user-img-c {
+    width: px2rem(36);
+    height: px2rem(36);
+    background: #ddd;
+    border-radius: 50%;
+    margin: 0 px2rem(24);
+    overflow: hidden;
+  }
+
 }

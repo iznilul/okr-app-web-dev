@@ -2,13 +2,13 @@
   <header>
     <div class="h-left">
       <div class="pointer" @click="isShrinkAside" title="收缩/展开">
-        <Icon type="ios-swap" size="24" />
+        <Icon type="ios-swap"/>
       </div>
       <p class="crumbs">{{ crumbs }}</p>
     </div>
     <div id="switch">
       <span>夜间模式</span>
-      <i-switch size="large" @on-change="changeTheme">
+      <i-switch @on-change="changeTheme">
         <span slot="open">ON</span>
         <span slot="close">OFF</span>
       </i-switch>
@@ -20,8 +20,8 @@
       <!-- 下拉菜单 -->
       <Dropdown trigger="click" @on-click="userOperate" @on-visible-change="showArrow">
         <div class="pointer">
-          <Icon v-show="arrowDown" type="md-arrow-dropdown" size="24" />
-          <Icon v-show="arrowUp" type="md-arrow-dropup" size="24" />
+          <Icon v-show="arrowDown" type="md-arrow-dropdown"/>
+          <Icon v-show="arrowUp" type="md-arrow-dropup"/>
         </div>
         <DropdownMenu slot="list">
           <!-- name标识符 -->
@@ -36,6 +36,7 @@
 
 <script>
 import { resetTokenAndClearUser } from '../../utils'
+import { px2rem } from '@/utils/resize'
 
 export default {
   name: 'AHeader',
@@ -122,7 +123,7 @@ export default {
 
       setTimeout(() => {
         this.$store.commit('setAsideClassName', '')
-        this.$emit('changeMain', '90px')
+        this.$emit('changeMain', px2rem(60))
       }, 0)
     },
     // 展开
@@ -135,12 +136,12 @@ export default {
         this.$emit('triggerUpdateMenu')
       }, 200)
       this.$store.commit('setAsideClassName', 'aside-big')
-      this.$emit('changeMain', '200px')
+      this.$emit('changeMain', px2rem(120))
     },
   },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '../../style/layout/aHeader';
 </style>

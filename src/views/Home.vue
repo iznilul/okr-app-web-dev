@@ -1,15 +1,15 @@
 <template>
   <div id="home">
     <span id="title">服务器性能监控</span>
-<!--    <div id="pie">-->
-<!--      <Cpu :data="form.cpu"></Cpu>-->
-<!--      <Mem :data="form.mem"></Mem>-->
-<!--      <Jvm :data="form.jvm"></Jvm>-->
-<!--      <SysFiles :data="form.sysFiles"></SysFiles>-->
-<!--    </div>-->
-<!--    <div id="serverInfo">-->
-<!--      <server-info :data="form.serverInfo"></server-info>-->
-<!--    </div>-->
+    <div id="pie">
+      <Cpu :data="form.cpu"></Cpu>
+      <Mem :data="form.mem"></Mem>
+      <Jvm :data="form.jvm"></Jvm>
+      <SysFiles :data="form.sysFiles"></SysFiles>
+    </div>
+    <div id="serverInfo">
+      <server-info :data="form.serverInfo"></server-info>
+    </div>
   </div>
 </template>
 

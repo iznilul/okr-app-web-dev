@@ -1,0 +1,13 @@
+.footer {
+  text-align: center;
+  overflow: hidden;
+  background: #20222a;
+  position: absolute;
+  bottom: 0;
+  height: px2rem(30);
+  width: 100%;
+  font-size: px2rem(12);
+  span{
+    line-height: px2rem(30);
+  }
+}

@@ -1,0 +1,40 @@
+/* 侧边栏 */
+aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: px2rem(60);
+  background: #20222a;
+  height: 100%;
+  transition: width 0.3s;
+  overflow: auto;
+}
+
+.logo-c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: px2rem(12);
+  margin: px2rem(12) 0;
+}
+
+.logo {
+  width: px2rem(36);
+  margin-right: px2rem(12);
+}
+
+.aside-big {
+  width: px2rem(120)
+}
+
+.menu {
+  .ivu-menu-item , .ivu-menu-submenu-title {
+    .ivu-icon {
+      font-size: px2rem(12) !important;
+    }
+    span{
+      font-size: px2rem(12);
+    }
+  }
+}
