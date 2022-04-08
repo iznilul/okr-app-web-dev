@@ -2,10 +2,11 @@
   text-align: center;
   overflow: hidden;
   background: #20222a;
-  position: absolute;
+  position: fixed;
   bottom: 0;
+  right: 0;
+  left: px2rem(120);
   height: px2rem(30);
-  width: 100%;
   font-size: px2rem(12);
   span{
     line-height: px2rem(30);

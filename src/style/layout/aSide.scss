@@ -29,12 +29,20 @@ aside {
 }
 
 .menu {
-  .ivu-menu-item , .ivu-menu-submenu-title {
+  .ivu-menu-item{
     .ivu-icon {
       font-size: px2rem(12) !important;
     }
     span{
       font-size: px2rem(12);
+      line-height: px2rem(24);
+    }
+    padding: px2rem(12) px2rem(12) !important;
+  }
+  .ivu-menu-submenu{
+    font-size: px2rem(12);
+    span{
+      line-height: px2rem(24);
     }
   }
 }

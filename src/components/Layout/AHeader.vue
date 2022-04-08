@@ -1,9 +1,9 @@
 <template>
   <header>
     <div class="h-left">
-      <div class="pointer" @click="isShrinkAside" title="收缩/展开">
-        <Icon type="ios-swap"/>
-      </div>
+<!--      <div class="pointer" @click="isShrinkAside" title="收缩/展开">-->
+<!--        <Icon type="ios-swap"/>-->
+<!--      </div>-->
       <p class="crumbs">{{ crumbs }}</p>
     </div>
     <div id="switch">

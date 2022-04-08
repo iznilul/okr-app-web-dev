@@ -1,11 +1,20 @@
 .layout {
   height: 100%;
-  color: #f3f7fd;
-}
-.sec-right {
-  height: 100%;
+  position: relative; // 关键
+  min-height: 100%; // 关键
   margin-left: px2rem(120);
   transition: margin-left 0.3s;
   overflow: hidden;
   background: #f3f7fd;
+  .view-c {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: px2rem(84);
+    left: 0;
+    right: 0;
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
 }
+

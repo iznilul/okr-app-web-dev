@@ -57,5 +57,5 @@ export default {
 <style lang="less">
 @import '../../style/animation/move';
 @import '../../style/theme/theme';
-@import '../../style/layout/aContent';
+//@import '../../style/layout/aContent';
 </style>
