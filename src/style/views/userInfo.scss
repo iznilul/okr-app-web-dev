@@ -1,0 +1,67 @@
+#userInfo {
+  #avatar {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+  }
+
+  .ivu-avatar {
+    width: px2rem(180);
+    height: px2rem(180);
+    line-height: px2rem(180);
+    font-size: px2rem(72);
+  }
+
+  .ivu-upload {
+    height: px2rem(24);
+    text-align: center;
+
+    .ivu-btn {
+      font-size: px2rem(18);
+      width: 100%;
+    }
+  }
+
+  #passwordForm {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+  }
+
+  #userInfoForm {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+  }
+
+  .ivu-btn-primary {
+    position: absolute;
+    left: px2rem(90);
+    font-size: px2rem(12);
+  }
+
+
+  .ivu-input {
+    width: px2rem(150);
+    font-size: px2rem(12);
+  }
+
+  .ivu-form-item {
+    margin-top: px2rem(24);
+    margin-bottom: px2rem(24);
+  }
+
+  .ivu-form-item-label {
+    text-align: center;
+    width: px2rem(60);
+    font-size: px2rem(12);
+  }
+
+  .ivu-form-item-content {
+    display: inline-block;
+  }
+}

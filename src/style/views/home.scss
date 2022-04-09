@@ -45,10 +45,22 @@
     left: 2%;
     height: px2rem(150);
     width: 100%;
-
-    #table {
-      position: absolute;
-      overflow-x: scroll;
+    .ivu-table-wrapper {
+      //.ivu-table-header table, .ivu-table-body table, .ivu-table-tip table {
+      //  width: 100% !important;
+      //  table-layout: auto;
+      //}
+      //.ivu-table-header table colgroup col{
+      //  display: none;
+      //}
+      th .ivu-table-cell{
+        display: block;
+      }
+      .ivu-table-cell{
+        padding: px2rem(3) px2rem(3);
+        text-align: center;
+        font-size: px2rem(6);
+      }
     }
   }
 }
