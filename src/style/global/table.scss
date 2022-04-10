@@ -1,0 +1,27 @@
+.ivu-table-wrapper {
+  position: absolute;
+  top: px2rem(100);
+  left: 0;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  .ivu-table-row td.avatar .ivu-table-cell {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .ivu-table-cell .ivu-btn span {
+    color: #fff;
+  }
+  th .ivu-table-cell{
+    display: block;
+  }
+  .ivu-table-cell{
+    padding: px2rem(3) px2rem(3);
+    text-align: center;
+    font-size: px2rem(6);
+  }
+  .ivu-btn,.ivu-tag{
+    font-size: px2rem(9);
+    margin:px2rem(6) 0 0 px2rem(6);
+  }
+}

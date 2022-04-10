@@ -27,58 +27,47 @@ const columns = [
   {
     title: '账号',
     key: 'username',
-    width: '130px',
   },
+    {
+        title: '姓名',
+        key: 'name',
+    },
   {
     title: '权限',
     key: 'role',
-    width: '100px',
   },
   {
     title: '权限到期时间',
     key: 'expireTime',
-    width: '120px',
   },
-  {
-    title: '姓名',
-    key: 'name',
-    width: '80px',
-  },
-  {
-    title: '状态',
-    key: 'statusName',
-    width: '80px',
-  },
+  // {
+  //   title: '状态',
+  //   key: 'statusName',
+  // },
   {
     title: '专业班级',
     key: 'major',
-    width: '100px',
   },
-  {
-    title: 'qq号',
-    key: 'qq',
-    width: '100px',
-  },
-  {
-    title: '手机号',
-    key: 'phone',
-    width: '100px',
-  },
-  {
-    title: '微信号',
-    key: 'weixin',
-    width: '100px',
-  },
+  // {
+  //   title: 'qq号',
+  //   key: 'qq',
+  // },
+  // {
+  //   title: '手机号',
+  //   key: 'phone',
+  // },
+  // {
+  //   title: '微信号',
+  //   key: 'weixin',
+  // },
   {
     title: '简介',
     key: 'profile',
-    width: '160px',
   },
   {
     title: '操作',
     key: 'operation',
     fixed: 'right',
-    width: '230px',
     // align: 'center',
     render: (h, params) => {
       // console.log(params.row)
@@ -119,7 +108,6 @@ const columns = [
             },
             style: {
               position: 'relative',
-              left: '5px',
               'background-color': modify ? store.getters.buttonColor : '',
             },
 
@@ -142,7 +130,6 @@ const columns = [
             },
             style: {
               position: 'relative',
-              left: '10px',
               'background-color': store.getters.disabled ? store.getters.buttonColor : '',
             },
             on: {

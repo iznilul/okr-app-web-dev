@@ -1,6 +1,6 @@
 <template>
   <Modal id="modifyModal" v-model="visible" title="修改用户权限" @on-ok="handleSubmit" @on-cancel="hidden">
-    <Form ref="form" :lable-width="50" :model="form">
+    <Form ref="form"  :model="form">
       <form-item label="账号" prop="username">
         <Input disabled v-model="form.username"></Input>
       </form-item>
@@ -91,6 +91,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../../style/util/modifyModal';
 </style>

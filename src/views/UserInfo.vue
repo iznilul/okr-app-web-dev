@@ -32,20 +32,22 @@
             <FormItem label="专业班级">
                 <Input clearable v-model="form.major"></Input>
             </FormItem>
-            <FormItem label="QQ号">
-                <Input clearable v-model="form.qq"></Input>
-            </FormItem>
-            <FormItem label="手机号">
-                <Input clearable v-model="form.phone"></Input>
-            </FormItem>
-            <FormItem label="微信号">
-                <Input clearable v-model="form.weixin"></Input>
-            </FormItem>
+<!--            <FormItem label="QQ号">-->
+<!--                <Input clearable v-model="form.qq"></Input>-->
+<!--            </FormItem>-->
+<!--            <FormItem label="手机号">-->
+<!--                <Input clearable v-model="form.phone"></Input>-->
+<!--            </FormItem>-->
+<!--            <FormItem label="微信号">-->
+<!--                <Input clearable v-model="form.weixin"></Input>-->
+<!--            </FormItem>-->
             <FormItem label="自我简介">
                 <Input :rows="rows" type="textarea" v-model="form.profile" size="large"></Input>
             </FormItem>
             <Button @click="modifyUser" type="primary"> 修改资料</Button>
         </Form>
+        <br>
+        <br>
     </div>
 </template>
 

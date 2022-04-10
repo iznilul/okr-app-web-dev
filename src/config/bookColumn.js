@@ -4,8 +4,8 @@ const map = { 0: 'primary', 1: 'warning', 2: 'error' }
 const columns = [
   {
     title: '封面',
-    width: '120px',
-    height: '120px',
+    width: '100px',
+    height: '100px',
     align: 'center',
     render: (h, params) => {
       return h('Avatar', {
@@ -28,11 +28,9 @@ const columns = [
   {
     title: '出版社',
     key: 'publisher',
-    width: '160px',
   },
   {
     title: '关联标签',
-    width: '400px',
     render: (h, params) => {
       let tagList = params.row.tagList
       return h(
@@ -43,7 +41,6 @@ const columns = [
             'Tag',
             {
               props: {
-                size: 'medium',
               },
             },
             item
@@ -55,7 +52,6 @@ const columns = [
   {
     title: '书籍状态',
     key: 'statusName',
-    width: '100px',
     render: (h, params) => {
       let color = map[params.row.status]
       let statusName = params.row.statusName
@@ -69,8 +65,6 @@ const columns = [
               //   size: 'large',
             },
             style: {
-              position: 'relative',
-              left: '10px',
             },
           },
           statusName
@@ -81,7 +75,6 @@ const columns = [
   {
     title: '借/还',
     key: 'borrow/return',
-    width: '100px',
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)
@@ -96,7 +89,6 @@ const columns = [
                 type: 'warning',
               },
               style: {
-                position: 'relative',
               },
               on: {
                 click: () => {
@@ -117,7 +109,6 @@ const columns = [
                 type: 'warning',
               },
               style: {
-                position: 'relative',
               },
               on: {
                 click: () => {
@@ -135,7 +126,6 @@ const columns = [
     title: '操作',
     key: 'operation',
     fixed: 'right',
-    width: '190px',
     align: 'center',
     render: (h, params) => {
       // console.log(params.row)
@@ -170,7 +160,6 @@ const columns = [
             },
             style: {
               position: 'relative',
-              left: '10px',
               'background-color': disabled ? store.getters.buttonColor : '',
             },
             on: {

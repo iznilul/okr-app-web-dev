@@ -15,7 +15,7 @@
       @on-ok="handleSubmit"
       @on-cancel="() => (this.visible = false)"
     >
-      <Form ref="form" :lable-width="50" :model="form" :rules="rules">
+      <Form ref="form" :model="form" :rules="rules">
         <form-item label="账号" prop="username">
           <Input v-model="form.username" placeholder="新用户的初始密码为账号"></Input>
         </form-item>
@@ -99,6 +99,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../../style/util/register';
 </style>

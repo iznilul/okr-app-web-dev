@@ -8,11 +8,11 @@
   background: #f3f7fd;
   .view-c {
     position: absolute;
-    height: 100%;
-    width: 100%;
     top: px2rem(84);
     left: 0;
     right: 0;
+    height: 80%;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: scroll;
   }
