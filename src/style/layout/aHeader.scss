@@ -16,6 +16,7 @@ header {
     display: flex;
     align-items: center;
     width: px2rem(240);
+    color: #fff;
   }
   .h-left {
     display: flex;
@@ -34,6 +35,7 @@ header {
     padding-left: px2rem(12);
     width: px2rem(180);
     height: px2rem(36);
+    color: #fff;
     .ivu-switch{
       margin-left: px2rem(10);
       width: px2rem(42);

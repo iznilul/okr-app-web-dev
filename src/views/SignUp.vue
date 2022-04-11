@@ -11,13 +11,13 @@
                 <Input v-model="form.major"></Input>
             </FormItem>
         </Form>
-        <div id="query">
+        <div class="query">
             <Button @click="getSignUpList" type="primary">查询</Button>
             <Reset @reset="reset"></Reset>
-            <Button @click="exportSignUp" type="primary">导出报名表</Button>
+            <Button @click="exportSignUp" type="primary">导出名单</Button>
         </div>
-        <modify-sign-up ref="modifySignUp" @getSignUpList="getSignUpList"></modify-sign-up>
         <Table stripe border :columns="columns" :data="data"></Table>
+        <modify-sign-up ref="modifySignUp" @getSignUpList="getSignUpList"></modify-sign-up>
         <Page
             :total="dataCount"
             :page-size="form.pageSize"
@@ -99,6 +99,6 @@ export default {
 
 <style lang="scss">
 @import '../style/views/signUp';
-@import "../style/global/form";
+@import "../style/global/table";
 @import "../style/global/page";
 </style>

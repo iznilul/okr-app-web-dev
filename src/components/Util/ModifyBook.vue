@@ -1,6 +1,6 @@
 <template>
   <Modal id="modifyModal" v-model="visible" title="修改书籍信息" @on-ok="handleSubmit" @on-cancel="hidden">
-    <Form ref="form" :lable-width="50" :model="form">
+    <Form ref="form" :model="form">
       <form-item label="书籍Id" prop="bookId">
         <Input disabled v-model="form.bookId"></Input>
       </form-item>
@@ -11,7 +11,7 @@
         <Input v-model="form.publisher"></Input>
       </form-item>
       <form-item label="封面" prop="img">
-        <Avatar id="avatar" :src="form.img" shape="square" icon="ios-person" size="120" />
+        <Avatar id="avatar" :src="form.img" shape="square" icon="ios-person"/>
         <Upload
           :headers="uploadHeader"
           :format="['jpg', 'jpeg', 'png']"
@@ -23,9 +23,8 @@
           :action="uploadUrl"
           :show-upload-list="false"
         >
-          <Button id="upload" icon="ios-cloud-upload-outline" style="position: relative; left: 80px; top: 10px"
-            >上传头像</Button
-          >
+          <Button id="upload" icon="ios-cloud-upload-outline"
+            >上传头像</Button>
         </Upload></form-item
       >
       <form-item label="关联标签" prop="tag">
@@ -160,6 +159,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../../style/util/modifyModal';
 </style>

@@ -1,6 +1,6 @@
 <template>
   <Modal id="modifyModal" v-model="visible" title="更新报名信息" @on-ok="handleSubmit" @on-cancel="hidden">
-    <Form ref="form" :lable-width="50" :model="form">
+    <Form ref="form" :model="form">
       <form-item label="学号" prop="studentId">
         <Input disabled v-model="form.studentId"></Input>
       </form-item>
@@ -17,7 +17,7 @@
         <Input disabled v-model="form.major"></Input>
       </form-item>
       <form-item label="自我介绍" prop="profile">
-        <Input disabled :rows="5" type="textarea" v-model="form.profile" size="large"></Input>
+        <Input disabled :rows="5" type="textarea" v-model="form.profile"></Input>
       </form-item>
       <form-item label="录取状态" prop="statusName">
         <auto-input
@@ -30,7 +30,7 @@
         </auto-input>
       </form-item>
       <form-item label="评价" prop="comment">
-        <Input :rows="3" type="textarea" v-model="form.comment" size="large"></Input>
+        <Input :rows="3" type="textarea" v-model="form.comment"></Input>
       </form-item>
     </Form>
   </Modal>
@@ -95,6 +95,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../../style/util/modifyModal';
 </style>

@@ -27,11 +27,8 @@ const columns = [
           {
             props: {
               color: color,
-              size: 'large',
             },
             style: {
-              position: 'relative',
-              left: '10px',
             },
           },
           statusName
@@ -42,7 +39,7 @@ const columns = [
   {
     title: '操作',
     key: 'operation',
-    // width: '200px',
+      fixed: 'right',
     align: 'center',
     render: (h, params) => {
       return [

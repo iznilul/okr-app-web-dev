@@ -1,6 +1,6 @@
 <template>
   <Modal id="modifyModal" v-model="visible" title="添加书籍" @on-ok="handleSubmit" @on-cancel="hidden">
-    <Form ref="form" :lable-width="50">
+    <Form ref="form">
       <form-item label="书名" prop="bookName">
         <Input v-model="bookName"></Input>
       </form-item>
@@ -39,6 +39,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../../style/util/modifyModal';
 </style>

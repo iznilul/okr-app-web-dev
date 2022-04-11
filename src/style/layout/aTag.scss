@@ -16,13 +16,10 @@
     height: 100%;
     width: px2rem(120);
     font-size: px2rem(18);
-    .refresh-c {
-      margin: 0 px2rem(30);
+    .ivu-icon {
+      margin: 0 px2rem(12);
       cursor: pointer;
-    }
-    .tag-options {
-      cursor: pointer;
-      position: relative;
+      color: #fff;
     }
   }
   /* 标签栏 */

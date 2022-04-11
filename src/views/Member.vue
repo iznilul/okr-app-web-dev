@@ -21,16 +21,16 @@
                 >
                 </auto-input>
             </FormItem>
-<!--            <FormItem label="专业班级" prop="major">-->
-<!--                <auto-input-->
-<!--                    :param="form.major"-->
-<!--                    item="major"-->
-<!--                    placeholder="请输入查询专业"-->
-<!--                    dispatch="getLikeMajor"-->
-<!--                    @recvParam="recvParam"-->
-<!--                >-->
-<!--                </auto-input>-->
-<!--            </FormItem>-->
+            <FormItem label="专业班级" prop="major">
+                <auto-input
+                    :param="form.major"
+                    item="major"
+                    placeholder="请输入查询专业"
+                    dispatch="getLikeMajor"
+                    @recvParam="recvParam"
+                >
+                </auto-input>
+            </FormItem>
         </Form>
         <div class="query">
             <Button @click="query" type="primary">查询</Button>

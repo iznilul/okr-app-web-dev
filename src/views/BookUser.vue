@@ -1,21 +1,56 @@
 <template>
-  <div>
-    书籍管理，还没有开发( ╯□╰ )
-    <div>
-      <Button @click="reback" type="primary" style="margin-left: 100px">返回</Button>
+    <div id="bookUser">
+        <Page
+            id="page"
+            :total="dataCount"
+            :page-size="form.pageSize"
+            :current="current"
+            show-total
+            class="paging"
+            show-sizer
+            @on-change="changePage"
+            @on-page-size-change="changePageSize"
+        ></Page>
+        <Table border stripe :columns="columns" :data="data"></Table>
     </div>
-  </div>
 </template>
 
 <script>
+import columns from '@/config/bookUserColumn'
+
 export default {
-  name: 'book',
-  methods: {
-    reback() {
-      this.$router.back()
+    name: 'book',
+    components: {},
+    data() {
+        return {
+            columns: columns,
+            data: [],
+            dataCount: 0,
+            current: 1,
+            form: {
+                index: 1,
+                pageSize: 10
+            }
+        }
     },
-  },
+    mounted() {
+        this.getBookUser()
+    },
+    methods: {
+        getBookUser() {
+            this.publicGetForm('getBookUser')
+        },
+        changePage(index) {
+            this.publicChangePage(index, this.getBookUser)
+        },
+        changePageSize(pageSize) {
+            this.publicChangePageSize(pageSize, this.getBookUser)
+        }
+    }
 }
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../style/global/page";
+@import "../style/global/table";
+</style>

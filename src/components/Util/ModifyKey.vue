@@ -1,6 +1,6 @@
 <template>
   <Modal id="modifyModal" v-model="visible" title="修改钥匙信息" @on-ok="handleSubmit" @on-cancel="hidden">
-    <Form ref="form" :lable-width="50" :model="form">
+    <Form ref="form" model="form">
       <form-item label="钥匙Id" prop="keyId">
         <Input disabled v-model="form.keyId"></Input>
       </form-item>
@@ -71,6 +71,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../../style/util/modifyModal';
 </style>

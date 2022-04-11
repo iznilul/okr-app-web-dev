@@ -1,8 +1,7 @@
 <template>
   <div id="keyUser">
-    <Table border stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <Table border stripe :columns="columns" :data="data"></Table>
     <Page
-      id="page"
       :total="dataCount"
       :page-size="form.pageSize"
       :current="current"
@@ -48,6 +47,7 @@ export default {
 }
 </script>
 
-<style lang="less">
-@import '../style/views/keyUser';
+<style lang="scss">
+@import '../style/global/page';
+@import '../style/global/table';
 </style>

@@ -1,4 +1,4 @@
-#member {
+#sysRecord {
   .ivu-form {
     display: flex;
     flex-direction: row;
@@ -8,35 +8,36 @@
     left: 0;
     top: 0;
     height: px2rem(60);
-    width: 70%;
     margin: px2rem(6) 0 0 px2rem(6);
+    width: 75%;
     font-size: px2rem(18);
     .ivu-form-item-label {
       text-align: center;
       color: #000000;
-      width: px2rem(60);
+      width: px2rem(90);
       font-size: px2rem(12);
     }
     .ivu-form-item-content {
       display: inline-block;
     }
     .ivu-input {
-      width: px2rem(120);
       color: #000000;
+      width: px2rem(120);
       font-size: px2rem(12);
     }
   }
   .query {
     position: absolute;
-    left: 70%;
+    left: 75%;
     top: 0;
     height: px2rem(60);
-    margin: px2rem(12) 0 0 px2rem(12);
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    //width: 50%;
+    margin: px2rem(12) 0 0 px2rem(12);
     .ivu-btn {
-      font-size: px2rem(12);
+      font-size: px2rem(15);
       margin: px2rem(6) px2rem(12) 0 px2rem(12);
     }
   }

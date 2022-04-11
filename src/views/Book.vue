@@ -75,10 +75,10 @@ export default {
     },
 
     changePage(index) {
-      this.publicChangePage(index, this.getBookUser)
+      this.publicChangePage(index, this.getBookList)
     },
     changePageSize(pageSize) {
-      this.publicChangePageSize(pageSize, this.getBookUser)
+      this.publicChangePageSize(pageSize, this.getBookList)
     },
 
     showBookModal(ref) {

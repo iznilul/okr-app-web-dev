@@ -3,18 +3,24 @@
   <div class="div-tags">
     <!-- 标签栏相关功能 -->
     <div class="div-icons">
-      <div class="refresh-c" @click="reloadPage" title="刷新当前标签页">
+      <div class="refresh" @click="reloadPage" title="刷新当前标签页">
         <Icon type="md-refresh" />
       </div>
-      <div class="tag-options" title="关闭标签">
-        <Dropdown trigger="click" @on-click="closeTags">
-          <Icon type="ios-options" />
-          <DropdownMenu slot="list">
-            <DropdownItem name="1">关闭其他标签</DropdownItem>
-            <DropdownItem name="2">关闭所有标签</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </div>
+        <div class="close-other" @click="reloadPage" title="关闭其他标签页">
+            <Icon type="md-refresh" />
+        </div>
+        <div class="close-all" @click="reloadPage" title="关闭所有标签页">
+            <Icon type="md-refresh" />
+        </div>
+<!--      <div class="tag-options" title="关闭标签">-->
+<!--        <Dropdown trigger="click" @on-click="closeTags">-->
+<!--          <Icon type="ios-options" />-->
+<!--          <DropdownMenu slot="list">-->
+<!--            <DropdownItem name="1">关闭其他标签</DropdownItem>-->
+<!--            <DropdownItem name="2">关闭所有标签</DropdownItem>-->
+<!--          </DropdownMenu>-->
+<!--        </Dropdown>-->
+<!--      </div>-->
     </div>
     <ul class="ul-c">
       <li

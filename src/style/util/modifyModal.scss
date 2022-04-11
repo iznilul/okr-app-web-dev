@@ -1,8 +1,7 @@
 #modifyModal {
   .ivu-modal-header-inner {
-    font-size: px2rem(18);
+    font-size: px2rem(15);
   }
-
   .ivu-form {
     display: flex;
     flex-direction: column;
@@ -20,6 +19,18 @@
       display: inline-block;
     }
 
+    .ivu-upload{
+      .ivu-btn{
+        position: relative;
+        left:0 !important;
+      }
+    }
+
+    .ivu-avatar{
+      width: px2rem(120);
+      height: px2rem(120);
+    }
+
     .ivu-select-selection {
       width: px2rem(100);
     }
@@ -31,7 +42,7 @@
     }
   }
 
-  .ivu-btn {
+  .ivu-btn,.ivu-tag {
     font-size: px2rem(12);
   }
 }

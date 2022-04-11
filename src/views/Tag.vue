@@ -1,11 +1,10 @@
 <template>
   <div id="tag">
     <Button id="button" @click="showTagModal('addTag')" type="primary">添加标签</Button>
-    <Table stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <Table border stripe :columns="columns" :data="data"></Table>
     <add-tag ref="addTag" @getTagList="getTagList"></add-tag>
     <modify-tag ref="modifyTag" @getTagList="getTagList"></modify-tag>
     <Page
-      id="page"
       :total="dataCount"
       :page-size="form.pageSize"
       :current="current"
@@ -68,6 +67,8 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../style/views/tag';
+@import '../style/global/page';
+@import '../style/global/table';
 </style>

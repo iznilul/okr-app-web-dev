@@ -1,11 +1,10 @@
 <template>
   <div id="key">
     <Button id="button" @click="showModal('addKey')" type="primary">添加钥匙</Button>
-    <Table border stripe id="table" :columns="columns" :data="data" height="450" width="1300"></Table>
+    <Table border stripe :columns="columns" :data="data"></Table>
     <add-key ref="addKey" @getKeyList="getKeyList"></add-key>
     <modify-key ref="modifyKey" @getKeyList="getKeyList"></modify-key>
     <Page
-      id="page"
       :total="dataCount"
       :page-size="form.pageSize"
       :current="current"
@@ -88,6 +87,8 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 @import '../style/views/key';
+@import "../style/global/page";
+@import "../style/global/table";
 </style>

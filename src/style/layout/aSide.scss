@@ -14,7 +14,7 @@ aside {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.8);
+  color: #fff;
   font-size: px2rem(12);
   margin: px2rem(12) 0;
 }
@@ -30,6 +30,7 @@ aside {
 
 .menu {
   .ivu-menu-item{
+    color: #fff;
     .ivu-icon {
       font-size: px2rem(12) !important;
     }
@@ -42,6 +43,7 @@ aside {
   .ivu-menu-submenu{
     font-size: px2rem(12);
     span{
+      color: #fff;
       line-height: px2rem(24);
     }
   }

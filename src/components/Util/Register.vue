@@ -6,12 +6,12 @@
       :disabled="disabled"
       style="color: rgba(65, 60, 67, 0.77)"
     >
-      注册新用户
+      注册
     </Button>
     <Modal
       id="registerModal"
       v-model="visible"
-      title="注册新用户"
+      title="注册"
       @on-ok="handleSubmit"
       @on-cancel="() => (this.visible = false)"
     >
