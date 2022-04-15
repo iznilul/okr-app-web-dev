@@ -11,7 +11,7 @@
         <Input v-model="form.publisher"></Input>
       </form-item>
       <form-item label="封面" prop="img">
-        <Avatar id="avatar" :src="form.img" shape="square" icon="ios-person"/>
+        <Avatar id="avatar" :src="form.img" shape="square" icon="ios-person" />
         <Upload
           :headers="uploadHeader"
           :format="['jpg', 'jpeg', 'png']"
@@ -23,8 +23,7 @@
           :action="uploadUrl"
           :show-upload-list="false"
         >
-          <Button id="upload" icon="ios-cloud-upload-outline"
-            >上传头像</Button>
+          <Button id="upload" icon="ios-cloud-upload-outline">上传头像</Button>
         </Upload></form-item
       >
       <form-item label="关联标签" prop="tag">

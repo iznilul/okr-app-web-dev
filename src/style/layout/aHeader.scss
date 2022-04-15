@@ -1,7 +1,7 @@
 /* 主体页面头部 */
 header {
   position: fixed;
-  top:0;
+  top: 0;
   right: 0;
   left: px2rem(120);
   height: px2rem(48);
@@ -36,25 +36,24 @@ header {
     width: px2rem(180);
     height: px2rem(36);
     color: #fff;
-    .ivu-switch{
+    .ivu-switch {
       margin-left: px2rem(10);
       width: px2rem(42);
       height: px2rem(18);
-      .ivu-switch-inner{
+      .ivu-switch-inner {
         font-size: px2rem(12) !important;
-        span{
+        span {
           text-align: center;
           line-height: px2rem(18);
         }
       }
     }
-
   }
   .pointer {
     cursor: pointer;
     width: px2rem(30);
     height: px2rem(30);
-    .ivu-icon{
+    .ivu-icon {
       font-size: px2rem(24);
     }
   }
@@ -81,9 +80,8 @@ header {
     margin: 0 px2rem(12);
     overflow: hidden;
   }
-  .ivu-btn{
-    margin-left:px2rem(12);
+  .ivu-btn {
+    margin-left: px2rem(12);
     font-size: px2rem(12);
   }
-
 }

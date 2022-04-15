@@ -28,10 +28,10 @@ const columns = [
     title: '账号',
     key: 'username',
   },
-    {
-        title: '姓名',
-        key: 'name',
-    },
+  {
+    title: '姓名',
+    key: 'name',
+  },
   {
     title: '权限',
     key: 'role',

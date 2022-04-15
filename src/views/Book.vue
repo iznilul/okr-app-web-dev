@@ -90,6 +90,6 @@ export default {
 
 <style lang="scss">
 @import '../style/views/book';
-@import "../style/global/table";
-@import "../style/global/page";
+@import '../style/global/table';
+@import '../style/global/page';
 </style>
