@@ -89,6 +89,6 @@ export default {
 
 <style lang="scss">
 @import '../style/views/key';
-@import "../style/global/page";
-@import "../style/global/table";
+@import '../style/global/page';
+@import '../style/global/table';
 </style>

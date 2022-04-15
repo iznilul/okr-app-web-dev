@@ -25,24 +25,24 @@ aside {
 }
 
 .aside-big {
-  width: px2rem(120)
+  width: px2rem(120);
 }
 
 .menu {
-  .ivu-menu-item{
+  .ivu-menu-item {
     color: #fff;
     .ivu-icon {
       font-size: px2rem(12) !important;
     }
-    span{
+    span {
       font-size: px2rem(12);
       line-height: px2rem(24);
     }
     padding: px2rem(12) px2rem(12) !important;
   }
-  .ivu-menu-submenu{
+  .ivu-menu-submenu {
     font-size: px2rem(12);
-    span{
+    span {
       color: #fff;
       line-height: px2rem(24);
     }

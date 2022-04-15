@@ -14,10 +14,10 @@ import { setScale } from '@/utils/resize'
 
 export default {
   name: 'App',
-    mounted() {
-      window.addEventListener("resize",setScale)
-    },
-    data() {
+  mounted() {
+    window.addEventListener('resize', setScale)
+  },
+  data() {
     return {
       keepAliveData: ['manage'],
     }

@@ -9,7 +9,7 @@
     font-size: px2rem(18);
 
     .ivu-form-item-label {
-        color: #000000;
+      color: #000000;
       text-align: center;
       width: px2rem(60);
       font-size: px2rem(12);
@@ -19,14 +19,14 @@
       display: inline-block;
     }
 
-    .ivu-upload{
-      .ivu-btn{
+    .ivu-upload {
+      .ivu-btn {
         position: relative;
-        left:0 !important;
+        left: 0 !important;
       }
     }
 
-    .ivu-avatar{
+    .ivu-avatar {
       width: px2rem(120);
       height: px2rem(120);
     }
@@ -42,7 +42,8 @@
     }
   }
 
-  .ivu-btn,.ivu-tag {
+  .ivu-btn,
+  .ivu-tag {
     font-size: px2rem(12);
   }
 }

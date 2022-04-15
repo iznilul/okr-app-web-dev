@@ -1,10 +1,10 @@
 import store from '../store'
 import { handleConfirm } from '@/utils/confirm'
-const map = { 0: 'primary', 1: 'warning'}
+const map = { 0: 'primary', 1: 'warning' }
 const columns = [
   {
     title: 'id',
-    key:"id"
+    key: 'id',
   },
   {
     title: '书名',
@@ -34,9 +34,9 @@ const columns = [
       ]
     },
   },
-    {
-        title: "更新时间",
-        key:"updateTime"
-    }
+  {
+    title: '更新时间',
+    key: 'updateTime',
+  },
 ]
 export default columns

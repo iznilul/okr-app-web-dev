@@ -40,8 +40,7 @@ const columns = [
           return h(
             'Tag',
             {
-              props: {
-              },
+              props: {},
             },
             item
           )
@@ -64,8 +63,7 @@ const columns = [
               color: color,
               //   size: 'large',
             },
-            style: {
-            },
+            style: {},
           },
           statusName
         ),
@@ -88,8 +86,7 @@ const columns = [
               props: {
                 type: 'warning',
               },
-              style: {
-              },
+              style: {},
               on: {
                 click: () => {
                   // console.log(params.row.username)
@@ -108,8 +105,7 @@ const columns = [
               props: {
                 type: 'warning',
               },
-              style: {
-              },
+              style: {},
               on: {
                 click: () => {
                   handleConfirm(returnBook, params.row.bookId)
