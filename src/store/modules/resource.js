@@ -28,18 +28,6 @@ const resource = {
           })
       })
     },
-
-    getResourceName({ commit }, data) {
-      return new Promise((resolve, reject) => {
-        queryResourceName(data)
-          .then((response) => {
-            resolve(response.data)
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
-    },
   },
 }
 

@@ -43,7 +43,7 @@ export default {
       console.log(to)
       const name = to.name
       const path = to.path
-      this.$store.commit('setCurrentPage', name)
+      this.$store.commit('setCurrentPage', path)
       if (name === 'error') {
         this.$store.commit('setCrumbs', '404')
         return
@@ -66,7 +66,7 @@ export default {
   mounted() {
     const name = this.$route.name
     const path = this.$route.path
-    this.$store.commit('setCurrentPage', name)
+    this.$store.commit('setCurrentPage', path)
     this.$store.commit('pushTagsArray', {
       text: this.nameToTitle[name],
       path,

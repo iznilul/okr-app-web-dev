@@ -67,7 +67,6 @@ export const rankApi = {}
 export const resourceApi = {
   changeResource: '/api/okr/resource/change',
   queryResource: '/api/okr/resource/query',
-  queryResourceName: '/api/okr/resource/queryName',
 }
 
 export const signupApi = {

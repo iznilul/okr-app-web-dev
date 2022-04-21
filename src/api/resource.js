@@ -16,11 +16,3 @@ export function queryResource(data) {
     data: data,
   })
 }
-
-export function queryResourceName(data) {
-  return axios({
-    url: resourceApi.queryResourceName,
-    method: 'get',
-    params: data,
-  })
-}
