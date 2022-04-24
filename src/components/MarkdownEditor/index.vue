@@ -6,7 +6,6 @@
 
 <script>
 import Vditor from 'vditor'
-import { getToken } from '@/utils/auth'
 export default {
   name: 'MarkdownEditor',
   props: ['height'],
@@ -59,7 +58,7 @@ export default {
             }
             let request = new XMLHttpRequest()
             // 图片上传路径
-            request.open('POST', process.env.PICTURE_API + '/ckeditor/imgUpload?token=' + getToken())
+            // request.open('POST', process.env.PICTURE_API + '/ckeditor/imgUpload?token=' + getToken())
             request.onload = that.onloadCallback
             request.send(formData)
           },
