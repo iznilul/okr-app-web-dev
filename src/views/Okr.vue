@@ -1,9 +1,9 @@
 <template>
-  <div id="book">
-    <Button id="button" @click="showBookModal('addBook')" type="primary">添加书籍</Button>
+  <div id="blog">
+    <Button id="button" @click="showBookModal('addBlog')" type="primary">添加博客</Button>
     <Table border stripe :columns="columns" :data="data"></Table>
-    <add-book ref="addBook" @getBookList="getBookList"></add-book>
-    <modify-book ref="modifyBook" @getBookList="getBookList"></modify-book>
+    <add-blog ref="addBlog" @getBookList="getBookList"></add-blog>
+<!--    <modify-book ref="modifyBook" @getBookList="getBookList"></modify-book>-->
     <Page
       id="page"
       :total="dataCount"
@@ -21,10 +21,10 @@
 <script>
 import columns from '../config/bookColumn'
 import ModifyBook from '../components/Util/ModifyBook'
-import AddBook from '../components/Util/AddBook'
+import AddBlog from '@/components/Util/AddBlog'
 export default {
-  name: 'book',
-  components: { ModifyBook, AddBook },
+  name: 'blog',
+  components: { ModifyBook, AddBlog },
   data() {
     return {
       columns: columns,
@@ -89,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../style/views/book';
+@import '../style/views/blog';
 @import '../style/global/table';
 @import '../style/global/page';
 </style>

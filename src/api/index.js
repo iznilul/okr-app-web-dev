@@ -14,6 +14,14 @@ export const userApi = {
   cancelUser: '/api/okr/user/cancel',
 }
 
+export const blogApi = {
+    addBlog: '/api/okr/blog/add',
+    changeBlog: '/api/okr/blog/change',
+    cancelBlog: '/api/okr/blog/cancel',
+    queryBlog: '/api/okr/blog/query',
+    queryBlogList: '/api/okr/blog/queryList',
+}
+
 export const bookApi = {
   queryList: '/api/okr/book/queryList',
   borrowBook: '/api/okr/book/borrow',

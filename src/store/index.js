@@ -13,26 +13,29 @@ import resource from '@/store/modules/resource'
 import signup from '@/store/modules/signup'
 import tag from '@/store/modules/tag'
 import sysRecord from '@/store/modules/sysRecord'
+import blog from '@/store/modules/blog'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {},
-  mutations: {},
-  modules: {
-    user,
-    menu,
-    aside,
-    book,
-    monitor,
-    key,
-    common,
-    enumApi,
-    resource,
-    signup,
-    tag,
-    sysRecord,
-  },
-  getters,
+    state: {},
+    mutations: {},
+    modules: {
+        user,
+        menu,
+        aside,
+        blog,
+        book,
+        monitor,
+        key,
+        common,
+        enumApi,
+        resource,
+        signup,
+        tag,
+        sysRecord
+    },
+    getters
 })
 
 export default store
