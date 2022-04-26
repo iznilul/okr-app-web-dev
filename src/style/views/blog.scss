@@ -6,4 +6,11 @@
     font-size: px2rem(12);
     margin: px2rem(6) 0 0 px2rem(6);
   }
+  #content{
+    position: absolute;
+    left: px2rem(12);
+    top: px2rem(60);
+    font-size: px2rem(12);
+    color: #000000;
+  }
 }

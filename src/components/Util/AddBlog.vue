@@ -4,18 +4,17 @@
             <form-item label="博客标题" prop="title">
                 <Input v-model="form.title"></Input>
             </form-item>
-            <form-item label="文件" prop="file">
+            <form-item label="文件(目前只支持单文件传输)" prop="file">
                 <Upload
+                    ref="upload"
                     :format="['md']"
                     :max-size="10240"
                     :before-upload="handleUpload"
-                    :on-success="handleSuccess"
-                    :on-format-error="handleFormatError"
-                    :on-exceeded-size="handleMaxSize"
+                    :on-progress="handleProgress"
                     :action="uploadUrl"
                 >
-                    <Button icon="ios-cloud-upload-outline" type="text" @click="upload" :loading="loadingStatus">
-                        {{ loadingStatus ? '上传中' : '上传markdown格式文件' }}
+                    <Button icon="ios-cloud-upload-outline" type="text">
+                        上传md文件
                     </Button>
                 </Upload>
             </form-item>
@@ -66,6 +65,7 @@ export default {
             uploadUrl: baseURL + blogApi.addBlog,
             tag: '',
             tags: [],
+            uploadList: [],
             form: {
                 title: '',
                 file: null,
@@ -80,9 +80,6 @@ export default {
         this.getTag()
     },
     methods: {
-        upload() {
-            this.loadingStatus = true
-        },
         getTag() {
             this.publicGetData('getLikeTag')
                 .then((res) => {
@@ -94,29 +91,19 @@ export default {
         },
         handleUpload(file) {
             this.form.file = file
+            this.$refs.upload.fileList = []
+            this.$refs.upload.fileList.push(file)
             this.loadingStatus = false
             return false
-        },
-        handleSuccess(res) {
-            this.$Notice.info({
-                title: '操作成功'
-            })
-        },
-        handleFormatError(file) {
-            this.$Notice.error({
-                desc: file.name + ' 文件格式不符合要求，请选择jpg或png格式文件'
-            })
-        },
-        handleMaxSize(file) {
-            this.$Notice.error({
-                desc: file.name + '太大了， 请上传10M以内的文件.'
-            })
         },
         handleAdd(item) {
             let result = this.judgeRepeat(item)
             if (result) {
                 this.form.tagList.push(item)
             }
+        },
+        handleProgress() {
+            this.loadingStatus = false
         },
         judgeRepeat(item) {
             let flag = true
@@ -138,13 +125,13 @@ export default {
             this.form[item] = val
         },
         handleSubmit() {
-            let formData=new FormData();
-            formData.append("title",this.form.title)
-            formData.append("file",this.form.file)
-            formData.append("originalIsOrNot",this.form.originalIsOrNot)
-            formData.append("originUrl",this.form.originUrl)
-            formData.append("categoryName",this.form.categoryName)
-            formData.append("tagList",this.form.tagList)
+            let formData = new FormData()
+            formData.append('title', this.form.title)
+            formData.append('file', this.form.file)
+            formData.append('originalIsOrNot', this.form.originalIsOrNot)
+            formData.append('originUrl', this.form.originUrl)
+            formData.append('categoryName', this.form.categoryName)
+            formData.append('tagList', this.form.tagList)
             this.$store
                 .dispatch('saveBlog', formData)
                 .then((res) => {

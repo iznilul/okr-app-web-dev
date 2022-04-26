@@ -26,7 +26,7 @@
             <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>
           </template>
           <div v-for="(subItem, i) in item.children" :key="index + i">
-            <template>
+            <template v-if="!subItem.hidden">
               <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.path">
                 <Icon :size="subItem.meta.size" :type="subItem.meta.type" />
                 <span v-show="isShowAsideTitle">{{ subItem.meta.text }}</span>

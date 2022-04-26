@@ -1,6 +1,7 @@
 <template>
-  <div id="blog">
+  <div id="okr">
     <Button id="button" @click="showBookModal('addBlog')" type="primary">添加博客</Button>
+      <Button @click="redirect" type="primary">跳转</Button>
     <Table border stripe :columns="columns" :data="data"></Table>
     <add-blog ref="addBlog" @getBookList="getBookList"></add-blog>
 <!--    <modify-book ref="modifyBook" @getBookList="getBookList"></modify-book>-->
@@ -45,6 +46,14 @@ export default {
     window.returnBook = this.returnBook
   },
   methods: {
+      redirect(){
+         this.$router.push({
+             name:"blog",
+             params:{
+                 blogId:1
+             }
+         })
+      },
     getBookList() {
       this.publicGetForm('getBookList')
     },
@@ -89,7 +98,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../style/views/blog';
+@import '../style/views/okr';
 @import '../style/global/table';
 @import '../style/global/page';
 </style>
