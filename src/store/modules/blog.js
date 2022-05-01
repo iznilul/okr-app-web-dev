@@ -1,10 +1,4 @@
-import {
-  queryBlog,
-  queryBlogList,
-  cancelBlog,
-  addBlog,
-  changeBlog,
-} from '@/api/blog'
+import { queryBlog, queryBlogList, cancelBlog, addBlog, changeBlog } from '@/api/blog'
 const blog = {
   state: {},
 

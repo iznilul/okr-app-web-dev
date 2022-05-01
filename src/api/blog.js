@@ -22,9 +22,9 @@ export function addBlog(data) {
     url: blogApi.addBlog,
     method: 'post',
     data: data,
-      headers: {
-          'Content-Type': 'multipart/form-data'
-      }
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   })
 }
 
