@@ -44,6 +44,8 @@ export const enumApi = {
   enumSignUpStatus: '/api/okr/enum/signUpStatus',
   enumBook: '/api/okr/enum/book',
   enumTag: '/api/okr/enum/tag',
+  enumOriginal: '/api/okr/enum/original',
+  enumCategory: '/api/okr/enum/category',
 }
 
 export const keyApi = {

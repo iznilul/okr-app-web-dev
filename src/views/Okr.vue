@@ -1,10 +1,10 @@
 <template>
   <div id="okr">
-    <Button id="button" @click="showBookModal('addBlog')" type="primary">添加博客</Button>
-      <Button @click="redirect" type="primary">跳转</Button>
+    <Button id="button" @click="showBlogModal('addBlog')" type="primary">添加博客</Button>
+    <!--      <Button @click="redirect" type="primary">跳转</Button>-->
     <Table border stripe :columns="columns" :data="data"></Table>
-    <add-blog ref="addBlog" @getBookList="getBookList"></add-blog>
-<!--    <modify-book ref="modifyBook" @getBookList="getBookList"></modify-book>-->
+    <add-blog ref="addBlog" @getBlogList="getBlogList"></add-blog>
+    <modify-blog ref="modifyBlog" @getBlogList="getBlogList"></modify-blog>
     <Page
       id="page"
       :total="dataCount"
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import columns from '../config/bookColumn'
-import ModifyBook from '../components/Util/ModifyBook'
+import columns from '../config/blogColumn'
+import ModifyBlog from '../components/Util/ModifyBlog'
 import AddBlog from '@/components/Util/AddBlog'
 export default {
   name: 'blog',
-  components: { ModifyBook, AddBlog },
+  components: { ModifyBlog, AddBlog },
   data() {
     return {
       columns: columns,
@@ -39,44 +39,46 @@ export default {
     }
   },
   mounted() {
-    this.getBookList()
-    window.showBookModal = this.showBookModal
-    window.removeBook = this.removeBook
-    window.borrowBook = this.borrowBook
-    window.returnBook = this.returnBook
+    this.getBlogList()
+    window.showBlogModal = this.showBlogModal
+    window.removeBlog = this.removeBlog
   },
   methods: {
-      redirect(){
-         this.$router.push({
-             name:"blog",
-             params:{
-                 blogId:1
-             }
-         })
-      },
-    getBookList() {
-      this.publicGetForm('getBookList')
+    redirect() {
+      this.$router.push({
+        name: 'blog',
+        params: {
+          blogId: 1,
+        },
+      })
+    },
+    getBlogList() {
+      this.publicGetForm('getBlogList')
     },
 
-    removeBook(bookId) {
-      this.publicRemoveData('removeBook', { bookId: bookId }, this.getBookList)
+    getBlogList() {
+      this.publicGetForm('getBlogList')
     },
 
-    borrowBook(bookId) {
-      this.publicSend('borrowBook', { bookId: bookId })
+    removeBlog(blogId) {
+      this.publicRemoveData('removeBlog', { blogId: blogId }, this.getBlogList)
+    },
+
+    borrowBlog(blogId) {
+      this.publicSend('borrowBlog', { blogId: blogId })
         .then((res) => {
-          console.log(bookId)
-          this.getBookList()
+          console.log(blogId)
+          this.getBlogList()
         })
         .catch((error) => {
           console.log(error)
         })
     },
 
-    returnBook(bookId) {
-      this.publicSend('returnBook', { bookId: bookId })
+    returnBlog(blogId) {
+      this.publicSend('returnBlog', { blogId: blogId })
         .then((res) => {
-          this.getBookList()
+          this.getBlogList()
         })
         .catch((error) => {
           console.log(error)
@@ -84,13 +86,13 @@ export default {
     },
 
     changePage(index) {
-      this.publicChangePage(index, this.getBookList)
+      this.publicChangePage(index, this.getBlogList)
     },
     changePageSize(pageSize) {
-      this.publicChangePageSize(pageSize, this.getBookList)
+      this.publicChangePageSize(pageSize, this.getBlogList)
     },
 
-    showBookModal(ref) {
+    showBlogModal(ref) {
       this.publicShowModal(ref)
     },
   },
@@ -101,4 +103,5 @@ export default {
 @import '../style/views/okr';
 @import '../style/global/table';
 @import '../style/global/page';
-</style>n
+</style>
+n

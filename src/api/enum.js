@@ -66,3 +66,19 @@ export function enumTag(param) {
     params: param,
   })
 }
+
+export function enumOriginal(param) {
+  return axios({
+    url: enumApi.enumOriginal,
+    method: 'get',
+    params: param,
+  })
+}
+
+export function enumCategory(param) {
+  return axios({
+    url: enumApi.enumCategory,
+    method: 'get',
+    params: param,
+  })
+}

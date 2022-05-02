@@ -1,8 +1,10 @@
 import {
   enumBook,
+  enumCategory,
   enumKey,
   enumMajor,
   enumName,
+  enumOriginal,
   enumRole,
   enumSignUpStatus,
   enumTag,
@@ -110,6 +112,30 @@ const enumApi = {
     getLikeTag({ commit }, param) {
       return new Promise((resolve, reject) => {
         enumTag(param)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    getLikeOriginal({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        enumOriginal(param)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    getLikeCategory({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        enumCategory(param)
           .then((response) => {
             resolve(response.data)
           })

@@ -1,6 +1,6 @@
 <template>
   <Modal id="modifyModal" v-model="visible" title="上传博客" @on-ok="handleSubmit" @on-cancel="hidden">
-    <Form ref="form" :model="form">
+    <Form ref="form" :model="form" :rules="rules">
       <form-item label="博客标题" prop="title">
         <Input v-model="form.title"></Input>
       </form-item>
@@ -13,21 +13,27 @@
           :on-progress="handleProgress"
           :action="uploadUrl"
         >
-          <Button icon="ios-cloud-upload-outline" type="text"> 上传md文件 </Button>
+          <Button icon="ios-cloud-upload-outline" type="text"> 上传md文件</Button>
         </Upload>
       </form-item>
-      <form-item label="是否原创(转载请添加原博客地址)" prop="originalIsOrNot">
-        <Input disabled v-model="form.bookId"></Input>
+      <form-item label="是否原创" prop="originalIsOrNot">
+        <auto-input
+          :param="form.originalIsOrNot"
+          item="originalIsOrNot"
+          placeholder="是否原创"
+          dispatch="getLikeOriginal"
+          @recvParam="recvParam"
+        ></auto-input>
       </form-item>
-      <form-item label="原博客地址" prop="originUrl">
-        <Input disabled v-model="form.bookId"></Input>
+      <form-item label="原博客地址(原创可不填,转载请添加)" prop="originUrl">
+        <Input v-model="form.originUrl"></Input>
       </form-item>
       <form-item label="博客分类" prop="categoryName">
         <auto-input
           :param="form.categoryName"
           item="categoryName"
-          placeholder="请输入查询状态名"
-          dispatch="getLikeBook"
+          placeholder="请输入博客分类"
+          dispatch="getLikeCategory"
           @recvParam="recvParam"
         ></auto-input>
       </form-item>
@@ -58,15 +64,44 @@ export default {
   data() {
     return {
       visible: false,
-      loadingStatus: false,
       uploadUrl: baseURL + blogApi.addBlog,
       tag: '',
       tags: [],
       uploadList: [],
+      rules: {
+        title: [
+          {
+            required: true,
+            message: '标题不能为空',
+            trigger: 'blur',
+          },
+        ],
+        file: [
+          {
+            required: true,
+            message: 'md文件不能为空',
+            trigger: 'blur',
+          },
+        ],
+        originalIsOrNot: [
+          {
+            required: true,
+            message: '是否原创不能为空',
+            trigger: 'blur',
+          },
+        ],
+        categoryName: [
+          {
+            required: true,
+            message: '分类名不能为空',
+            trigger: 'blur',
+          },
+        ],
+      },
       form: {
         title: '',
         file: null,
-        originalIsOrNot: 0,
+        originalIsOrNot: '',
         originUrl: '',
         categoryName: '',
         tagList: [],
@@ -120,6 +155,18 @@ export default {
     },
     recvParam(item, val) {
       this.form[item] = val
+    },
+    handleValidate() {
+      let bool
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          bool = true
+        } else {
+          this.$Notice.error({ title: '发送失败，请输入表单必填信息' })
+          bool = false
+        }
+      })
+      return bool
     },
     handleSubmit() {
       let formData = new FormData()
