@@ -22,7 +22,8 @@
       <div id="preview"></div>
       <Divider />
       <div id="comment">
-        <p>shit</p>
+        <h2>评语</h2>
+        <Input disabled v-model="comment" type="textarea"></Input>
       </div>
     </Card>
   </div>
@@ -38,6 +39,7 @@ export default {
     return {
       blogId: null,
       tagList: ['123', '12'],
+      comment: 'oh i am a fucking shit',
     }
   },
   created() {

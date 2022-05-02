@@ -91,3 +91,11 @@ export const tagApi = {
   addTag: '/api/okr/tag/add',
   cancelTag: '/api/okr/tag/cancel',
 }
+
+export const categoryApi = {
+  changeCategory: '/api/okr/category/change',
+  queryCategoryList: '/api/okr/category/queryList',
+  queryCategory: '/api/okr/category/query',
+  addCategory: '/api/okr/category/add',
+  cancelCategory: '/api/okr/category/cancel',
+}

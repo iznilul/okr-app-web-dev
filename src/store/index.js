@@ -14,6 +14,7 @@ import signup from '@/store/modules/signup'
 import tag from '@/store/modules/tag'
 import sysRecord from '@/store/modules/sysRecord'
 import blog from '@/store/modules/blog'
+import category from '@/store/modules/category'
 
 Vue.use(Vuex)
 
@@ -21,6 +22,7 @@ const store = new Vuex.Store({
   state: {},
   mutations: {},
   modules: {
+    category,
     user,
     menu,
     aside,
