@@ -6,11 +6,25 @@
     font-size: px2rem(12);
     margin: px2rem(12) 0 0 px2rem(12);
   }
+
   #content {
     position: absolute;
     left: px2rem(12);
     top: px2rem(60);
+    width: 100%;
     font-size: px2rem(12);
     color: #000000;
+    #message,
+    .tags,
+    .ivu-card-head,
+    #comment,
+    .ivu-input {
+      text-align: center;
+      font-size: px2rem(18);
+    }
+    p,
+    span {
+      font-size: px2rem(15);
+    }
   }
 }

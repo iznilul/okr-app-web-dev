@@ -6,13 +6,13 @@
       <!--      </div>-->
       <p class="crumbs">{{ crumbs }}</p>
     </div>
-    <div id="switch">
-      <span>夜间模式</span>
-      <i-switch @on-change="changeTheme">
-        <span slot="open">ON</span>
-        <span slot="close">OFF</span>
-      </i-switch>
-    </div>
+    <!--    <div id="switch">-->
+    <!--      <span>夜间模式</span>-->
+    <!--      <i-switch @on-change="changeTheme">-->
+    <!--        <span slot="open">ON</span>-->
+    <!--        <span slot="close">OFF</span>-->
+    <!--      </i-switch>-->
+    <!--    </div>-->
     <div class="h-right">
       <div class="user-img-c">
         <img :src="avatar" />
