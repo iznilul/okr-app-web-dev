@@ -1,10 +1,9 @@
 <template>
   <div id="okr">
     <Button id="button" @click="showBlogModal('addBlog')" type="primary">添加博客</Button>
-    <!--      <Button @click="redirect" type="primary">跳转</Button>-->
     <Table border stripe :columns="columns" :data="data"></Table>
-    <add-blog ref="addBlog" @getBlogList="getBlogList"></add-blog>
-    <modify-blog ref="modifyBlog" @getBlogList="getBlogList"></modify-blog>
+    <add-blog ref="addBlog" :tag-list="tagList" @getBlogList="getBlogList"></add-blog>
+    <modify-blog ref="modifyBlog" :tag-list="tagList" @getBlogList="getBlogList"></modify-blog>
     <Page
       id="page"
       :total="dataCount"
@@ -30,6 +29,7 @@ export default {
     return {
       columns: columns,
       data: [],
+      tagList: [],
       dataCount: 0,
       current: 1,
       form: {
@@ -39,16 +39,27 @@ export default {
     }
   },
   mounted() {
+    this.getTag()
     this.getBlogList()
+    window.redirectToBlog = this.redirectToBlog
     window.showBlogModal = this.showBlogModal
     window.removeBlog = this.removeBlog
   },
   methods: {
-    redirect() {
+    getTag() {
+      this.publicGetData('getLikeTag')
+        .then((res) => {
+          this.tagList = res
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    redirectToBlog(blogId) {
       this.$router.push({
         name: 'blog',
         params: {
-          blogId: 1,
+          blogId: blogId,
         },
       })
     },
@@ -56,33 +67,8 @@ export default {
       this.publicGetForm('getBlogList')
     },
 
-    getBlogList() {
-      this.publicGetForm('getBlogList')
-    },
-
     removeBlog(blogId) {
       this.publicRemoveData('removeBlog', { blogId: blogId }, this.getBlogList)
-    },
-
-    borrowBlog(blogId) {
-      this.publicSend('borrowBlog', { blogId: blogId })
-        .then((res) => {
-          console.log(blogId)
-          this.getBlogList()
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-
-    returnBlog(blogId) {
-      this.publicSend('returnBlog', { blogId: blogId })
-        .then((res) => {
-          this.getBlogList()
-        })
-        .catch((error) => {
-          console.log(error)
-        })
     },
 
     changePage(index) {
@@ -104,4 +90,3 @@ export default {
 @import '../style/global/table';
 @import '../style/global/page';
 </style>
-n

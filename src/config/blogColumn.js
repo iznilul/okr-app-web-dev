@@ -1,6 +1,18 @@
 import store from '../store'
 import { handleConfirm } from '@/utils/confirm'
-const map = { 0: 'default', 1: 'error', 2: 'warning', 3: 'primary', 4: 'success' }
+import { detailBlog } from '@/api/blog'
+
+const map = {
+  0: 'default',
+  1: 'error',
+  2: 'warning',
+  3: 'primary',
+  4: 'success',
+}
+const publishMap = {
+  0: 'warning',
+  1: 'primary',
+}
 const columns = [
   {
     title: '博客id',
@@ -17,6 +29,10 @@ const columns = [
   {
     title: '更新时间',
     key: 'updateTime',
+  },
+  {
+    title: '分类',
+    key: 'category',
   },
   {
     title: '关联标签',
@@ -38,7 +54,7 @@ const columns = [
     },
   },
   {
-    title: '博客状态',
+    title: '博客评分',
     key: 'statusName',
     render: (h, params) => {
       let color = map[params.row.status]
@@ -60,6 +76,28 @@ const columns = [
     },
   },
   {
+    title: '是否发布',
+    key: 'publishName',
+    render: (h, params) => {
+      let color = publishMap[params.row.publishIsOrNot]
+      let publishName = params.row.publishName
+      // console.log(type)
+      return [
+        h(
+          'Tag',
+          {
+            props: {
+              color: color,
+              //   size: 'large',
+            },
+            style: {},
+          },
+          publishName
+        ),
+      ]
+    },
+  },
+  {
     title: '操作',
     key: 'operation',
     fixed: 'right',
@@ -72,7 +110,21 @@ const columns = [
           'Button',
           {
             props: {
-              disabled: disabled,
+              type: 'primary',
+            },
+            on: {
+              click: () => {
+                redirectToBlog(params.row.blogId)
+              },
+            },
+          },
+          '查看'
+        ),
+        h(
+          'Button',
+          {
+            props: {
+              disabled: disabled && params.row.username !== store.getters.username,
               type: 'primary',
             },
             style: {
@@ -82,7 +134,7 @@ const columns = [
               click: () => {
                 // console.log(params.row.username)
                 showBlogModal('modifyBlog')
-                getBlog(params.row.blogId)
+                doDetailBlog(params.row.blogId)
               },
             },
           },

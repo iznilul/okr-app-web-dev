@@ -1,4 +1,4 @@
-import { queryBlog, queryBlogList, cancelBlog, addBlog, changeBlog } from '@/api/blog'
+import { queryBlog, queryBlogList, cancelBlog, addBlog, changeBlog, detailBlog } from '@/api/blog'
 const blog = {
   state: {},
 
@@ -8,6 +8,17 @@ const blog = {
     getBlog({ commit }, data) {
       return new Promise((resolve, reject) => {
         queryBlog(data)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+    detailBlog({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        detailBlog(data)
           .then((response) => {
             resolve(response.data)
           })

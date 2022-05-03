@@ -19,6 +19,7 @@ export const blogApi = {
   changeBlog: '/api/okr/blog/change',
   cancelBlog: '/api/okr/blog/cancel',
   queryBlog: '/api/okr/blog/query',
+  detailBlog: '/api/okr/blog/detail',
   queryBlogList: '/api/okr/blog/queryList',
 }
 
@@ -46,6 +47,8 @@ export const enumApi = {
   enumTag: '/api/okr/enum/tag',
   enumOriginal: '/api/okr/enum/original',
   enumCategory: '/api/okr/enum/category',
+  enumPublish: '/api/okr/enum/publish',
+  enumBlog: '/api/okr/enum/blog',
 }
 
 export const keyApi = {

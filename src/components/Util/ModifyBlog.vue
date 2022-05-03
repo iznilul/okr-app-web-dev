@@ -1,10 +1,10 @@
 <template>
-  <Modal id="modifyModal" v-model="visible" title="上传博客" @on-ok="handleSubmit" @on-cancel="hidden">
+  <Modal id="modifyModal" v-model="visible" title="修改博客信息" @on-ok="handleSubmit" @on-cancel="hidden">
     <Form ref="form" :model="form" :rules="rules">
       <form-item label="博客标题" prop="title">
         <Input v-model="form.title"></Input>
       </form-item>
-      <form-item label="文件(目前只支持单文件传输)" prop="file">
+      <form-item label="重新上传博客文件" prop="file">
         <Upload ref="upload" :format="['md']" :max-size="10240" :before-upload="handleUpload" :action="uploadUrl">
           <Button icon="ios-cloud-upload-outline" type="text"> 上传md文件</Button>
         </Upload>
@@ -20,6 +20,27 @@
       </form-item>
       <form-item label="原博客地址(原创可不填,转载请添加)" prop="originUrl">
         <Input v-model="form.originUrl"></Input>
+      </form-item>
+      <form-item label="评分" prop="statusName">
+        <auto-input
+          :param="form.statusName"
+          item="statusName"
+          placeholder="请输入评分"
+          dispatch="getLikeBlog"
+          @recvParam="recvParam"
+        ></auto-input>
+      </form-item>
+      <form-item label="是否发布" prop="publishName">
+        <auto-input
+          :param="form.publishName"
+          item="PublishName"
+          placeholder="是否发布"
+          dispatch="getLikePublish"
+          @recvParam="recvParam"
+        ></auto-input>
+      </form-item>
+      <form-item label="评语" prop="comment">
+        <Input type="textarea" v-model="form.comment"></Input>
       </form-item>
       <form-item label="博客分类" prop="categoryName">
         <auto-input
@@ -47,19 +68,17 @@
 <script>
 import { baseURL } from '@/utils/request'
 import { blogApi } from '@/api'
-import AutoInput from '@/components/Util/AutoInput'
+import AutoInput from './AutoInput'
 
 export default {
-  name: 'AddBlog',
-  components: {
-    AutoInput,
-  },
+  name: 'ModifyBlog',
+  components: { AutoInput },
   data() {
     return {
       visible: false,
       uploadUrl: baseURL + blogApi.addBlog,
       tag: '',
-      tags: [],
+      tags: this.tagList,
       uploadList: [],
       rules: {
         title: [
@@ -69,17 +88,24 @@ export default {
             trigger: 'blur',
           },
         ],
-        file: [
-          {
-            required: true,
-            message: 'md文件不能为空',
-            trigger: 'blur',
-          },
-        ],
-        originalName: [
+        originalIsOrNot: [
           {
             required: true,
             message: '是否原创不能为空',
+            trigger: 'blur',
+          },
+        ],
+        statusName: [
+          {
+            required: true,
+            message: '评分不能为空',
+            trigger: 'blur',
+          },
+        ],
+        publishName: [
+          {
+            required: true,
+            message: '是否公开不能为空',
             trigger: 'blur',
           },
         ],
@@ -92,10 +118,14 @@ export default {
         ],
       },
       form: {
+        blogId: '',
         title: '',
         file: null,
         originalName: '',
         originUrl: '',
+        statusName: '',
+        publishName: '',
+        comment: '',
         categoryName: '',
         tagList: [],
       },
@@ -115,8 +145,19 @@ export default {
       },
     },
   },
-  mounted() {},
+  mounted() {
+    window.doDetailBlog = this.doDetailBlog
+  },
   methods: {
+    doDetailBlog(blogId) {
+      this.publicGetData('detailBlog', { blogId: blogId })
+        .then((res) => {
+          this.form = res
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     handleUpload(file) {
       this.form.file = file
       this.$refs.upload.fileList = []
@@ -162,14 +203,18 @@ export default {
     },
     handleSubmit() {
       let formData = new FormData()
+      formData.append('blogId', this.form.blogId)
       formData.append('title', this.form.title)
       formData.append('file', this.form.file)
       formData.append('originalName', this.form.originalName)
       formData.append('originUrl', this.form.originUrl)
+      formData.append('statusName', this.form.statusName)
+      formData.append('publishName', this.form.publishName)
       formData.append('categoryName', this.form.categoryName)
+      formData.append('comment', this.form.comment)
       formData.append('tagList', this.form.tagList)
       this.$store
-        .dispatch('saveBlog', formData)
+        .dispatch('modifyBlog', formData)
         .then((res) => {
           this.$emit('getBlogList', {})
         })

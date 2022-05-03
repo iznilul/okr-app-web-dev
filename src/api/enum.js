@@ -82,3 +82,19 @@ export function enumCategory(param) {
     params: param,
   })
 }
+
+export function enumBlog(param) {
+  return axios({
+    url: enumApi.enumBlog,
+    method: 'get',
+    params: param,
+  })
+}
+
+export function enumPublish(param) {
+  return axios({
+    url: enumApi.enumPublish,
+    method: 'get',
+    params: param,
+  })
+}

@@ -9,6 +9,14 @@ export function queryBlog(data) {
   })
 }
 
+export function detailBlog(data) {
+  return axios({
+    url: blogApi.detailBlog,
+    method: 'get',
+    params: data,
+  })
+}
+
 export function changeBlog(data) {
   return axios({
     url: blogApi.changeBlog,
@@ -38,7 +46,7 @@ export function cancelBlog(data) {
 
 export function queryBlogList(data) {
   return axios({
-    url: blogApi.queryList,
+    url: blogApi.queryBlogList,
     method: 'post',
     data: data,
   })

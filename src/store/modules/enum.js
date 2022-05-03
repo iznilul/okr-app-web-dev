@@ -1,10 +1,12 @@
 import {
+  enumBlog,
   enumBook,
   enumCategory,
   enumKey,
   enumMajor,
   enumName,
   enumOriginal,
+  enumPublish,
   enumRole,
   enumSignUpStatus,
   enumTag,
@@ -136,6 +138,30 @@ const enumApi = {
     getLikeCategory({ commit }, param) {
       return new Promise((resolve, reject) => {
         enumCategory(param)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    getLikeBlog({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        enumBlog(param)
+          .then((response) => {
+            resolve(response.data)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    getLikePublish({ commit }, param) {
+      return new Promise((resolve, reject) => {
+        enumPublish(param)
           .then((response) => {
             resolve(response.data)
           })

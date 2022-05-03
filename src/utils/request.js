@@ -6,10 +6,11 @@ import resultEnum from '@/utils/enum/ResultEnum'
 import { resetTokenAndClearUser } from '@/utils/index'
 
 export const baseURL = process.env.NODE_ENV === 'development' ? dfaultSettings.baseURL.dev : dfaultSettings.baseURL.prod
+export const timeout = process.env.NODE_ENV === 'development' ? dfaultSettings.timeout.dev : dfaultSettings.timeout.prod
 
 const service = axios.create({
   // baseURL: baseURL,
-  timeout: 6000,
+  timeout: timeout,
 })
 // 正在进行中的请求列表
 let reqList = []
