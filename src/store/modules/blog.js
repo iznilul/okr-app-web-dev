@@ -1,4 +1,5 @@
-import { queryBlog, queryBlogList, cancelBlog, addBlog, changeBlog, detailBlog } from '@/api/blog'
+import { queryBlog, queryBlogList, cancelBlog, addBlog, changeBlog, detailBlog, queryUserBlogList } from '@/api/blog'
+
 const blog = {
   state: {},
 
@@ -64,6 +65,18 @@ const blog = {
     getBlogList({ commit }, data) {
       return new Promise((resolve, reject) => {
         queryBlogList(data)
+          .then((response) => {
+            resolve(response)
+          })
+          .catch((error) => {
+            reject(error)
+          })
+      })
+    },
+
+    getUserBlogList({ commit }, data) {
+      return new Promise((resolve, reject) => {
+        queryUserBlogList(data)
           .then((response) => {
             resolve(response)
           })

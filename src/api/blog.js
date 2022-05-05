@@ -51,3 +51,11 @@ export function queryBlogList(data) {
     data: data,
   })
 }
+
+export function queryUserBlogList(data) {
+  return axios({
+    url: blogApi.queryUserBlogList,
+    method: 'post',
+    data: data,
+  })
+}

@@ -21,6 +21,7 @@ export const blogApi = {
   queryBlog: '/api/okr/blog/query',
   detailBlog: '/api/okr/blog/detail',
   queryBlogList: '/api/okr/blog/queryList',
+  queryUserBlogList: '/api/okr/blog/queryUserBlogList',
 }
 
 export const bookApi = {
