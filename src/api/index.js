@@ -1,107 +1,107 @@
 export const commonApi = {
-  login: '/api/okr/common/login',
+  login: '/api/blog/common/login',
 }
 export const userApi = {
-  changeUser: '/api/okr/user/change',
-  changeUserRole: '/api/okr/user/changeRole',
-  queryUser: '/api/okr/user/query',
-  queryUserRole: '/api/okr/user/queryRole',
-  queryUserByUsername: '/api/okr/user/queryByUsername',
-  queryUserList: '/api/okr/user/queryList',
-  changeUserImg: '/api/okr/user/changeImg',
-  changePassword: '/api/okr/user/changePassword',
-  addUser: '/api/okr/user/add',
-  cancelUser: '/api/okr/user/cancel',
+  changeUser: '/api/blog/user/change',
+  changeUserRole: '/api/blog/user/changeRole',
+  queryUser: '/api/blog/user/query',
+  queryUserRole: '/api/blog/user/queryRole',
+  queryUserByUsername: '/api/blog/user/queryByUsername',
+  queryUserList: '/api/blog/user/queryList',
+  changeUserImg: '/api/blog/user/changeImg',
+  changePassword: '/api/blog/user/changePassword',
+  addUser: '/api/blog/user/add',
+  cancelUser: '/api/blog/user/cancel',
 }
 
 export const blogApi = {
-  addBlog: '/api/okr/blog/add',
-  changeBlog: '/api/okr/blog/change',
-  cancelBlog: '/api/okr/blog/cancel',
-  queryBlog: '/api/okr/blog/query',
-  detailBlog: '/api/okr/blog/detail',
-  queryBlogList: '/api/okr/blog/queryList',
-  queryUserBlogList: '/api/okr/blog/queryUserBlogList',
+  addBlog: '/api/blog/blog/add',
+  changeBlog: '/api/blog/blog/change',
+  cancelBlog: '/api/blog/blog/cancel',
+  queryBlog: '/api/blog/blog/query',
+  detailBlog: '/api/blog/blog/detail',
+  queryBlogList: '/api/blog/blog/queryList',
+  queryUserBlogList: '/api/blog/blog/queryUserBlogList',
 }
 
 export const bookApi = {
-  queryList: '/api/okr/book/queryList',
-  borrowBook: '/api/okr/book/borrow',
-  returnBook: '/api/okr/book/return',
-  queryBook: '/api/okr/book/query',
-  changeBook: '/api/okr/book/change',
-  changeBookImg: '/api/okr/book/changeImg',
-  addBook: '/api/okr/book/add',
-  cancelBook: '/api/okr/book/cancel',
-  queryBookUser: '/api/okr/bookUser/query',
+  queryList: '/api/blog/book/queryList',
+  borrowBook: '/api/blog/book/borrow',
+  returnBook: '/api/blog/book/return',
+  queryBook: '/api/blog/book/query',
+  changeBook: '/api/blog/book/change',
+  changeBookImg: '/api/blog/book/changeImg',
+  addBook: '/api/blog/book/add',
+  cancelBook: '/api/blog/book/cancel',
+  queryBookUser: '/api/blog/bookUser/query',
 }
 
 export const enumApi = {
-  enumUsername: '/api/okr/enum/username',
-  enumName: '/api/okr/enum/name',
-  enumMajor: '/api/okr/enum/major',
-  enumKey: '/api/okr/enum/key',
-  enumRole: '/api/okr/enum/role',
-  enumUserStatus: '/api/okr/enum/userStatus',
-  enumSignUpStatus: '/api/okr/enum/signUpStatus',
-  enumBook: '/api/okr/enum/book',
-  enumTag: '/api/okr/enum/tag',
-  enumOriginal: '/api/okr/enum/original',
-  enumCategory: '/api/okr/enum/category',
-  enumPublish: '/api/okr/enum/publish',
-  enumBlog: '/api/okr/enum/blog',
+  enumUsername: '/api/blog/enum/username',
+  enumName: '/api/blog/enum/name',
+  enumMajor: '/api/blog/enum/major',
+  enumKey: '/api/blog/enum/key',
+  enumRole: '/api/blog/enum/role',
+  enumUserStatus: '/api/blog/enum/userStatus',
+  enumSignUpStatus: '/api/blog/enum/signUpStatus',
+  enumBook: '/api/blog/enum/book',
+  enumTag: '/api/blog/enum/tag',
+  enumOriginal: '/api/blog/enum/original',
+  enumCategory: '/api/blog/enum/category',
+  enumPublish: '/api/blog/enum/publish',
+  enumBlog: '/api/blog/enum/blog',
 }
 
 export const keyApi = {
-  queryKey: '/api/okr/key/query',
-  queryKeyUser: '/api/okr/keyUser/query',
-  borrowKey: '/api/okr/key/borrow',
-  returnKey: '/api/okr/key/return',
-  queryKeyById: '/api/okr/key/queryById',
-  changeKey: '/api/okr/key/change',
-  addKey: '/api/okr/key/add',
-  cancelKey: '/api/okr/key/cancel',
+  queryKey: '/api/blog/key/query',
+  queryKeyUser: '/api/blog/keyUser/query',
+  borrowKey: '/api/blog/key/borrow',
+  returnKey: '/api/blog/key/return',
+  queryKeyById: '/api/blog/key/queryById',
+  changeKey: '/api/blog/key/change',
+  addKey: '/api/blog/key/add',
+  cancelKey: '/api/blog/key/cancel',
 }
 
 export const sysRecordApi = {
-  querySysRecord: '/api/okr/sysRecord/query',
+  querySysRecord: '/api/blog/sysRecord/query',
 }
 
 export const menuApi = {
-  fetchMenu: '/api/okr/menu/fetch',
+  fetchMenu: '/api/blog/menu/fetch',
 }
 
 export const monitorApi = {
-  server: '/api/okr/monitor/server',
-  httpActuator: '/api/okr/monitor/metrics/http.server.requests',
+  server: '/api/blog/monitor/server',
+  httpActuator: '/api/blog/monitor/metrics/http.server.requests',
 }
 
 export const rankApi = {}
 
 export const resourceApi = {
-  changeResource: '/api/okr/resource/change',
-  queryResource: '/api/okr/resource/query',
+  changeResource: '/api/blog/resource/change',
+  queryResource: '/api/blog/resource/query',
 }
 
 export const signupApi = {
-  changeSignUp: '/api/okr/signup/change',
-  querySignUpList: '/api/okr/signup/queryList',
-  querySignUp: '/api/okr/signup/query',
-  exportSignUp: '/api/okr/signup/export',
+  changeSignUp: '/api/blog/signup/change',
+  querySignUpList: '/api/blog/signup/queryList',
+  querySignUp: '/api/blog/signup/query',
+  exportSignUp: '/api/blog/signup/export',
 }
 
 export const tagApi = {
-  changeTag: '/api/okr/tag/change',
-  queryTagList: '/api/okr/tag/queryList',
-  queryTag: '/api/okr/tag/query',
-  addTag: '/api/okr/tag/add',
-  cancelTag: '/api/okr/tag/cancel',
+  changeTag: '/api/blog/tag/change',
+  queryTagList: '/api/blog/tag/queryList',
+  queryTag: '/api/blog/tag/query',
+  addTag: '/api/blog/tag/add',
+  cancelTag: '/api/blog/tag/cancel',
 }
 
 export const categoryApi = {
-  changeCategory: '/api/okr/category/change',
-  queryCategoryList: '/api/okr/category/queryList',
-  queryCategory: '/api/okr/category/query',
-  addCategory: '/api/okr/category/add',
-  cancelCategory: '/api/okr/category/cancel',
+  changeCategory: '/api/blog/category/change',
+  queryCategoryList: '/api/blog/category/queryList',
+  queryCategory: '/api/blog/category/query',
+  addCategory: '/api/blog/category/add',
+  cancelCategory: '/api/blog/category/cancel',
 }

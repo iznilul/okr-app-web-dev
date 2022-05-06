@@ -1,5 +1,5 @@
 <template>
-  <div id="okr">
+  <div id="blog">
     <Button id="button" @click="showBlogModal('addBlog')" type="primary">添加博客</Button>
     <Table border stripe :columns="columns" :data="data"></Table>
     <add-blog ref="addBlog" :tag-list="tagList" @getBlogList="getBlogList"></add-blog>
@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../style/views/okr';
+@import '../style/views/blogList';
 @import '../style/global/table';
 @import '../style/global/page';
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div id="okr">
+  <div id="blog">
     <Table border stripe :columns="columns" :data="data"></Table>
     <Page
       id="page"

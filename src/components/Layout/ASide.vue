@@ -27,7 +27,14 @@
           </template>
           <div v-for="(subItem, i) in item.children" :key="index + i">
             <template v-if="!subItem.hidden">
-              <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.path">
+              <!--                        判断是不是外部链接-->
+              <a :href="subItem.url" v-if="subItem.external" target="_blank" class="external">
+                <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="'external-link-' + i">
+                  <Icon :size="subItem.meta.size" :type="subItem.meta.type" />
+                  <span v-show="isShowAsideTitle">{{ subItem.meta.text }}</span>
+                </MenuItem>
+              </a>
+              <MenuItem v-else :class="isShowAsideTitle ? '' : 'shrink'" :name="subItem.path">
                 <Icon :size="subItem.meta.size" :type="subItem.meta.type" />
                 <span v-show="isShowAsideTitle">{{ subItem.meta.text }}</span>
               </MenuItem>
@@ -36,7 +43,7 @@
         </Submenu>
         <template v-else-if="!item.hidden">
           <!--                        判断是不是外部链接-->
-          <a :href="item.url" v-if="item.isExternal" target="_blank" class="external">
+          <a :href="item.url" v-if="item.external" target="_blank" class="external">
             <MenuItem :class="isShowAsideTitle ? '' : 'shrink'" :name="'external-link-' + index">
               <Icon :size="item.meta.size" :type="item.meta.type" />
               <span v-show="isShowAsideTitle">{{ item.meta.text }}</span>

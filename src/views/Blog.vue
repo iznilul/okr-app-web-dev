@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push('/okr/okrlist')
+      this.$router.push('/blog/bloglist')
     },
     getBlog() {
       this.publicGetData('getBlog', { blogId: this.blogId })
